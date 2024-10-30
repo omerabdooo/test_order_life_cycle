@@ -6,128 +6,164 @@ import 'package:test_order_life_cycle/features/store/order_processing/ui/widget/
 import 'package:test_order_life_cycle/features/store/order_processing/ui/widget/image_product.dart';
 import 'package:test_order_life_cycle/features/store/order_processing/ui/widget/product_name.dart';
 
-class StoreOrderProcessingListViewBody extends StatelessWidget {
-  const StoreOrderProcessingListViewBody(
-      {super.key,
-      required this.orderNum,
-      required this.imageCode,
-      required this.productName,
-      required this.quantity,
-      required this.price,
-      required this.totalPrice,
-      required this.totalQuantity,
-      required this.imageProduct});
-  final String orderNum;
+// class StoreOrderProcessingListViewBody extends StatelessWidget {
+//   const StoreOrderProcessingListViewBody(
+//       {super.key,
+//       required this.orderNum,
+//       required this.imageCode,
+//       required this.productName,
+//       required this.quantity,
+//       required this.price,
+//       required this.totalPrice,
+//       required this.totalQuantity,
+//       required this.imageProduct});
+//   final String orderNum;
+//   final String imageCode;
+//   final String productName;
+//   final String quantity;
+//   final String price;
+//   final String totalPrice;
+//   final String totalQuantity;
+//   final String imageProduct;
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return SizedBox(
+//       width: 370.w,
+//       height: 400.h,
+//       child: ListView.builder(
+//           padding: EdgeInsets.zero,
+//           itemCount: 10,
+//           itemBuilder: (context, i) {
+//             return OrderProcessingBody(
+//                 orderNum: orderNum,
+//                 imageCode: imageCode,
+//                 productName: productName,
+//                 quantity: quantity,
+//                 price: price,
+//                 totalPrice: totalPrice,
+//                 totalQuantity: totalQuantity,
+//                 imageProduct: imageProduct);
+//           }),
+//     );
+//   }
+// }
+
+class OrderProcessingBody extends StatelessWidget {
+  const OrderProcessingBody({
+    super.key,
+    required this.orderNum,
+    required this.imageCode,
+    required this.productName,
+    required this.quantity,
+    required this.price,
+    required this.totalPrice,
+    required this.totalQuantity,
+    required this.imageProduct,
+  });
+
+  final num orderNum;
   final String imageCode;
   final String productName;
-  final String quantity;
-  final String price;
-  final String totalPrice;
-  final String totalQuantity;
+  final int quantity;
+  final num price;
+  final num totalPrice;
+  final int totalQuantity;
   final String imageProduct;
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    return Container(
+      padding: EdgeInsets.only(right: 5.w),
+      margin: EdgeInsets.symmetric(vertical: 5.h),
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(5.r),
+          color: AppColors.primaryColor,
+          boxShadow: [
+            BoxShadow(
+                color: Colors.grey,
+                offset: const Offset(-1, 1),
+                blurRadius: 1.r)
+          ]),
       width: 370.w,
-      height: 400.h,
-      child: ListView.builder(
-          padding: EdgeInsets.zero,
-          itemCount: 10,
-          itemBuilder: (context, i) {
-            return Container(
-              padding: EdgeInsets.only(right: 5.w),
-              margin: EdgeInsets.symmetric(vertical: 5.h),
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(5.r),
-                  color: AppColors.primaryColor,
-                  boxShadow: [
-                    BoxShadow(
-                        color: Colors.grey,
-                        offset: const Offset(-1, 1),
-                        blurRadius: 1.r)
-                  ]),
-              width: 370.w,
-              height: 130.h,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.end,
+      height: 130.h,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              // رقم المنتج
+              Container(
+                  width: 200.w,
+                  alignment: Alignment.center,
+                  child: Text(
+                    '$orderNum',
+                    style: KTextStyle.secondaryTitle,
+                  )),
+              SizedBox(
+                height: 7.h,
+              ),
+              //  صورة الباركود
+              Image.asset(
+                imageCode,
+                height: 23.h,
+                width: 210.w,
+                fit: BoxFit.fill,
+              ),
+              // اسم المنتج
+              ProductName(productName: productName),
+              SizedBox(
+                height: 7.h,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      // رقم المنتج
-                      Container(
-                          width: 200.w,
-                          alignment: Alignment.center,
-                          child: Text(
-                            orderNum,
-                            style: KTextStyle.secondaryTitle,
-                          )),
-                      SizedBox(
-                        height: 7.h,
-                      ),
-                      //  صورة الباركود
-                      Image.asset(
-                        imageCode,
-                        height: 23.h,
-                        width: 210.w,
-                        fit: BoxFit.fill,
-                      ),
-                      // اسم المنتج
-                      ProductName(productName: productName),
-                      SizedBox(
-                        height: 7.h,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          const CustomText(
-                            text: 'الكمية: ',
-                          ),
-                          CustomText(
-                            text: quantity,
-                          ),
-                          SizedBox(
-                            width: 50.w,
-                          ),
-                          const CustomText(
-                            text: 'السعر: ',
-                          ),
-                          Text(price,
-                              style: KTextStyle.secondaryTitle
-                                  .copyWith(color: AppColors.redColor)),
-                        ],
-                      ),
-                      SizedBox(
-                        height: 7.h,
-                      ),
-                      Row(
-                        children: [
-                          const CustomText(
-                            text: 'الاجمالي: ',
-                          ),
-                          Text(totalPrice,
-                              style: KTextStyle.secondaryTitle
-                                  .copyWith(color: AppColors.redColor)),
-                          SizedBox(
-                            width: 50.w,
-                          ),
-                          CustomText(
-                            text: totalQuantity,
-                          ),
-                        ],
-                      ),
-                    ],
+                  const CustomText(
+                    text: 'الكمية: ',
+                  ),
+                  CustomText(
+                    text: '$quantity',
                   ),
                   SizedBox(
-                    height: 7.h,
+                    width: 50.w,
                   ),
-                  // صورة المنتج
-                  ImageProduct(imageProduct: imageProduct),
+                  const CustomText(
+                    text: 'السعر: ',
+                  ),
+                  Text('$price',
+                      style: KTextStyle.secondaryTitle
+                          .copyWith(color: AppColors.redColor)),
                 ],
               ),
-            );
-          }),
+              SizedBox(
+                height: 7.h,
+              ),
+              Row(
+                children: [
+                  const CustomText(
+                    text: 'الاجمالي: ',
+                  ),
+                  Text('$totalPrice',
+                      style: KTextStyle.secondaryTitle
+                          .copyWith(color: AppColors.redColor)),
+                  SizedBox(
+                    width: 50.w,
+                  ),
+                  CustomText(
+                    text: '$totalQuantity',
+                  ),
+                ],
+              ),
+            ],
+          ),
+          SizedBox(
+            height: 7.h,
+          ),
+          // صورة المنتج
+          ImageProduct(imageProduct: imageProduct),
+        ],
+      ),
     );
   }
 }

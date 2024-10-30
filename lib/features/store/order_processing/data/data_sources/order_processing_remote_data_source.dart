@@ -6,7 +6,6 @@ import '../models/order_processing_model/order_processing_model.dart';
 
 abstract class OrderProcessingRemoteDataSource {
   Future<List<OrderProcessingEntity>> fetchOrderProcessing(
-    String storeId,
     int orderId,
   );
 }
@@ -48,12 +47,10 @@ class OrderProcessingRemotDataSourceImpl
   }
 
   @override
-  Future<List<OrderProcessingEntity>> fetchOrderProcessing(
-      String storeId, int orderId) async {
+  Future<List<OrderProcessingEntity>> fetchOrderProcessing(int orderId) async {
     String? token = await getToken();
     var data = await apiService.get(
-      endPoint:
-          'https://icode-sendbad-store.runasp.net/api/Orders/Market/OrdersPage/GetAllOrdersByStoreIdWitheFilterstring/11/1/10/1',
+      endPoint: 'OrderDetails/Store/GetStoreOrderDetailssByOrderIdAndStoreId/1',
       headers: {
         'Authorization': 'Bearer $token',
       },
