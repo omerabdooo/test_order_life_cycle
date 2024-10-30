@@ -5,10 +5,10 @@ class BoundEntitny {
   final int boundId;
   final String bankName;
   final String clintName;
-  final File image;
+  final String? image;
   final int boundNumber;
-  final String date;
-  final num boundValue;
+  final DateTime date;
+  final int boundValue;
   final int orderNumber;
   BoundEntitny({
     required this.boundId,

@@ -10,7 +10,6 @@ class GetBoundUSeCase extends UseCaseWithNoParam {
 
   @override
   Future<Either<Failure, dynamic>> execute() {
-  return  yAccontantRepo.getBound();
+    return yAccontantRepo.getBound();
   }
-  
 }
