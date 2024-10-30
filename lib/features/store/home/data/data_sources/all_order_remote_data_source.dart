@@ -4,8 +4,8 @@ import 'package:test_order_life_cycle/features/store/home/domain/entities/all_or
 import '../models/all_order_model/all_order_model.dart';
 
 abstract class AllOrderRemotDataSource {
-  Future<List<AllOrderEntity>> fetchAllOrder(
-      String storeId, int pageNumber, int pageSize, int searchKeyword);
+  Future<List<AllOrderEntity>> fetchAllOrder(bool isUrgen, String storeId,
+      int pageNumber, int pageSize, int searchKeyword);
 }
 
 class AllOrderRemotDataSourceImpl extends AllOrderRemotDataSource {
@@ -42,12 +42,12 @@ class AllOrderRemotDataSourceImpl extends AllOrderRemotDataSource {
   }
 
   @override
-  Future<List<AllOrderEntity>> fetchAllOrder(
-      String storeId, int pageNumber, int pageSize, int searchKeyword) async {
+  Future<List<AllOrderEntity>> fetchAllOrder(bool isUrgen, String storeId,
+      int pageNumber, int pageSize, int searchKeyword) async {
     String? token = await getToken();
     var data = await apiService.get(
       endPoint:
-          'https://icode-sendbad-store.runasp.net/api/Orders/Market/OrdersPage/GetAllOrdersByStoreIdWitheFilterstring/11/1/10/1',
+          'Orders/Store/GetAllOrdersByStoreIdWitheFilterstring/0/10/1?IsUrgen=false',
       headers: {
         'Authorization': 'Bearer $token',
       },
