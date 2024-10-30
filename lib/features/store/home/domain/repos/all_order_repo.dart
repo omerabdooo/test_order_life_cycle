@@ -4,7 +4,8 @@ import 'package:test_order_life_cycle/features/store/home/domain/entities/all_or
 
 abstract class AllOrderRepo {
   Future<Either<Failure, List<AllOrderEntity>>> fetchAllOrder(
-      {required int pageNumber,
+      {required bool isUrgen,
+      required int pageNumber,
       required int pageSize,
       required String storeId,
       required int srearchKeyword});
