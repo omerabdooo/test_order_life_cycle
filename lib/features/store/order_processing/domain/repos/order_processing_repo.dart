@@ -5,5 +5,5 @@ import '../entities/order_processing_entity.dart';
 
 abstract class OrderProcessingRepo {
   Future<Either<Failure, List<OrderProcessingEntity>>> fetchOrderProcessing(
-      {required String storeId, required int orderId});
+      {required int orderId});
 }
