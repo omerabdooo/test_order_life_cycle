@@ -23,7 +23,6 @@ class SindbadManagementApp extends StatelessWidget {
           textTheme: GoogleFonts.almaraiTextTheme(
             Theme.of(context).textTheme,
           ),
-
           scaffoldBackgroundColor:
               const Color(0xFFF9F9F9), // Set default background color
         ),
