@@ -90,14 +90,6 @@ abstract class AppRouter {
   );
 }
 
-
-
-
-
-
-
-
-
 // abstract class AppRouter {
 //   ///////////////////////////////
 //   /// login router
@@ -105,7 +97,7 @@ abstract class AppRouter {
 
 //   // Accountant Routes
 //   static AcontantRouters acontantRouters = AcontantRouters();
-  
+
 //   // Accountant Routes
 //   static const kAccountantHome = '/accountant/home';
 //   static const kAccountantConfirm = '/accountant/confirm';

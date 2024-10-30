@@ -1,6 +1,6 @@
 class UpdateBoundStateEntinty {
   final bool isSuccess;
-  final String message;
+  final String responMessage;
 
-  UpdateBoundStateEntinty({required this.isSuccess, required this.message});
+  UpdateBoundStateEntinty({required this.isSuccess, required this.responMessage});
 }

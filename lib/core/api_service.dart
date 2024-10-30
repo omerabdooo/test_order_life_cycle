@@ -76,7 +76,7 @@ class ApiService {
   // patch method
   Future<Map<String, dynamic>> patch(
       {required String endPoint,
-      required Map<String, dynamic> data,
+      required  dynamic data,
       Map<String, String>? headers}) async {
     try {
       var response = await _dio.patch('$baseUrl$endPoint',
