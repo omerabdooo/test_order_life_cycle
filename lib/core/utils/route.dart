@@ -2,6 +2,7 @@ import 'package:go_router/go_router.dart';
 import 'package:test_order_life_cycle/features/auth_feature/ui/screens/login_screen.dart';
 import 'package:test_order_life_cycle/features/store/home/ui/screen/store_home_page.dart';
 import 'package:test_order_life_cycle/features/store/order_processing/ui/screen/store_order_processing.dart';
+import 'package:test_order_life_cycle/features/y_accountant/confirm_payment/ui/screen/confirm_payment.dart';
 // import 'package:sindbad_management_app/store_app_features/add_product/ui/screen/store_add_product.dart';
 // import 'package:sindbad_management_app/store_app_features/excel_file/ui/screen/store_excel_file.dart';
 // import 'package:sindbad_management_app/store_app_features/home/ui/screen/store_home_page.dart';
@@ -16,8 +17,8 @@ import 'package:test_order_life_cycle/features/store/order_processing/ui/screen/
 // Update with the actual import paths for your views
 
 class StoreRouters {
-  String kLogin = '/';
-  String kStoreHome = 'storeHome';
+  String kStoreHome = '/';
+  //String kStoreHome = 'storeHome';
   String kStoreAddProduct = '/store/addProduct';
   String kStoreOrderProcessing = '/store/orderProcessing';
   String kStoreProducts = '/store/products';
@@ -28,6 +29,9 @@ class StoreRouters {
   String kStoreStoppedProduct = '/store/stoppedProduct';
   String kStoreExcelFile = '/store/excelFile';
   String kStoreReport = '/store/report';
+  //////////////////////////////////
+  ///Accountant
+  String kAccountant = 'accountant';
 }
 
 abstract class AppRouter {
@@ -37,14 +41,14 @@ abstract class AppRouter {
   static final router = GoRouter(
     routes: [
       // Store Routes
-      GoRoute(
-        path: AppRouter.storeRouters.kLogin,
-        builder: (context, state) => const LoginScreen(),
-      ),
+      // GoRoute(
+      //   path: AppRouter.storeRouters.kLogin,
+      //   builder: (context, state) => const LoginScreen(),
+      // ),
 
       GoRoute(
         path: AppRouter.storeRouters.kStoreHome,
-        builder: (context, state) => const StoreHomePage(),
+        builder: (context, state) => const StoreOrderProcessing(),
       ),
       // GoRoute(
       //   path: AppRouter.storeRouters.kStoreAddProduct,
@@ -53,6 +57,10 @@ abstract class AppRouter {
       GoRoute(
         path: AppRouter.storeRouters.kStoreOrderProcessing,
         builder: (context, state) => const StoreOrderProcessing(),
+      ),
+      GoRoute(
+        path: AppRouter.storeRouters.kAccountant,
+        builder: (context, state) => const ConfirmPayment(),
       ),
       // GoRoute(
       //   path: AppRouter.storeRouters.kStoreProducts,
