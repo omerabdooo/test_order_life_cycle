@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:test_order_life_cycle/core/styles/Colors.dart';
 import 'package:test_order_life_cycle/core/styles/text_style.dart';
 import 'package:test_order_life_cycle/core/widgets/DataOrder.dart';
-import 'package:test_order_life_cycle/features/delivery/test_qr.dart';
+import 'package:test_order_life_cycle/features/delivery/QRCodeScanner.dart';
 
 class KNumberOrderWidget extends StatefulWidget {
   final bool isShow;

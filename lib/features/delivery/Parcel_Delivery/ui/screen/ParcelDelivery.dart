@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:go_router/go_router.dart';
 import 'package:test_order_life_cycle/core/shared_widgets/salem_drawer/drawer_widget.dart';
-import 'package:test_order_life_cycle/core/utils/route.dart';
 import 'package:test_order_life_cycle/core/widgets/NumberOrder.dart';
 import 'package:test_order_life_cycle/core/widgets/custom_appbar_widget.dart';
 import 'package:test_order_life_cycle/core/widgets/custom_primary_button_widget.dart';

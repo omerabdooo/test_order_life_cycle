@@ -3,7 +3,7 @@ import 'package:test_order_life_cycle/features/auth_feature/ui/screens/login_scr
 import 'package:test_order_life_cycle/features/delivery/Parcel_Delivery/ui/screen/ParcelDelivery.dart';
 import 'package:test_order_life_cycle/features/delivery/Receive_Parcels/ui/screen/ReceiveParcels.dart';
 import 'package:test_order_life_cycle/features/delivery/Remaining_parcels/ui/screen/RemainingParcels.dart';
-import 'package:test_order_life_cycle/features/delivery/test_qr.dart';
+import 'package:test_order_life_cycle/features/delivery/QRCodeScanner.dart';
 import 'package:test_order_life_cycle/features/store/home/ui/screen/store_home_page.dart';
 import 'package:test_order_life_cycle/features/store/order_processing/ui/screen/store_order_processing.dart';
 import 'package:test_order_life_cycle/features/y_accountant/confirm_payment/ui/screen/confirm_payment.dart';
