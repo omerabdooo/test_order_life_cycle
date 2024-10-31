@@ -30,7 +30,6 @@ class StoreRouters {
   String kQRCodeScanner = '/qrCodeScanner';
 
 
-  String kStoreHome = 'storeHome';
   String kStoreAddProduct = '/store/addProduct';
   String kStoreOrderProcessing = '/store/orderProcessing';
   String kStoreProducts = '/store/products';
