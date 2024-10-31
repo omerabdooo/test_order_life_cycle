@@ -1,8 +1,8 @@
 import 'package:dartz/dartz.dart';
 import 'package:test_order_life_cycle/core/errors/failure.dart';
 import 'package:test_order_life_cycle/core/use_cases/param_use_case.dart';
-import 'package:test_order_life_cycle/features/delivery/Parcel_Delivery/domain/entities/receive_parcels_entity.dart';
-import 'package:test_order_life_cycle/features/delivery/Parcel_Delivery/domain/repo/receive_parcels_repo.dart';
+import 'package:test_order_life_cycle/features/delivery/Parcel_Delivery/domain/entities/parcel_delivery_entity.dart';
+import 'package:test_order_life_cycle/features/delivery/Parcel_Delivery/domain/repo/parcel_delivery_repo.dart';
 
 class ParcelDeliveryUseCase
     extends UseCaseWithParam<ParcelDeliveryEntity, ParcelDeliveryParams> {
