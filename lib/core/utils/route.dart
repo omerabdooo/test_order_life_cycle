@@ -17,8 +17,8 @@ import 'package:test_order_life_cycle/features/y_accountant/confirm_payment/ui/s
 // Update with the actual import paths for your views
 
 class StoreRouters {
-  String kStoreHome = '/';
-  //String kStoreHome = 'storeHome';
+  String kLogin = '/';
+  String kStoreHome = 'storeHome';
   String kStoreAddProduct = '/store/addProduct';
   String kStoreOrderProcessing = '/store/orderProcessing';
   String kStoreProducts = '/store/products';
@@ -35,7 +35,8 @@ class StoreRouters {
 }
 
 abstract class AppRouter {
-  static const kStoreHome = 'storeHome';
+  // static const kStoreHome = 'storeHome';
+  static const kLogin = '/';
 
   static StoreRouters storeRouters = StoreRouters();
   static final router = GoRouter(
@@ -48,12 +49,12 @@ abstract class AppRouter {
 
       GoRoute(
         path: AppRouter.storeRouters.kStoreHome,
-        builder: (context, state) => const StoreOrderProcessing(),
+        builder: (context, state) => const StoreHomePage(),
       ),
-      // GoRoute(
-      //   path: AppRouter.storeRouters.kStoreAddProduct,
-      //   builder: (context, state) => const StoreAddProduct(),
-      // ),
+      GoRoute(
+        path: kLogin,
+        builder: (context, state) => const LoginScreen(),
+      ),
       GoRoute(
         path: AppRouter.storeRouters.kStoreOrderProcessing,
         builder: (context, state) => const StoreOrderProcessing(),
