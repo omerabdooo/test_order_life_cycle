@@ -1,8 +1,8 @@
-class NewCustomerAddressEntity {
+class ReceiveParcelsEntity {
   final bool isSuccess;
   final String serverMessage;
 
-  NewCustomerAddressEntity({
+  ReceiveParcelsEntity({
     required this.isSuccess,
     required this.serverMessage,
   });
