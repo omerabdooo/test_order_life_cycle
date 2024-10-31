@@ -4,6 +4,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:test_order_life_cycle/core/setup_service_locator.dart';
+
 import 'package:test_order_life_cycle/core/simple_bloc_observer.dart';
 import 'package:test_order_life_cycle/core/utils/route.dart';
 
@@ -13,6 +14,7 @@ void main() {
 
   // use the bloc observer
   Bloc.observer = SimpleBlocObserver();
+
 
   runApp(const SindbadManagementApp());
 }
@@ -32,7 +34,6 @@ class SindbadManagementApp extends StatelessWidget {
           textTheme: GoogleFonts.almaraiTextTheme(
             Theme.of(context).textTheme,
           ),
-
           scaffoldBackgroundColor:
               const Color(0xFFF9F9F9), // Set default background color
         ),

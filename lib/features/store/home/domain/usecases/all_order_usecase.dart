@@ -15,6 +15,7 @@ class AllOrderUsecase
   Future<Either<Failure, List<AllOrderEntity>>> execute(
       AllOrderParam params) async {
     return await allOrderRepo.fetchAllOrder(
+        isUrgen: params.isUrgen,
         pageNumber: params.pageNumber,
         pageSize: params.pageSize,
         storeId: params.storeId,
@@ -23,10 +24,11 @@ class AllOrderUsecase
 }
 
 class AllOrderParam {
+  final bool isUrgen;
   final String storeId;
   final int srearchKeyword;
   final int pageNumber;
   final int pageSize;
-  AllOrderParam(
-      this.pageNumber, this.pageSize, this.storeId, this.srearchKeyword);
+  AllOrderParam(this.pageNumber, this.pageSize, this.storeId,
+      this.srearchKeyword, this.isUrgen);
 }

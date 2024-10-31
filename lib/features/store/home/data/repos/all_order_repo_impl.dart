@@ -8,7 +8,9 @@ import 'package:test_order_life_cycle/features/store/home/domain/repos/all_order
 class AllOrderRepoImpl extends AllOrderRepo {
   final AllOrderRemotDataSource allOrderRemotDataSource;
 
-  AllOrderRepoImpl(this.allOrderRemotDataSource);
+  AllOrderRepoImpl(
+    this.allOrderRemotDataSource,
+  );
 
   // basic fetch list Entity function
   Future<Either<Failure, List<T>>> fetchData<T>(
@@ -27,11 +29,12 @@ class AllOrderRepoImpl extends AllOrderRepo {
 
   @override
   Future<Either<Failure, List<AllOrderEntity>>> fetchAllOrder(
-      {required int pageNumber,
+      {required bool isUrgen,
+      required int pageNumber,
       required int pageSize,
       required String storeId,
       required int srearchKeyword}) {
     return fetchData(() => allOrderRemotDataSource.fetchAllOrder(
-        storeId, pageSize, pageNumber, srearchKeyword));
+        isUrgen, storeId, pageSize, pageNumber, srearchKeyword));
   }
 }
