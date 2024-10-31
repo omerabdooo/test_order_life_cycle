@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:test_order_life_cycle/core/shared_widgets/salem_drawer/drawer_widget.dart';
 import 'package:test_order_life_cycle/core/styles/text_style.dart';
 import 'package:test_order_life_cycle/core/utils/route.dart';
 import 'package:test_order_life_cycle/core/widgets/custom_primary_button_widget.dart';
@@ -34,6 +35,7 @@ class LoginScreen extends StatelessWidget {
 
     var media = MediaQuery.of(context).size.width;
     return Scaffold(
+      drawer: const KDrawerWidget(),
       body: Padding(
         padding: EdgeInsets.symmetric(vertical: 16.0.h, horizontal: 16.0.w),
         child: Column(

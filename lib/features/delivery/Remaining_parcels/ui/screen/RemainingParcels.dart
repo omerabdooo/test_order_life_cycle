@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:test_order_life_cycle/core/shared_widgets/salem_drawer/drawer_widget.dart';
 import 'package:test_order_life_cycle/core/styles/Colors.dart';
 import 'package:test_order_life_cycle/core/styles/text_style.dart';
 import 'package:test_order_life_cycle/core/widgets/a_order.dart';
@@ -10,6 +11,7 @@ class Remainingparcels extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: const KDrawerWidget(),
       resizeToAvoidBottomInset: false,
       backgroundColor: AppColors.backgroundColor,
       body: Column(
