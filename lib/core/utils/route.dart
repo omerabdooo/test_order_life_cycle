@@ -23,12 +23,11 @@ import 'package:test_order_life_cycle/features/y_accountant/confirm_payment/ui/s
 class StoreRouters {
   String kStoreHome = '/';
   //String kStoreHome = 'storeHome';
-  String kLogin = '/';
+  String kLogin = '/fhdh';
   String kParcelDelivery = '/parcelDelivery';
   String kReceiveParcels = '/receiveParcels';
   String kRemainingParcels = '/remainingParcels';
   String kQRCodeScanner = '/qrCodeScanner';
-
 
   String kStoreAddProduct = '/store/addProduct';
   String kStoreOrderProcessing = '/store/orderProcessing';
@@ -58,11 +57,11 @@ abstract class AppRouter {
       // ),
       GoRoute(
         path: AppRouter.storeRouters.kLogin,
-        builder: (context, state) =>  ParcelDelivery(),
+        builder: (context, state) => ParcelDelivery(),
       ),
       GoRoute(
         path: AppRouter.storeRouters.kParcelDelivery,
-        builder: (context, state) =>  ParcelDelivery(),
+        builder: (context, state) => ParcelDelivery(),
       ),
       GoRoute(
         path: AppRouter.storeRouters.kReceiveParcels,
@@ -70,16 +69,16 @@ abstract class AppRouter {
       ),
       GoRoute(
         path: AppRouter.storeRouters.kRemainingParcels,
-        builder: (context, state) =>  Remainingparcels(),
+        builder: (context, state) => Remainingparcels(),
       ),
       GoRoute(
         path: AppRouter.storeRouters.kQRCodeScanner,
-        builder: (context, state) =>  const QRCodeScanner(),
+        builder: (context, state) => const QRCodeScanner(),
       ),
 
       GoRoute(
         path: AppRouter.storeRouters.kStoreHome,
-        builder: (context, state) => const StoreOrderProcessing(),
+        builder: (context, state) => const ConfirmPayment(),
       ),
       // GoRoute(
       //   path: AppRouter.storeRouters.kStoreAddProduct,

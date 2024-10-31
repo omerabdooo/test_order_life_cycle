@@ -19,18 +19,14 @@ class _MyWidgetState extends State<ReceiveParcels> {
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
-      providers: [
-        BlocProvider(
-          create: (context) =>
-              ReceiveParcelsCubit(ReceiveParcelsUseCase(
-            getit.get<ReceiveParcelsRepoImpl>(),
-          )),
-        ),
-      ], 
-      child: const Scaffold(
-      drawer: KDrawerWidget(),
-      body: ReceiveParcelsBody()
-    )
-      );
+        providers: [
+          BlocProvider(
+            create: (context) => ReceiveParcelsCubit(ReceiveParcelsUseCase(
+              getit.get<ReceiveParcelsRepoImpl>(),
+            )),
+          ),
+        ],
+        child: const Scaffold(
+            drawer: KDrawerWidget(), body: ReceiveParcelsBody()));
   }
 }

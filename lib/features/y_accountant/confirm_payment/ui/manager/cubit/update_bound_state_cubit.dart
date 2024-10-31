@@ -7,7 +7,8 @@ part 'update_bound_state_state.dart';
 
 class UpdateBoundStateCubit extends Cubit<UpdateBoundStateState> {
   final UpdateBoundStateUsecase updateBoundStateUsecase;
-  UpdateBoundStateCubit(this.updateBoundStateUsecase) : super(UpdateBoundStateInitial());
+  UpdateBoundStateCubit(this.updateBoundStateUsecase)
+      : super(UpdateBoundStateInitial());
   Future<void> updateBoundState(int boundId, String action) async {
     emit(UpdateBoundStateCubitLoading());
     var params = BoundParameter(boundId: boundId, action: action);
@@ -15,8 +16,8 @@ class UpdateBoundStateCubit extends Cubit<UpdateBoundStateState> {
     result.fold(
         (failure) => emit(UpdateBoundStateCubitFailure(
             errorMessage: failure.message, boundId)),
-        (cartItem) =>
-            emit(UpdateBoundStateCubitSuccess(updateBoundStateEntinty: cartItem)));
+        (cartItem) => emit(
+            UpdateBoundStateCubitSuccess(updateBoundStateEntinty: cartItem)));
     ;
   }
 }

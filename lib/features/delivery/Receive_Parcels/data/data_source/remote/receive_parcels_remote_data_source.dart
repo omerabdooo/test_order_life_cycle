@@ -22,38 +22,35 @@ class ReceiveParcelsRemoteDataSourceImpl
     return await secureStorage.read(key: 'token');
   }
 
-List<T> getListFromData<T>(
-    Map<String, dynamic> data, T Function(Map<String, dynamic>) fromJson) {
-  List<T> entities = [];
+  List<T> getListFromData<T>(
+      Map<String, dynamic> data, T Function(Map<String, dynamic>) fromJson) {
+    List<T> entities = [];
 
-  if (data['data'] is List) {
-    if (data['data'].isEmpty) {
-      print("The data list is empty.");
-    } else {
-      for (var item in data['data']) {
-        entities.add(fromJson(item));
+    if (data['data'] is List) {
+      if (data['data'].isEmpty) {
+        print("The data list is empty.");
+      } else {
+        for (var item in data['data']) {
+          entities.add(fromJson(item));
+        }
       }
+    } else if (data['message'] != null) {
+      // If 'data' is not a list and there is a message, handle accordingly
+      print("Message found in the data: ${data['message']}");
+      entities.add(fromJson(data));
+    } else {
+      print("No valid data or message found.");
     }
-  } else if (data['message'] != null) {
-    // If 'data' is not a list and there is a message, handle accordingly
-    print("Message found in the data: ${data['message']}");
-    entities.add(fromJson(data));
-  } else {
-    print("No valid data or message found.");
+
+    print('List after processing: $entities');
+    return entities;
   }
-
-  print('List after processing: $entities');
-  return entities;
-}
-
-
 
   // // get customer address List function
   // List<CustomerAddressEntity> getAllCustomerAddresslist(
   //     Map<String, dynamic> data) {
   //   return getListFromData(data, (item) => CustomerAddress.fromJson(item));
   // }
-  
 
   @override
   Future<ReceiveParcelsEntity> receiveParcels(
@@ -65,12 +62,10 @@ List<T> getListFromData<T>(
       'id': orderId,
       'orderDetailStatus': status,
     });
-    ReceiveParcelsEntity receiveParcels =
-        OrderDetailStatus.fromJson(data);
+    ReceiveParcelsEntity receiveParcels = OrderDetailStatus.fromJson(data);
     print(receiveParcels);
     return receiveParcels;
   }
-
 
 // @override
 // Future<List<CustomerAddressEntity>> getAllCustomerAddress() async {

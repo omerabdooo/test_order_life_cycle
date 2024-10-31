@@ -9,7 +9,9 @@ class ParcelDelivery extends StatefulWidget {
   @override
   State<ParcelDelivery> createState() => _ParcelDeliveryState();
 }
+
 TextEditingController receiptCode = TextEditingController();
+
 class _ParcelDeliveryState extends State<ParcelDelivery> {
   @override
   Widget build(BuildContext context) {
@@ -21,10 +23,7 @@ class _ParcelDeliveryState extends State<ParcelDelivery> {
             KCustomAppBarWidget(
               nameAppbar: "تسليم طرود",
             ),
-            KNumberOrderWidget(
-              isShow: false,
-              receiptCode: receiptCode
-            ),
+            KNumberOrderWidget(isShow: false, receiptCode: receiptCode),
             SizedBox(
               height: 10.h,
             ),
@@ -39,7 +38,7 @@ class _ParcelDeliveryState extends State<ParcelDelivery> {
                     height: 48,
                     buttonName: "تأكيـــد",
                     onPressed: () {
-                    print(receiptCode.text);
+                      print(receiptCode.text);
                     }),
                 SizedBox(width: 20.h), // Space between buttons
                 KCustomPrimaryButtonWidget(

@@ -19,9 +19,9 @@ class ReceiveParcelsCubit extends Cubit<ReceiveParcelsState> {
 
     try {
       var params = ReceiveParcelsParams(
-          orderId, 
-          status,
-          );
+        orderId,
+        status,
+      );
       final result = await receiveParcelsUseCase.execute(params);
 
       result.fold(
@@ -34,9 +34,9 @@ class ReceiveParcelsCubit extends Cubit<ReceiveParcelsState> {
         //   //
         // } else if(userData.serverMessage == "The customer already has an address") {
         //   emit(ReceiveParcelsFailure("لديك عنوان بالفعل "));
-        // }        
+        // }
         // else {
-          emit(ReceiveParcelsSuccess("تم استلام الطرد بنجاح"));
+        emit(ReceiveParcelsSuccess("تم استلام الطرد بنجاح"));
         // }
       });
     } catch (e) {

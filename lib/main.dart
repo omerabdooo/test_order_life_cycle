@@ -15,7 +15,6 @@ void main() {
   // use the bloc observer
   Bloc.observer = SimpleBlocObserver();
 
-
   runApp(const SindbadManagementApp());
 }
 
@@ -48,6 +47,7 @@ class SindbadManagementApp extends StatelessWidget {
         ],
         locale: const Locale('ar', 'AR'),
         debugShowCheckedModeBanner: false,
+        
         // home:  home_mnd2(),
 
         // home: const HomePage(),

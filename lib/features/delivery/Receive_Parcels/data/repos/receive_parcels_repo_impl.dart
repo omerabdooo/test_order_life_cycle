@@ -10,7 +10,9 @@ import 'package:test_order_life_cycle/features/delivery/Receive_Parcels/domain/r
 class ReceiveParcelsRepoImpl extends ReceiveParcelsRepo {
   final ReceiveParcelsRemoteDataSource receiveParcelsRemoteDataSource;
 
-  ReceiveParcelsRepoImpl({required this.receiveParcelsRemoteDataSource,});
+  ReceiveParcelsRepoImpl({
+    required this.receiveParcelsRemoteDataSource,
+  });
 
 // basic fetch list Entity function
   Future<Either<Failure, List<T>>> fetchData<T>(
@@ -26,6 +28,7 @@ class ReceiveParcelsRepoImpl extends ReceiveParcelsRepo {
       }
     }
   }
+
 // basic fetch list Entity function
   Future<Either<Failure, List<T>?>> fetchDataNullable<T>(
       Future<List<T>?> Function() fetchFunction) async {

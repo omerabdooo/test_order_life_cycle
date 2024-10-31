@@ -7,7 +7,7 @@ import 'package:test_order_life_cycle/features/y_accountant/confirm_payment/domi
 part 'get_bound_state.dart';
 
 class GetBoundCubit extends Cubit<GetBoundState> {
-   final GetBoundUSeCase getCartItemUseCase;
+  final GetBoundUSeCase getCartItemUseCase;
   GetBoundCubit(this.getCartItemUseCase) : super(GetBoundInitial());
   Future<void> getBound() async {
     emit(GetBoundLodingCubit());
@@ -15,6 +15,6 @@ class GetBoundCubit extends Cubit<GetBoundState> {
     right(result).forEach((cart) {});
     result.fold(
         (failure) => emit(GetBoundFailureCubit(errorMessage: failure.message)),
-        (cartItem) => emit(GetBoundSuccessCubit(boundEntitny:  cartItem)));
+        (cartItem) => emit(GetBoundSuccessCubit(boundEntitny: cartItem)));
   }
 }

@@ -37,37 +37,37 @@ class KDrawerWidget extends StatelessWidget {
                   ],
                 )),
             KDrawerTileWidget(
-                title: 'تسليم الطرد',
-                leading: const Icon(Icons.history),
-                ontap: () {
-                      GoRouter.of(context).pushReplacement(
-                      AppRouter.storeRouters.kParcelDelivery);
-
-                },),
+              title: 'تسليم الطرد',
+              leading: const Icon(Icons.history),
+              ontap: () {
+                GoRouter.of(context)
+                    .pushReplacement(AppRouter.storeRouters.kParcelDelivery);
+              },
+            ),
             KDrawerTileWidget(
-                title: 'استلام الطرد',
-                leading: const Icon(Icons.history),
-                ontap: () {
-                      GoRouter.of(context).pushReplacement(
-                      AppRouter.storeRouters.kReceiveParcels);
-
-                },),
+              title: 'استلام الطرد',
+              leading: const Icon(Icons.history),
+              ontap: () {
+                GoRouter.of(context)
+                    .pushReplacement(AppRouter.storeRouters.kReceiveParcels);
+              },
+            ),
             KDrawerTileWidget(
-                title: 'قائمة',
-                leading: const Icon(Icons.history),
-                ontap: () {
-                      GoRouter.of(context).pushReplacement(
-                      AppRouter.storeRouters.kRemainingParcels);
-
-                },),
+              title: 'قائمة',
+              leading: const Icon(Icons.history),
+              ontap: () {
+                GoRouter.of(context)
+                    .pushReplacement(AppRouter.storeRouters.kRemainingParcels);
+              },
+            ),
             KDrawerTileWidget(
-                title: 'الماسح',
-                leading: const Icon(Icons.history),
-                ontap: () {
-                      GoRouter.of(context).pushReplacement(
-                      AppRouter.storeRouters.kQRCodeScanner);
-
-                },),
+              title: 'الماسح',
+              leading: const Icon(Icons.history),
+              ontap: () {
+                GoRouter.of(context)
+                    .pushReplacement(AppRouter.storeRouters.kQRCodeScanner);
+              },
+            ),
           ],
         ),
       ),

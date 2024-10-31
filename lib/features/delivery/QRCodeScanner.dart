@@ -34,7 +34,8 @@ class _QRCodeScannerState extends State<QRCodeScanner> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: _scanned ? Colors.black : null, // Set background to black if scanned
+      backgroundColor:
+          _scanned ? Colors.black : null, // Set background to black if scanned
       appBar: AppBar(
         title: const Text('QR Code Scanner'),
       ),

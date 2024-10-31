@@ -3,7 +3,7 @@ import 'dart:io';
 
 class BoundEntitny {
   final int boundId;
-  final String bankName;
+  final String banKName;
   final String clintName;
   final String? image;
   final int boundNumber;
@@ -12,7 +12,7 @@ class BoundEntitny {
   final int orderNumber;
   BoundEntitny({
     required this.boundId,
-    required this.bankName,
+    required this.banKName,
     required this.clintName,
     required this.image,
     required this.boundNumber,

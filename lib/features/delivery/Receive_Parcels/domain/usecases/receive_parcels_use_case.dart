@@ -14,18 +14,15 @@ class ReceiveParcelsUseCase
   Future<Either<Failure, ReceiveParcelsEntity>> execute(
       ReceiveParcelsParams params) {
     return receiveParcelsRepo.receiveParcels(
-        params.orderId, 
-        params.status,
-        );
+      params.orderId,
+      params.status,
+    );
   }
 }
 
 class ReceiveParcelsParams {
-   final int orderId;
-   final int status;
+  final int orderId;
+  final int status;
 
-  ReceiveParcelsParams(
-    this.orderId, 
-    this.status
-  );
+  ReceiveParcelsParams(this.orderId, this.status);
 }

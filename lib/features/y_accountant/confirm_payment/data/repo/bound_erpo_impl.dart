@@ -27,6 +27,7 @@ class YAccontantRepoimple extends YAccontantRepo {
       }
     }
   }
+
   Future<Either<Failure, T>> addData<T>(
       Future<T> Function() addFunction) async {
     try {
@@ -40,15 +41,16 @@ class YAccontantRepoimple extends YAccontantRepo {
       }
     }
   }
+
   @override
-  Future<Either<Failure, List<BoundEntitny>>> getBound() async{
-   return fetchData(()=>boundRemoteDataSource.getBound());
+  Future<Either<Failure, List<BoundEntitny>>> getBound() async {
+    return fetchData(() => boundRemoteDataSource.getBound());
   }
 
   @override
-  Future<Either<Failure, UpdateBoundStateEntinty>> updateBoundState(int boundId, String action) {
-    return addData(()=>boundRemoteDataSource.updateBoundState(boundId, action));
+  Future<Either<Failure, UpdateBoundStateEntinty>> updateBoundState(
+      int boundId, String action) {
+    return addData(
+        () => boundRemoteDataSource.updateBoundState(boundId, action));
   }
-
-
 }
