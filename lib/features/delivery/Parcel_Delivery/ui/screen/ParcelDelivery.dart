@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:test_order_life_cycle/core/shared_widgets/salem_drawer/drawer_widget.dart';
 import 'package:test_order_life_cycle/core/utils/route.dart';
 import 'package:test_order_life_cycle/core/widgets/NumberOrder.dart';
 import 'package:test_order_life_cycle/core/widgets/custom_appbar_widget.dart';
@@ -10,11 +11,12 @@ class ParcelDelivery extends StatefulWidget {
   @override
   State<ParcelDelivery> createState() => _ParcelDeliveryState();
 }
-
+TextEditingController receiptCode = TextEditingController();
 class _ParcelDeliveryState extends State<ParcelDelivery> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: const KDrawerWidget(),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -23,6 +25,7 @@ class _ParcelDeliveryState extends State<ParcelDelivery> {
             ),
             KNumberOrderWidget(
               isShow: false,
+              receiptCode: receiptCode
             ),
             SizedBox(
               height: 10.h,
@@ -37,7 +40,9 @@ class _ParcelDeliveryState extends State<ParcelDelivery> {
                     width: 170,
                     height: 48,
                     buttonName: "تأكيـــد",
-                    onPressed: () {}),
+                    onPressed: () {
+                    print(receiptCode.text);
+                    }),
                 SizedBox(width: 20.h), // Space between buttons
                 KCustomPrimaryButtonWidget(
                     width: 85,

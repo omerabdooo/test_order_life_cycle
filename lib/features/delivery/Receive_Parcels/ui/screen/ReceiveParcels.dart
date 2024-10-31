@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:test_order_life_cycle/core/shared_widgets/salem_drawer/drawer_widget.dart';
 import 'package:test_order_life_cycle/core/utils/route.dart';
 import 'package:test_order_life_cycle/core/widgets/NumberOrder.dart';
 import 'package:test_order_life_cycle/core/widgets/custom_appbar_widget.dart';
@@ -14,12 +15,13 @@ class ReceiveParcels extends StatefulWidget {
   State<ReceiveParcels> createState() => _MyWidgetState();
 }
 
-// TextEditingController OrderNumber = TextEditingController();
+TextEditingController orderId = TextEditingController();
 
 class _MyWidgetState extends State<ReceiveParcels> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: const KDrawerWidget(),
       body: SingleChildScrollView(
         child: Column(children: [
           KCustomAppBarWidget(
@@ -27,6 +29,7 @@ class _MyWidgetState extends State<ReceiveParcels> {
           ),
           KNumberOrderWidget(
             isShow: true,
+            orderId: orderId,
           ),
           SizedBox(
             height: 10.h,
@@ -41,7 +44,9 @@ class _MyWidgetState extends State<ReceiveParcels> {
                   width: 170,
                   height: 48,
                   buttonName: "تأكيـــد",
-                  onPressed: () {}),
+                  onPressed: () {
+                    print(orderId.text);
+                  }),
               SizedBox(width: 20.h), // Space between buttons
               KCustomPrimaryButtonWidget(
                   width: 85,
