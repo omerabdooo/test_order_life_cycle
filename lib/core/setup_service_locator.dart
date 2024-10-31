@@ -2,6 +2,11 @@ import 'package:dio/dio.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get_it/get_it.dart';
 import 'package:test_order_life_cycle/core/api_service.dart';
+import 'package:test_order_life_cycle/features/delivery/Receive_Parcels/data/repos/receive_parcels_repo_impl.dart';
+import 'package:test_order_life_cycle/features/store/home/data/data_sources/all_order_remote_data_source.dart';
+import 'package:test_order_life_cycle/features/store/home/data/repos/all_order_repo_impl.dart';
+import 'package:test_order_life_cycle/features/store/order_processing/data/data_sources/order_processing_remote_data_source.dart';
+import 'package:test_order_life_cycle/features/store/order_processing/data/repos/order_processing_repo_impl.dart';
 
 import 'package:test_order_life_cycle/features/y_accountant/confirm_payment/data/data_source/remote/bound_remote_data_source.dart';
 import 'package:test_order_life_cycle/features/y_accountant/confirm_payment/data/repo/bound_erpo_impl.dart';
@@ -9,11 +14,7 @@ import 'package:test_order_life_cycle/features/y_accountant/confirm_payment/domi
 
 
 import 'package:test_order_life_cycle/features/delivery/Receive_Parcels/data/data_source/remote/receive_parcels_remote_data_source.dart';
-import 'package:test_order_life_cycle/features/delivery/Receive_Parcels/data/repos/receive_parcels_repo_impl.dart';
-import 'package:test_order_life_cycle/features/store/home/data/data_sources/all_order_remote_data_source.dart';
-import 'package:test_order_life_cycle/features/store/home/data/repos/all_order_repo_impl.dart';
-import 'package:test_order_life_cycle/features/store/order_processing/data/data_sources/order_processing_remote_data_source.dart';
-import 'package:test_order_life_cycle/features/store/order_processing/data/repos/order_processing_repo_impl.dart';
+
 
 
 final getit = GetIt.instance;
@@ -34,7 +35,7 @@ void setupServiceLocator() {
 
 
 
-}
+
 
   getit.registerSingleton<AllOrderRepoImpl>(
     AllOrderRepoImpl(
@@ -57,6 +58,7 @@ void setupServiceLocator() {
     getit.get<ApiService>(),
     getit.get<FlutterSecureStorage>(),
   ),));
+}
   // getit.registerSingleton<AllOrderRepoImpl>(AllOrderRepoImpl(allOrderRemoteDataSource:  AllOrderRemotDataSourceImpl(
   //   getit.get<ApiService>(),
   //   getit.get<FlutterSecureStorage>(),
@@ -166,5 +168,5 @@ void setupServiceLocator() {
   //   getit.get<ApiService>(),
   //   getit.get<FlutterSecureStorage>(),
   // )));
-}
+
 
