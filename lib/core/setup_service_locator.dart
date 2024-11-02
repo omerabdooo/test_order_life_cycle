@@ -2,6 +2,8 @@ import 'package:dio/dio.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get_it/get_it.dart';
 import 'package:test_order_life_cycle/core/api_service.dart';
+import 'package:test_order_life_cycle/features/auth_feature/data/data_source/auth_remote_data_source.dart';
+import 'package:test_order_life_cycle/features/auth_feature/data/repo/auth_repo_impl.dart';
 import 'package:test_order_life_cycle/features/delivery/Parcel_Delivery/data/data_source/remote/parcel_delivery_remote_data_source.dart';
 import 'package:test_order_life_cycle/features/delivery/Parcel_Delivery/data/repos/parcel_delivery_repo_impl.dart';
 import 'package:test_order_life_cycle/features/delivery/Receive_Parcels/data/data_source/remote/receive_parcels_remote_data_source.dart';
@@ -61,6 +63,11 @@ void setupServiceLocator() {
       getit.get<FlutterSecureStorage>(),
     ),
   ));
+  getit.registerSingleton<AuthRepoImpl>(AuthRepoImpl(
+      authRemoteDataSource: AuthRemoteDataSourceImpl(
+    getit.get<ApiService>(),
+    getit.get<FlutterSecureStorage>(),
+  )));
 }
 // getit.registerSingleton<AllOrderRepoImpl>(AllOrderRepoImpl(allOrderRemoteDataSource:  AllOrderRemotDataSourceImpl(
 //   getit.get<ApiService>(),

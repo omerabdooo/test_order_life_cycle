@@ -1,4 +1,5 @@
-import 'package:sindbad_store/features/auth_features/domain/entity/sign_in_entity.dart';
+
+import 'package:test_order_life_cycle/features/auth_feature/domain/entity/sign_in_entity.dart';
 
 import 'data.dart';
 
