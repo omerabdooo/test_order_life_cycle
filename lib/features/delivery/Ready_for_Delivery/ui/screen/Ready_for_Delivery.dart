@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:test_order_life_cycle/core/setup_service_locator.dart';
 import 'package:test_order_life_cycle/core/shared_widgets/salem_drawer/drawer_widget.dart';
 import 'package:test_order_life_cycle/core/styles/Colors.dart';
-import 'package:test_order_life_cycle/core/styles/text_style.dart';
-import 'package:test_order_life_cycle/core/widgets/a_order.dart';
-import 'package:test_order_life_cycle/core/widgets/custom_appbar_widget.dart';
-import 'package:test_order_life_cycle/core/widgets/custom_search_widget.dart';
+import 'package:test_order_life_cycle/features/delivery/Ready_for_Delivery/data/repos/ready_for_delivery_repo_impl.dart';
+import 'package:test_order_life_cycle/features/delivery/Ready_for_Delivery/domain/usecases/ready_for_delivery_use_case.dart';
+import 'package:test_order_life_cycle/features/delivery/Ready_for_Delivery/ui/manger/ready_for_delivery_cubit/ready_for_delivery_cubit.dart';
+import 'package:test_order_life_cycle/features/delivery/Ready_for_Delivery/ui/widgets/ready_for_delivery_body.dart';
 
 class ReadyForDelivery extends StatefulWidget {
   const ReadyForDelivery({super.key});
@@ -18,80 +19,20 @@ class _ReadyForDeliveryState extends State<ReadyForDelivery> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      drawer: const KDrawerWidget(),
-      resizeToAvoidBottomInset: false,
-      backgroundColor: AppColors.backgroundColor,
-      body: Column(
-        // crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          const KCustomAppBarWidget(
-            nameAppbar: "الطلبات الجاهزة للتسليم",
-          ),
-          SizedBox(
-            height: 2.h,
-          ),
-          KCustomSearchWidget(
-            height: 23,
-            width: 338,
-            hintText: "رقم الطلب:",
-          ),
-          KCustomSearchWidget(
-            height: 23,
-            width: 338,
-            hintText: "رقم تلفون:",
-          ),
-           ListView(
-              children: [
-                ListView.builder(
-                    itemCount: 5,
-                    physics: const NeverScrollableScrollPhysics(),
-                    shrinkWrap: true,
-                    itemBuilder: (context, i) {
-                      return KOrdersWidget(
-                          receiptCode: "",
-                          OrderNumber: "",
-                          Phone: "735961434",
-                          Costmor: "Khaild ",
-                          NumberParcels: "1",
-                          TotalNumber: "1",
-                          Backcolor: AppColors.greyLight);
-                    }),
-              ],
-            ),
-        ],
-      ),
-      floatingActionButton: KButtonWidget(),
-    );
-  }
-}
-
-class KButtonWidget extends StatelessWidget {
-  const KButtonWidget({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.only(bottom: 15.h),
-      child: Container(
-        width: 85.w,
-        height: 48.h,
-        decoration: BoxDecoration(
-          // color: Color.fromRGBO(226, 126, 126, 1),
-          borderRadius: BorderRadius.circular(200.r),
-          // border: Border.all()),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) =>
+              ReadyForDeliveryCubit(GetAllReadyForDeliveryUseCase(
+            getit.get<ReadyForDeliveryRepoImpl>(),
+          )),
         ),
-        child: FloatingActionButton(
-            backgroundColor: Color.fromRGBO(226, 126, 126, 1),
-            child: Text(
-              "إغلاق",
-              style: KTextStyle.tabs.copyWith(color: AppColors.white),
-            ),
-            onPressed: () {
-              // GoRouter.of(context)
-              //     .pushReplacement(AppRouter.deliveryRouters.kDeliverHomePage);
-            }),
-      ),
+      ],
+      child: const Scaffold(
+        resizeToAvoidBottomInset: false,
+        backgroundColor: AppColors.backgroundColor,
+        drawer: KDrawerWidget(), 
+        body: ReadyForDeliveryBody()),
     );
   }
 }
