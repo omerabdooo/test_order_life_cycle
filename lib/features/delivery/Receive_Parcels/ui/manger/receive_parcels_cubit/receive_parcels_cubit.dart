@@ -29,10 +29,10 @@ class ReceiveParcelsCubit extends Cubit<ReceiveParcelsState> {
           (failure) => emit(ReceiveParcelsFailure(failure.message)),
           // right
           (userData) {
-        // if (userData.serverMessage == "The address already exists") {
-        //   emit(ReceiveParcelsFailure("تم اختيار هذه العنوان من قبل الرجاء اختيار عنوان اخر..."));
+        if (userData.serverMessage == "رقم الطلب غير صحيح") {
+          emit(ReceiveParcelsFailure("رقم الطلب غير صحيح ..."));
         //   //
-        // } else if(userData.serverMessage == "The customer already has an address") {
+         } //else if(userData.serverMessage == "The customer already has an address") {
         //   emit(ReceiveParcelsFailure("لديك عنوان بالفعل "));
         // }        
         // else {

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:test_order_life_cycle/core/sqldb.dart';
 import 'package:test_order_life_cycle/core/widgets/NumberOrder.dart';
 import 'package:test_order_life_cycle/core/widgets/custom_appbar_widget.dart';
 import 'package:test_order_life_cycle/core/widgets/custom_primary_button_widget.dart';
@@ -13,7 +14,7 @@ class ParcelDeliveryBody extends StatefulWidget {
   @override
   State<ParcelDeliveryBody> createState() => _MyWidgetState();
 }
-
+  SqlDb sqlDb = SqlDb();
 TextEditingController orderId = TextEditingController();
 TextEditingController receiptCode = TextEditingController();
 int status = 3;
@@ -80,6 +81,17 @@ class _MyWidgetState extends State<ParcelDeliveryBody> {
                           print(orderId.text);
                           print(receiptCode.text);
                         }
+                          int response = await sqlDb.insertData(
+                              '''
+                                        INSERT INTO delivery (receiptCode , dateReceipt)
+                                        VALUES ("${receiptCode.text}" , NOW())
+                                        '''
+                          );
+                            if(response > 0){
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(content: Text("offline")),
+                      );                      
+                            }
                       },
                     );
                   },
