@@ -11,6 +11,6 @@ class ReadyForDeliveryUseCase extends UseCaseWithNoParam {
 
   @override
   Future<Either<Failure, List<ReadyForDeliveryEntity>?>> execute() {
-    return readyForDeliveryRepo.readyForDelivery();
+    return readyForDeliveryRepo.getAllReadyForDelivery();
   }
 }
