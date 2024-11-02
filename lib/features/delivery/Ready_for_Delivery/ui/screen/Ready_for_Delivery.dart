@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:test_order_life_cycle/core/shared_widgets/salem_drawer/drawer_widget.dart';
-import 'package:test_order_life_cycle/core/sqldb.dart';
 import 'package:test_order_life_cycle/core/styles/Colors.dart';
 import 'package:test_order_life_cycle/core/styles/text_style.dart';
 import 'package:test_order_life_cycle/core/widgets/a_order.dart';
@@ -27,7 +26,7 @@ class _ReadyForDeliveryState extends State<ReadyForDelivery> {
         // crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           const KCustomAppBarWidget(
-            nameAppbar: "الطرود التي تم تسليمها",
+            nameAppbar: "الطلبات الجاهزة للتسليم",
           ),
           SizedBox(
             height: 2.h,
@@ -68,7 +67,7 @@ class _ReadyForDeliveryState extends State<ReadyForDelivery> {
 }
 
 class KButtonWidget extends StatelessWidget {
-  // const card({super.key});
+  const KButtonWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
