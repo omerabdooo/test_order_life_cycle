@@ -5,12 +5,12 @@ import 'package:test_order_life_cycle/core/styles/text_style.dart';
 
 class KOrdersWidget extends StatefulWidget {
   // const card({super.key});
-  String NumberParcels;
+  final int NumberParcels;
   String Phone;
   String Costmor;
   String OrderNumber;
   String receiptCode;
-  String TotalNumber;
+  final int TotalNumber;
   final Color Backcolor;
 
   KOrdersWidget({
@@ -19,8 +19,8 @@ class KOrdersWidget extends StatefulWidget {
     this.receiptCode = "",
     this.Phone = "",
     this.Costmor = "",
-    this.NumberParcels = "",
-    this.TotalNumber = "",
+    required this.NumberParcels,
+    required this.TotalNumber,
     required this.Backcolor,
   });
 
@@ -123,7 +123,7 @@ class _KOrdersWidgetState extends State<KOrdersWidget> {
                     KTextStyle.textStyle12.copyWith(color: AppColors.greyHint),
               ),
               Text(
-                widget.NumberParcels,
+                "${widget.NumberParcels}",
                 style: KTextStyle.textStyle12.copyWith(color: AppColors.black),
               ),
               SizedBox(
@@ -135,7 +135,7 @@ class _KOrdersWidgetState extends State<KOrdersWidget> {
                     KTextStyle.textStyle12.copyWith(color: AppColors.greyHint),
               ),
               Text(
-                widget.TotalNumber,
+                '${widget.TotalNumber}',
                 style: KTextStyle.textStyle12.copyWith(color: AppColors.black),
               ),
             ],

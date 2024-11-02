@@ -80,8 +80,8 @@ class _OfflineState extends State<Offline> {
                           OrderNumber: list[i]['orderId'],
                           Phone: "735961434",
                           Costmor: "Khaild ",
-                          NumberParcels: "1",
-                          TotalNumber: "1",
+                          NumberParcels: 1,
+                          TotalNumber: 1,
                           Backcolor: AppColors.greyLight);
                     }),
               ],

@@ -1,15 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:test_order_life_cycle/core/shared_widgets/salem_drawer/drawer_widget.dart';
 import 'package:test_order_life_cycle/core/styles/Colors.dart';
 import 'package:test_order_life_cycle/core/styles/text_style.dart';
-import 'package:test_order_life_cycle/core/widgets/a_order.dart';
 import 'package:test_order_life_cycle/core/widgets/custom_appbar_widget.dart';
 import 'package:test_order_life_cycle/core/widgets/custom_search_widget.dart';
 import 'package:test_order_life_cycle/features/delivery/Ready_for_Delivery/domain/entities/ready_for_delivery_entity.dart';
 import 'package:test_order_life_cycle/features/delivery/Ready_for_Delivery/ui/manger/ready_for_delivery_cubit/ready_for_delivery_cubit.dart';
-import 'package:test_order_life_cycle/features/delivery/Ready_for_Delivery/ui/screen/Ready_for_Delivery.dart';
 import 'package:test_order_life_cycle/features/delivery/Ready_for_Delivery/ui/widgets/build_list_view_widget.dart';
 
 class ReadyForDeliveryBody extends StatefulWidget {

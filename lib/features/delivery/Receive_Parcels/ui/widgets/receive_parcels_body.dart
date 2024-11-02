@@ -15,7 +15,7 @@ class ReceiveParcelsBody extends StatefulWidget {
 }
 
 TextEditingController orderId = TextEditingController();
-int status = 3;
+int status = 5;
 
 class _MyWidgetState extends State<ReceiveParcelsBody> {
   @override

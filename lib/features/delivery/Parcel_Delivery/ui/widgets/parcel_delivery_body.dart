@@ -71,20 +71,20 @@ class _MyWidgetState extends State<ParcelDeliveryBody> {
                           return;
                         } else{
                           // Call the function after all checks have passed
-                          await context
-                              .read<ParcelDeliveryCubit>()
-                              .parcelDelivery(
-                                  int.parse(orderId.text),
-                                  receiptCode.text,
-                                  status,
-                                  );
+                          // await context
+                          //     .read<ParcelDeliveryCubit>()
+                          //     .parcelDelivery(
+                          //         int.parse(orderId.text),
+                          //         receiptCode.text,
+                          //         status,
+                          //         );
                           print(orderId.text);
                           print(receiptCode.text);
                         }
                           int response = await sqlDb.insertData(
                               '''
-                                        INSERT INTO delivery (receiptCode , dateReceipt)
-                                        VALUES ("${receiptCode.text}" , NOW())
+                                        INSERT INTO delivery (receiptCode , status)
+                                        VALUES ("${receiptCode.text}" , 3)
                                         '''
                           );
                             if(response > 0){
