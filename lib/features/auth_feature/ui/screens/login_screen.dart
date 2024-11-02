@@ -99,7 +99,7 @@ class LoginScreen extends StatelessWidget {
                 width: (media - 70).w,
                 height: 40.0.h,
                 onPressed: () {
-                  if(phoneController.text=='0000'&&passwordController.text=='0000'){
+                  if(phoneController.text=='0000'){
                        Navigator.push(context, MaterialPageRoute(builder: (context)=>Homedelivery()));
                   }
                   else{

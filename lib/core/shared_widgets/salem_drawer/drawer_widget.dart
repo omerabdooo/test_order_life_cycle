@@ -66,7 +66,7 @@ class KDrawerWidget extends StatelessWidget {
                 leading: const Icon(Icons.history),
                 ontap: () {
                       GoRouter.of(context).pushReplacement(
-                      AppRouter.storeRouters.kReadyForDelivery);
+                      AppRouter.storeRouters.kOffline);
 
                 },),
 

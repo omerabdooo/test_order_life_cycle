@@ -26,7 +26,7 @@ Widget buildListView<CubitType extends StateStreamable<StateType>, StateType, Lo
         // Handle success state
         } else if (state is SuccessStateType) {
           // Assuming SuccessStateType has a property called `customerAddress`
-          final deliveries = (state as dynamic).deliveries;
+          final deliveries = (state as dynamic).delivery;
 
           // Check if the address list is empty
           if (deliveries.isEmpty) {

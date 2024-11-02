@@ -14,9 +14,9 @@ class ReadyForDeliveryCubit extends Cubit<ReadyForDeliveryState> {
 
     final result = await getAllReadyForDeliveryUseCase.execute();
     result.fold((failure) => emit(ReadyForDeliveryFailure(failure.message)),
-        (customerAddress) {
-          if (customerAddress != null) {
-            emit(ReadyForDeliverySuccess(customerAddress));
+        (delivery) {
+          if (delivery != null) {
+            emit(ReadyForDeliverySuccess(delivery));
           } else {
             emit(ReadyForDeliveryFailure("Noting Ready For Delivery found"));
           }
