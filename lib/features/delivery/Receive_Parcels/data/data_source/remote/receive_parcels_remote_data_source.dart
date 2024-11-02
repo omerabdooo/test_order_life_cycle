@@ -1,12 +1,14 @@
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:test_order_life_cycle/core/api_service.dart';
 import 'package:test_order_life_cycle/features/delivery/Receive_Parcels/data/models/order_detail_status/order_detail_status_model.dart';
+import 'package:test_order_life_cycle/features/delivery/Receive_Parcels/data/models/order_summary.dart';
+import 'package:test_order_life_cycle/features/delivery/Receive_Parcels/domain/entities/order_information.dart';
 import 'package:test_order_life_cycle/features/delivery/Receive_Parcels/domain/entities/receive_parcels_entity.dart';
 
 abstract class ReceiveParcelsRemoteDataSource {
-  //Future<List<CustomerAddressEntity>> getAllCustomerAddress();
+  Future<OrderInformationEntity> getOrderInformation(int parcelId);
   Future<ReceiveParcelsEntity> receiveParcels(
-    int orderId,
+    int parcelId,
     int status,
   );
 }
@@ -54,12 +56,12 @@ class ReceiveParcelsRemoteDataSourceImpl
 
   @override
   Future<ReceiveParcelsEntity> receiveParcels(
-    int orderId,
+    int parcelId,
     int status,
   ) async {
     var data = await apiService
         .post(endPoint: "DeliveryApp/ChangeOrderDetailsStatus", data: {
-      'id': orderId,
+      'id': parcelId,
       'orderDetailStatus': status,
     });
     ReceiveParcelsEntity receiveParcels = OrderDetailStatus.fromJson(data);
@@ -67,22 +69,12 @@ class ReceiveParcelsRemoteDataSourceImpl
     return receiveParcels;
   }
 
-// @override
-// Future<List<CustomerAddressEntity>> getAllCustomerAddress() async {
-//   String? token = await getToken();
-
-//   var data = await apiService.get(
-//       endPoint: "CustomerAddress/GetCustomerAddress", headers: {
-//     'Authorization': 'Bearer $token',
-//   });
-
-//   if (data['data'] == null) {
-//     print("No customer addresses found.");
-//     return [];
-//   }
-
-//   List<CustomerAddressEntity> customerAddress = getAllCustomerAddresslist(data);
-
-//   return customerAddress;
+  @override
+  Future<OrderInformationEntity> getOrderInformation(int parcelId) async {
+    var data =
+        await apiService.get(endPoint: 'DeliveryApp/GetOrderInformationByOrderId/$parcelId');
+    OrderInformationEntity orderInformation = OrderSummary.fromJson(data);
+    return orderInformation;
+  }
 // }
 }

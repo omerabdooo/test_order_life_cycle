@@ -14,17 +14,17 @@ class ParcelDeliveryUseCase
   Future<Either<Failure, ParcelDeliveryEntity>> execute(
       ParcelDeliveryParams params) {
     return parcelDeliveryRepo.parcelDelivery(
+      params.parcelId,
       params.orderId,
-      params.receiptCode,
       params.status,
     );
   }
 }
 
 class ParcelDeliveryParams {
-  final int orderId;
-  final String receiptCode;
+  final int parcelId;
+  final String orderId;
   final int status;
 
-  ParcelDeliveryParams(this.orderId, this.receiptCode, this.status);
+  ParcelDeliveryParams(this.parcelId, this.orderId, this.status);
 }

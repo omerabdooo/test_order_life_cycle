@@ -14,7 +14,7 @@ class ReceiveParcelsBody extends StatefulWidget {
   State<ReceiveParcelsBody> createState() => _MyWidgetState();
 }
 
-TextEditingController orderId = TextEditingController();
+TextEditingController parcelId = TextEditingController();
 int status = 5;
 
 class _MyWidgetState extends State<ReceiveParcelsBody> {
@@ -27,7 +27,7 @@ class _MyWidgetState extends State<ReceiveParcelsBody> {
           ),
           KNumberOrderWidget(
             isShow: true,
-            orderId: orderId,
+            parcelId: parcelId,
           ),
           SizedBox(
             height: 10.h,
@@ -56,7 +56,7 @@ class _MyWidgetState extends State<ReceiveParcelsBody> {
                     height: 48,
                     buttonName: "تأكيـــد",
                     onPressed: () async {
-                      if (orderId.text == "") {
+                      if (parcelId.text == "") {
                         ScaffoldMessenger.of(context).showSnackBar(
                           const SnackBar(
                             content: Text('من فضلك قم بقراءة الباركود اولا...'),
@@ -67,8 +67,8 @@ class _MyWidgetState extends State<ReceiveParcelsBody> {
                         // Call the function after all checks have passed
                         await context
                             .read<ReceiveParcelsCubit>()
-                            .receiveParcels(int.parse(orderId.text), status);
-                        print(orderId.text);
+                            .receiveParcels(int.parse(parcelId.text), status);
+                        print(parcelId.text);
                       }
                     },
                   );

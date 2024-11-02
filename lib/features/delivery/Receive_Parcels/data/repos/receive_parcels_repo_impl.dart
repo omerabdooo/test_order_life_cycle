@@ -4,6 +4,7 @@ import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:test_order_life_cycle/core/errors/failure.dart';
 import 'package:test_order_life_cycle/features/delivery/Receive_Parcels/data/data_source/remote/receive_parcels_remote_data_source.dart';
+import 'package:test_order_life_cycle/features/delivery/Receive_Parcels/domain/entities/order_information.dart';
 import 'package:test_order_life_cycle/features/delivery/Receive_Parcels/domain/entities/receive_parcels_entity.dart';
 import 'package:test_order_life_cycle/features/delivery/Receive_Parcels/domain/repo/receive_parcels_repo.dart';
 
@@ -13,6 +14,21 @@ class ReceiveParcelsRepoImpl extends ReceiveParcelsRepo {
   ReceiveParcelsRepoImpl({
     required this.receiveParcelsRemoteDataSource,
   });
+
+// basic fetch list Entity function
+   Future<Either<Failure, T>> fetchOneData<T>(
+      Future<T> Function() fetchFunction) async {
+    try {
+      var data = await fetchFunction();
+      return right(data);
+    } catch (e) {
+      if (e is DioException) {
+        return left(ServerFailure.fromDioError(e));
+      } else {
+        return left(ServerFailure(e.toString()));
+      }
+    }
+  }
 
 // basic fetch list Entity function
   Future<Either<Failure, List<T>>> fetchData<T>(
@@ -59,19 +75,20 @@ class ReceiveParcelsRepoImpl extends ReceiveParcelsRepo {
     }
   }
 
-  // @override
-  // Future<Either<Failure, List<CustomerAddressEntity>?>> getAllCustomerAddress() async {
-  //   return fetchDataNullable(() => shippingAddressRemoteDataSource.getAllCustomerAddress());
-  // }
+  @override
+  Future<Either<Failure, OrderInformationEntity>> getOrderInformation(int parcelId) async {
+    return fetchOneData(() => receiveParcelsRemoteDataSource.getOrderInformation(parcelId));
+  }
 
   @override
   Future<Either<Failure, ReceiveParcelsEntity>> receiveParcels(
-    int orderId,
+    int parcelId,
     int status,
   ) async {
     return postData(() => receiveParcelsRemoteDataSource.receiveParcels(
-          orderId,
+          parcelId,
           status,
         ));
   }
+
 }

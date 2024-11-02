@@ -1,6 +1,8 @@
-import 'package:test_order_life_cycle/features/delivery/Ready_for_Delivery/domain/entities/ready_for_delivery_entity.dart';
+//parcelId
 
-class OrderSummary extends ReadyForDeliveryEntity{
+import 'package:test_order_life_cycle/features/delivery/Receive_Parcels/domain/entities/order_information.dart';
+
+class OrderSummary extends OrderInformationEntity{
   int? id;
   String? orderNumber;
   String? customerName;
@@ -14,7 +16,7 @@ class OrderSummary extends ReadyForDeliveryEntity{
   }) : super(
     parcelId: id ?? 0, 
     orderId: orderNumber ?? '', 
-    totalParcels: totalOrdersDetails ?? 0, 
+    totalParcels: totalOrdersDetails ?? 1, 
     name: customerName ?? '', 
     phoneNumber: '775445127');
 

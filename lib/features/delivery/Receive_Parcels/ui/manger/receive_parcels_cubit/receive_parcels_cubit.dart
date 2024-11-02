@@ -12,14 +12,14 @@ class ReceiveParcelsCubit extends Cubit<ReceiveParcelsState> {
       : super(ReceiveParcelsInitial());
 
   Future<void> receiveParcels(
-    int orderId,
+    int parcelId,
     int status,
   ) async {
     emit(ReceiveParcelsLoading());
 
     try {
       var params = ReceiveParcelsParams(
-        orderId,
+        parcelId,
         status,
       );
       final result = await receiveParcelsUseCase.execute(params);

@@ -12,16 +12,16 @@ class ParcelDeliveryCubit extends Cubit<ParcelDeliveryState> {
       : super(ParcelDeliveryInitial());
 
   Future<void> parcelDelivery(
-    int orderId,
-    String receiptCode,
+    int parcelId,
+    String orderId,
     int status,
   ) async {
     emit(ParcelDeliveryLoading());
 
     try {
       var params = ParcelDeliveryParams(
-          orderId, 
-          receiptCode,
+          parcelId, 
+          orderId,
           status,
           );
       final result = await parcelDeliveryUseCase.execute(params);
@@ -30,8 +30,8 @@ class ParcelDeliveryCubit extends Cubit<ParcelDeliveryState> {
           // left
           (failure) => emit(ParcelDeliveryFailure(failure.message)),
           // right
-          (userData) {
-         if (userData.serverMessage == " رقم الطلب غير صحيح أو ان الطلب غير جاهز للتسليم") {
+          (data) {
+         if (data.serverMessage == " رقم الطلب غير صحيح أو ان الطلب غير جاهز للتسليم") {
            emit(ParcelDeliveryFailure("رقم الطلب غير صحيح أو ان الطلب غير جاهز للتسليم..."));
         //   //
          } //else if(userData.serverMessage == "The customer already has an address") {

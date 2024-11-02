@@ -51,12 +51,12 @@ Widget buildListView<CubitType extends StateStreamable<StateType>, StateType, Lo
               final delivery = deliveries[index]; // Access the individual address
 
               return KOrdersWidget(
-                      OrderNumber: delivery.idOrder,
+                      OrderNumber: delivery.orderId,
                       Phone: delivery.phoneNumber,
                       Costmor: delivery.name,
-                      NumberParcels: delivery.idParcel,
+                      NumberParcels: delivery.parcelId,
                       TotalNumber: delivery.totalParcels,
-                      Backcolor: AppColors.greyLight);
+                      Backcolor: const Color.fromARGB(255, 99, 56, 56));
             },
           );
         }
