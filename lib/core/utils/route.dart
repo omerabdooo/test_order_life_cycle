@@ -24,7 +24,7 @@ import 'package:test_order_life_cycle/features/y_accountant/confirm_payment/ui/s
 
 class StoreRouters {
 
-  String kHomeDelivery = '/';
+  String kHomeDelivery = '/home';
 
   String kParcelDelivery = '/parcelDelivery';
   String kReceiveParcels = '/receiveParcels';
@@ -45,6 +45,7 @@ class StoreRouters {
   String kStoreStoppedProduct = '/store/stoppedProduct';
   String kStoreExcelFile = '/store/excelFile';
   String kStoreReport = '/store/report';
+  String klogin='/';
   //////////////////////////////////
   ///Accountant
   String kAccountant = 'accountant';
@@ -98,6 +99,10 @@ abstract class AppRouter {
         path: AppRouter.storeRouters.kStoreHome,
         builder: (context, state) => const ConfirmPayment(),
       ),
+      GoRoute(
+        path: AppRouter.storeRouters.klogin,
+        builder: (context, state) => const LoginScreen(),
+        ),
       // GoRoute(
       //   path: AppRouter.storeRouters.kStoreAddProduct,
       //   builder: (context, state) => const StoreAddProduct(),
