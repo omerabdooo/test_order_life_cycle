@@ -24,7 +24,7 @@ class KDrawerWidget extends StatelessWidget {
                       width: 150.w,
                       alignment: Alignment.center,
                       child: Text(
-                        'متجر سندباد',
+                        'Delivery',
                         style: TextStyle(
                             fontSize: 17.5.sp,
                             fontWeight: FontWeight.bold,
@@ -37,14 +37,6 @@ class KDrawerWidget extends StatelessWidget {
                   ],
                 )),
             KDrawerTileWidget(
-                title: 'تسليم الطرد',
-                leading: const Icon(Icons.history),
-                ontap: () {
-                      GoRouter.of(context).pushReplacement(
-                      AppRouter.storeRouters.kParcelDelivery);
-
-                },),
-            KDrawerTileWidget(
                 title: 'استلام الطرد',
                 leading: const Icon(Icons.history),
                 ontap: () {
@@ -53,19 +45,19 @@ class KDrawerWidget extends StatelessWidget {
 
                 },),
             KDrawerTileWidget(
+                title: 'تسليم الطلب',
+                leading: const Icon(Icons.history),
+                ontap: () {
+                      GoRouter.of(context).pushReplacement(
+                      AppRouter.storeRouters.kParcelDelivery);
+
+                },),
+            KDrawerTileWidget(
                 title: 'قائمة',
                 leading: const Icon(Icons.history),
                 ontap: () {
                       GoRouter.of(context).pushReplacement(
                       AppRouter.storeRouters.kRemainingParcels);
-
-                },),
-            KDrawerTileWidget(
-                title: 'الماسح',
-                leading: const Icon(Icons.history),
-                ontap: () {
-                      GoRouter.of(context).pushReplacement(
-                      AppRouter.storeRouters.kQRCodeScanner);
 
                 },),
           ],

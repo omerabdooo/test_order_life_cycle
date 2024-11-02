@@ -27,8 +27,8 @@ class LoginScreen extends StatelessWidget {
           GoRouter.of(context).push(AppRouter.storeRouters.kAccountant);
         } else if (phoneInput == "12345") {
           GoRouter.of(context).push(AppRouter.storeRouters.kStoreHome);
-        } else if (phoneInput == "12346") {
-          GoRouter.of(context).push(AppRouter.storeRouters.kStoreHome);
+        } else if (phoneInput == "123D") {
+          GoRouter.of(context).push(AppRouter.storeRouters.kHomeDelivery);
         }
       }
     }

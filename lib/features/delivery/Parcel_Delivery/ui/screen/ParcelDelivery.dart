@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:test_order_life_cycle/core/setup_service_locator.dart';
 import 'package:test_order_life_cycle/core/shared_widgets/salem_drawer/drawer_widget.dart';
-import 'package:test_order_life_cycle/core/widgets/NumberOrder.dart';
-import 'package:test_order_life_cycle/core/widgets/custom_appbar_widget.dart';
-import 'package:test_order_life_cycle/core/widgets/custom_primary_button_widget.dart';
+import 'package:test_order_life_cycle/features/delivery/Parcel_Delivery/data/repos/parcel_delivery_repo_impl.dart';
+import 'package:test_order_life_cycle/features/delivery/Parcel_Delivery/domain/usecases/parcel_delivery_use_case.dart';
+import 'package:test_order_life_cycle/features/delivery/Parcel_Delivery/ui/manger/parcel_delivery_cubit/parcel_delivery_cubit.dart';
+import 'package:test_order_life_cycle/features/delivery/Parcel_Delivery/ui/widgets/parcel_delivery_body.dart';
 
 class ParcelDelivery extends StatefulWidget {
+  const ParcelDelivery({super.key});
+
   @override
   State<ParcelDelivery> createState() => _ParcelDeliveryState();
 }
@@ -13,51 +17,18 @@ TextEditingController receiptCode = TextEditingController();
 class _ParcelDeliveryState extends State<ParcelDelivery> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      drawer: const KDrawerWidget(),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            KCustomAppBarWidget(
-              nameAppbar: "تسليم طرود",
-            ),
-            KNumberOrderWidget(
-              isShow: false,
-              receiptCode: receiptCode
-            ),
-            SizedBox(
-              height: 10.h,
-            ),
-            SizedBox(
-              height: 50.h,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                KCustomPrimaryButtonWidget(
-                    width: 170,
-                    height: 48,
-                    buttonName: "تأكيـــد",
-                    onPressed: () {
-                    print(receiptCode.text);
-                    }),
-                SizedBox(width: 20.h), // Space between buttons
-                KCustomPrimaryButtonWidget(
-                    width: 85,
-                    height: 48,
-                    buttonName: "إغلاق",
-                    onPressed: () {
-                      // OrderNumber.clear();
-                      // OrderNumber1.clear();
-                      // GoRouter.of(context).pushReplacement(
-                      //     AppRouter.deliveryRouters.kDeliverHomePage);
-                    }),
-                SizedBox(width: 15.h), // Space between buttons
-              ],
-            ),
-          ],
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) =>
+              ParcelDeliveryCubit(ParcelDeliveryUseCase(
+            getit.get<ParcelDeliveryRepoImpl>(),
+          )),
         ),
-      ),
-    );
+      ], 
+      child: const Scaffold(
+      drawer: KDrawerWidget(),
+      body: ParcelDeliveryBody(),
+    ));
   }
 }
