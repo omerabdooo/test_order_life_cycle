@@ -13,10 +13,13 @@ class ParcelDelivery extends StatefulWidget {
   @override
   State<ParcelDelivery> createState() => _ParcelDeliveryState();
 }
+
 TextEditingController receiptCode = TextEditingController();
+
 class _ParcelDeliveryState extends State<ParcelDelivery> {
   @override
   Widget build(BuildContext context) {
+
     return MultiBlocProvider(
       providers: [
         BlocProvider(
@@ -24,6 +27,7 @@ class _ParcelDeliveryState extends State<ParcelDelivery> {
               ParcelDeliveryCubit(ParcelDeliveryUseCase(
             getit.get<ParcelDeliveryRepoImpl>(),
           )),
+
         ),
       ], 
       child: const Scaffold(

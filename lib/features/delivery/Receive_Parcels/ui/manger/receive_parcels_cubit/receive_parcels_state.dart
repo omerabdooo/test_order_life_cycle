@@ -18,4 +18,3 @@ class ReceiveParcelsFailure extends ReceiveParcelsState {
 
   ReceiveParcelsFailure(this.errorMessage);
 }
-

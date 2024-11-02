@@ -10,7 +10,9 @@ import 'package:test_order_life_cycle/features/delivery/Parcel_Delivery/domain/r
 class ParcelDeliveryRepoImpl extends ParcelDeliveryRepo {
   final ParcelDeliveryRemoteDataSource parcelDeliveryRemoteDataSource;
 
-  ParcelDeliveryRepoImpl({required this.parcelDeliveryRemoteDataSource,});
+  ParcelDeliveryRepoImpl({
+    required this.parcelDeliveryRemoteDataSource,
+  });
 
 // basic fetch list Entity function
   Future<Either<Failure, List<T>>> fetchData<T>(
@@ -26,6 +28,7 @@ class ParcelDeliveryRepoImpl extends ParcelDeliveryRepo {
       }
     }
   }
+
 // basic fetch list Entity function
   Future<Either<Failure, List<T>?>> fetchDataNullable<T>(
       Future<List<T>?> Function() fetchFunction) async {

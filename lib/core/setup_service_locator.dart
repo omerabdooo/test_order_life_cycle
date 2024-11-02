@@ -16,7 +16,7 @@ import 'package:test_order_life_cycle/features/y_accountant/confirm_payment/data
 import 'package:test_order_life_cycle/features/y_accountant/confirm_payment/domin/repo/y_accontant_repo.dart';
 
 
-
+import 'package:test_order_life_cycle/features/delivery/Receive_Parcels/data/data_source/remote/receive_parcels_remote_data_source.dart';
 
 
 final getit = GetIt.instance;
@@ -28,16 +28,11 @@ void setupServiceLocator() {
     const FlutterSecureStorage(),
   );
 
-
-  getit.registerSingleton<YAccontantRepo>(YAccontantRepoimple(
+  getit.registerSingleton<YAccontantRepoimple>(YAccontantRepoimple(
       boundRemoteDataSource: BoundRemoteDataSourceImpl(
- apiService:    getit.get<ApiService>(),
-   secureStorage:  getit.get<FlutterSecureStorage>(),
+    apiService: getit.get<ApiService>(),
+    secureStorage: getit.get<FlutterSecureStorage>(),
   )));
-
-
-
-
 
   getit.registerSingleton<AllOrderRepoImpl>(
     AllOrderRepoImpl(
@@ -61,40 +56,41 @@ void setupServiceLocator() {
     getit.get<FlutterSecureStorage>(),
   ),));
   getit.registerSingleton<ReceiveParcelsRepoImpl>(ReceiveParcelsRepoImpl(
-      receiveParcelsRemoteDataSource: ReceiveParcelsRemoteDataSourceImpl(
-    getit.get<ApiService>(),
-    getit.get<FlutterSecureStorage>(),
-  ),));
+    receiveParcelsRemoteDataSource: ReceiveParcelsRemoteDataSourceImpl(
+      getit.get<ApiService>(),
+      getit.get<FlutterSecureStorage>(),
+    ),
+  ));
 }
-  // getit.registerSingleton<AllOrderRepoImpl>(AllOrderRepoImpl(allOrderRemoteDataSource:  AllOrderRemotDataSourceImpl(
-  //   getit.get<ApiService>(),
-  //   getit.get<FlutterSecureStorage>(),
-  // )
+// getit.registerSingleton<AllOrderRepoImpl>(AllOrderRepoImpl(allOrderRemoteDataSource:  AllOrderRemotDataSourceImpl(
+//   getit.get<ApiService>(),
+//   getit.get<FlutterSecureStorage>(),
+// )
 
-  //    ));
-  // getit.registerSingleton<HomeRepoImpl>(HomeRepoImpl(
-  //     homeRemoteDataSource: HomeRemoteDataSourceImpl(
-  //   getit.get<ApiService>(),
-  //   getit.get<FlutterSecureStorage>(),
-  // )));
+//    ));
+// getit.registerSingleton<HomeRepoImpl>(HomeRepoImpl(
+//     homeRemoteDataSource: HomeRemoteDataSourceImpl(
+//   getit.get<ApiService>(),
+//   getit.get<FlutterSecureStorage>(),
+// )));
 
-  // getit.registerSingleton<AuthRepoImpl>(AuthRepoImpl(
-  //     authRemoteDataSource: AuthRemoteDataSourceImpl(
-  //   getit.get<ApiService>(),
-  //   getit.get<FlutterSecureStorage>(),
-  // )));
+// getit.registerSingleton<AuthRepoImpl>(AuthRepoImpl(
+//     authRemoteDataSource: AuthRemoteDataSourceImpl(
+//   getit.get<ApiService>(),
+//   getit.get<FlutterSecureStorage>(),
+// )));
 
-  // getit.registerSingleton<SginUpRepoImpl>(SginUpRepoImpl(
-  //     sginUPRemoteDataSource: SginUPRemoteDataSourceImpl(
-  //   getit.get<ApiService>(),
-  //   // getit.get<FlutterSecureStorage>(),
-  // )));
+// getit.registerSingleton<SginUpRepoImpl>(SginUpRepoImpl(
+//     sginUPRemoteDataSource: SginUPRemoteDataSourceImpl(
+//   getit.get<ApiService>(),
+//   // getit.get<FlutterSecureStorage>(),
+// )));
 
-  // getit.registerSingleton<SginInRepoImpl>(SginInRepoImpl(
-  //     sginInRemoteDataSource: SginInRemoteDataSourceImpl(
-  //   getit.get<ApiService>(),
-  //   // getit.get<FlutterSecureStorage>(),
-  // )));
+// getit.registerSingleton<SginInRepoImpl>(SginInRepoImpl(
+//     sginInRemoteDataSource: SginInRemoteDataSourceImpl(
+//   getit.get<ApiService>(),
+//   // getit.get<FlutterSecureStorage>(),
+// )));
 
 //   getit.registerSingleton<OrderRepoImpl>(
 //     OrderRepoImpl(
@@ -104,76 +100,74 @@ void setupServiceLocator() {
 //           )
 //         ),
 // );
-  // getit.registerSingleton<ProductDetailsRepoImpl>(ProductDetailsRepoImpl(
-  //     productDetailsRemoteDataSource:
-  //         ProductDetailsRemoteDataSourceImpl(getit.get<ApiService>())));
+// getit.registerSingleton<ProductDetailsRepoImpl>(ProductDetailsRepoImpl(
+//     productDetailsRemoteDataSource:
+//         ProductDetailsRemoteDataSourceImpl(getit.get<ApiService>())));
 
-  // getit.registerSingleton<CartRepoImpl>(CartRepoImpl(
-  //     cartRemoteDataSource: CartRemoteDataSourceImpl(
-  //         apiService: getit.get<ApiService>(),
-  //         secureStorage: const FlutterSecureStorage())));
-  //     getit.registerSingleton<CartRepoImpl>(CartRepoImpl(
-  // cartRemoteDataSource:
-  //     CartRemoteDataSourceImpl(apiService:  getit.get<ApiService>(),secureStorage: const FlutterSecureStorage())));
-  // getit.registerSingleton<CartRepoImpl>(CartRepoImpl(
-  //     cartRemoteDataSource: CartRemoteDataSourceImpl(
-  //         apiService: getit.get<ApiService>(),
-  //         secureStorage: const FlutterSecureStorage())));
-  //     getit.registerSingleton<CartRepoImpl>(CartRepoImpl(
-  // cartRemoteDataSource:
-  //     CartRemoteDataSourceImpl(apiService:  getit.get<ApiService>(),secureStorage: const FlutterSecureStorage())));
+// getit.registerSingleton<CartRepoImpl>(CartRepoImpl(
+//     cartRemoteDataSource: CartRemoteDataSourceImpl(
+//         apiService: getit.get<ApiService>(),
+//         secureStorage: const FlutterSecureStorage())));
+//     getit.registerSingleton<CartRepoImpl>(CartRepoImpl(
+// cartRemoteDataSource:
+//     CartRemoteDataSourceImpl(apiService:  getit.get<ApiService>(),secureStorage: const FlutterSecureStorage())));
+// getit.registerSingleton<CartRepoImpl>(CartRepoImpl(
+//     cartRemoteDataSource: CartRemoteDataSourceImpl(
+//         apiService: getit.get<ApiService>(),
+//         secureStorage: const FlutterSecureStorage())));
+//     getit.registerSingleton<CartRepoImpl>(CartRepoImpl(
+// cartRemoteDataSource:
+//     CartRemoteDataSourceImpl(apiService:  getit.get<ApiService>(),secureStorage: const FlutterSecureStorage())));
 
-  // getit.registerSingleton<OurShopRepoImpl>(OurShopRepoImpl(
-  //     ourShopRemoteDataSource: OurShopRemoteDataSourceImpl(
-  //   getit.get<ApiService>(),
-  //   // getit.get<FlutterSecureStorage>(),
-  // )));
+// getit.registerSingleton<OurShopRepoImpl>(OurShopRepoImpl(
+//     ourShopRemoteDataSource: OurShopRemoteDataSourceImpl(
+//   getit.get<ApiService>(),
+//   // getit.get<FlutterSecureStorage>(),
+// )));
 
-  // getit.registerSingleton<ShopsRepoeImpl>(ShopsRepoeImpl(
-  //   ShopsRemoteDataSourceImpl(getit.get<ApiService>()),
-  // ));
+// getit.registerSingleton<ShopsRepoeImpl>(ShopsRepoeImpl(
+//   ShopsRemoteDataSourceImpl(getit.get<ApiService>()),
+// ));
 
-  // getit.registerSingleton<OnlineStoreRepoeImpl>(OnlineStoreRepoeImpl(
-  //   storesRemoteDataSource:
-  //       OnlineStoresRemoteDataSourceImpl(getit.get<ApiService>()),
-  // ));
+// getit.registerSingleton<OnlineStoreRepoeImpl>(OnlineStoreRepoeImpl(
+//   storesRemoteDataSource:
+//       OnlineStoresRemoteDataSourceImpl(getit.get<ApiService>()),
+// ));
 
-  //////////////////////////////////////////
-  ///
-  ///
-  // getit.registerSingleton<OrderTrackRepoImpl>(
-  //   OrderTrackRepoImpl(
-  //     orderTrackRemoteDataSource: OrderTrackRemoteDataSourceImpl(
-  //       getit.get<ApiService>(),
-  //       getit.get<FlutterSecureStorage>(),
-  //     ),
-  //   ),
-  // );
-  // getit.registerSingleton<MyOrderRepoImpl>(
-  //   MyOrderRepoImpl(
-  //     MyOrderRemoteDataSourceImpl(
-  //       getit.get<ApiService>(),
-  //       getit.get<FlutterSecureStorage>(),
-  //     ),
-  //   ),
-  // );
+//////////////////////////////////////////
+///
+///
+// getit.registerSingleton<OrderTrackRepoImpl>(
+//   OrderTrackRepoImpl(
+//     orderTrackRemoteDataSource: OrderTrackRemoteDataSourceImpl(
+//       getit.get<ApiService>(),
+//       getit.get<FlutterSecureStorage>(),
+//     ),
+//   ),
+// );
+// getit.registerSingleton<MyOrderRepoImpl>(
+//   MyOrderRepoImpl(
+//     MyOrderRemoteDataSourceImpl(
+//       getit.get<ApiService>(),
+//       getit.get<FlutterSecureStorage>(),
+//     ),
+//   ),
+// );
 
-  // getit.registerSingleton<ShippingAddressRepoImpl>(ShippingAddressRepoImpl(
-  //     shippingAddressRemoteDataSource: ShippingAddressRemoteDataSourceImpl(
-  //   getit.get<ApiService>(),
-  //   getit.get<FlutterSecureStorage>(),
-  // )));
+// getit.registerSingleton<ShippingAddressRepoImpl>(ShippingAddressRepoImpl(
+//     shippingAddressRemoteDataSource: ShippingAddressRemoteDataSourceImpl(
+//   getit.get<ApiService>(),
+//   getit.get<FlutterSecureStorage>(),
+// )));
 
-  // getit.registerSingleton<ShowOrderRepoImpl>(ShowOrderRepoImpl(
-  //     showOrderRemoteDataSource: ShowOrderRemoteDataSourceImpl(
-  //   getit.get<ApiService>(),
-  //   getit.get<FlutterSecureStorage>(),
-  // )));
+// getit.registerSingleton<ShowOrderRepoImpl>(ShowOrderRepoImpl(
+//     showOrderRemoteDataSource: ShowOrderRemoteDataSourceImpl(
+//   getit.get<ApiService>(),
+//   getit.get<FlutterSecureStorage>(),
+// )));
 
-  // getit.registerSingleton<SpecialOrderRepoImpl>(SpecialOrderRepoImpl(
-  //     sepcialOrdersRemoteDataSource: SepcialOrdersRemoteDataSourceImpl(
-  //   getit.get<ApiService>(),
-  //   getit.get<FlutterSecureStorage>(),
-  // )));
-
-
+// getit.registerSingleton<SpecialOrderRepoImpl>(SpecialOrderRepoImpl(
+//     sepcialOrdersRemoteDataSource: SepcialOrdersRemoteDataSourceImpl(
+//   getit.get<ApiService>(),
+//   getit.get<FlutterSecureStorage>(),
+// )));

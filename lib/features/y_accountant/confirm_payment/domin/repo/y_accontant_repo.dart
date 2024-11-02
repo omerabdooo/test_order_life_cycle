@@ -5,6 +5,6 @@ import 'package:test_order_life_cycle/features/y_accountant/confirm_payment/domi
 
 abstract class YAccontantRepo {
   Future<Either<Failure, List<BoundEntitny>>> getBound();
-  Future<Either<Failure, UpdateBoundStateEntinty>> updateBoundState(
+  Future<Either<Failure, BoundEntitny>> updateBoundState(
       int boundId, String action);
 }

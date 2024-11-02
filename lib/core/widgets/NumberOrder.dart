@@ -14,8 +14,8 @@ class KNumberOrderWidget extends StatefulWidget {
   const KNumberOrderWidget({
     super.key,
     required this.isShow,
-    this.onScannedData, 
-    this.orderId, 
+    this.onScannedData,
+    this.orderId,
     this.receiptCode,
   });
 
@@ -26,7 +26,6 @@ class KNumberOrderWidget extends StatefulWidget {
 TextEditingController orderNumberDetails = TextEditingController();
 
 class _KNumberOrderWidgetState extends State<KNumberOrderWidget> {
-
   @override
   Widget build(BuildContext context) {
     return Column(

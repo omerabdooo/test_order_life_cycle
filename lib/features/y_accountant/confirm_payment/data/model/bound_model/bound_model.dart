@@ -16,10 +16,10 @@ class BoundModel extends BoundEntitny {
     this.currentPage,
     this.pageSize,
   }) : super(
-          boundId: items?.firstOrNull?.bondId??0,
-          bankName: items?.firstOrNull?.bankName ?? '',
+          boundId: items?.firstOrNull?.bondId ?? 0,
+          banKName: items?.firstOrNull?.bankName ?? '',
           clintName: items?.firstOrNull?.customerName ?? '',
-          image: items?.firstOrNull?.bondImgUrl??'',
+          image: items?.firstOrNull?.bondImgUrl ?? '',
           boundNumber: items?.firstOrNull?.bondNumber ?? 0,
           date: items?.firstOrNull?.bondDate ?? DateTime.now(),
           boundValue: items?.firstOrNull?.bondAmount ?? 0,

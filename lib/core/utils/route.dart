@@ -23,14 +23,18 @@ import 'package:test_order_life_cycle/features/y_accountant/confirm_payment/ui/s
 // Update with the actual import paths for your views
 
 class StoreRouters {
+
   String kHomeDelivery = '/';
+
   String kParcelDelivery = '/parcelDelivery';
   String kReceiveParcels = '/receiveParcels';
   String kReadyForDelivery = '/readyForDelivery';
   String kOffline = '/offline';
   String kQRCodeScanner = '/qrCodeScanner';
 
+
   String kStoreHome = '/addProduct';
+
   String kStoreAddProduct = '/store/addProduct';
   String kStoreOrderProcessing = '/store/orderProcessing';
   String kStoreProducts = '/store/products';
@@ -62,33 +66,37 @@ abstract class AppRouter {
       //   builder: (context, state) =>  LoginScreen(),
       // ),
       GoRoute(
+
         path: AppRouter.storeRouters.kHomeDelivery,
         builder: (context, state) =>  Homedelivery(),
+
       ),
       GoRoute(
         path: AppRouter.storeRouters.kParcelDelivery,
-        builder: (context, state) =>  ParcelDelivery(),
+        builder: (context, state) => ParcelDelivery(),
       ),
       GoRoute(
         path: AppRouter.storeRouters.kReceiveParcels,
         builder: (context, state) => const ReceiveParcels(),
       ),
       GoRoute(
+
         path: AppRouter.storeRouters.kReadyForDelivery,
         builder: (context, state) =>  ReadyForDelivery(),
       ),
       GoRoute(
         path: AppRouter.storeRouters.kOffline,
         builder: (context, state) =>  Offline(),
+
       ),
       GoRoute(
         path: AppRouter.storeRouters.kQRCodeScanner,
-        builder: (context, state) =>  const QRCodeScanner(),
+        builder: (context, state) => const QRCodeScanner(),
       ),
 
       GoRoute(
         path: AppRouter.storeRouters.kStoreHome,
-        builder: (context, state) => const StoreOrderProcessing(),
+        builder: (context, state) => const ConfirmPayment(),
       ),
       // GoRoute(
       //   path: AppRouter.storeRouters.kStoreAddProduct,

@@ -11,7 +11,9 @@ import 'package:test_order_life_cycle/core/utils/route.dart';
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
   setupServiceLocator();
+  Bloc.observer = SimpleBlocObserver();
   await SqlDb().intialDb();
+
 
   runApp(
     MultiProvider(providers: [
@@ -20,6 +22,7 @@ void main() async{
      child: const SindbadManagementApp(),
   ),
   );
+
 }
 
 class SindbadManagementApp extends StatelessWidget {
@@ -51,6 +54,7 @@ class SindbadManagementApp extends StatelessWidget {
         ],
         locale: const Locale('ar', 'AR'),
         debugShowCheckedModeBanner: false,
+        
         // home:  home_mnd2(),
 
         // home: const HomePage(),

@@ -38,47 +38,42 @@ class _MyWidgetState extends State<ReceiveParcelsBody> {
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
-                    BlocConsumer<ReceiveParcelsCubit,
-                    ReceiveParcelsState>(
-                  listener: (context, state) {
-                    if (state is ReceiveParcelsFailure) {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(content: Text(state.errorMessage.toString())),
-                      );
-                    } else if (state is ReceiveParcelsSuccess) {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(content: Text(state.receiveParcels.toString())),
-                      );                      
-                    }
-                  },
-                  builder: (context, state) {
-                    return KCustomPrimaryButtonWidget(
-                      width: 170,
-                      height: 48,
-                      buttonName: "تأكيـــد",
-                      onPressed: () async {
-                        if (orderId.text == "") {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(
-                              content:
-                                  Text('من فضلك قم بقراءة الباركود اولا...'),
-                            ),
-                          );
-                          return;
-                        } else{
-                          // Call the function after all checks have passed
-                          await context
-                              .read<ReceiveParcelsCubit>()
-                              .receiveParcels(
-                                  int.parse(orderId.text),
-                                  status
-                                  );
-                          print(orderId.text);
-                        }
-                      },
+              BlocConsumer<ReceiveParcelsCubit, ReceiveParcelsState>(
+                listener: (context, state) {
+                  if (state is ReceiveParcelsFailure) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(content: Text(state.errorMessage.toString())),
                     );
-                  },
-                ),              
+                  } else if (state is ReceiveParcelsSuccess) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(content: Text(state.receiveParcels.toString())),
+                    );
+                  }
+                },
+                builder: (context, state) {
+                  return KCustomPrimaryButtonWidget(
+                    width: 170,
+                    height: 48,
+                    buttonName: "تأكيـــد",
+                    onPressed: () async {
+                      if (orderId.text == "") {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text('من فضلك قم بقراءة الباركود اولا...'),
+                          ),
+                        );
+                        return;
+                      } else {
+                        // Call the function after all checks have passed
+                        await context
+                            .read<ReceiveParcelsCubit>()
+                            .receiveParcels(int.parse(orderId.text), status);
+                        print(orderId.text);
+                      }
+                    },
+                  );
+                },
+              ),
               SizedBox(width: 20.h), // Space between buttons
               KCustomPrimaryButtonWidget(
                   width: 85,

@@ -37,6 +37,7 @@ class KDrawerWidget extends StatelessWidget {
                   ],
                 )),
             KDrawerTileWidget(
+
                 title: 'استلام الطرد',
                 leading: const Icon(Icons.history),
                 ontap: () {
@@ -68,6 +69,7 @@ class KDrawerWidget extends StatelessWidget {
                       AppRouter.storeRouters.kReadyForDelivery);
 
                 },),
+
           ],
         ),
       ),
