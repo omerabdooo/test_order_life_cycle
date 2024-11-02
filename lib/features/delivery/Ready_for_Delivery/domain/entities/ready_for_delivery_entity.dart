@@ -1,16 +1,16 @@
 
 class ReadyForDeliveryEntity {
   final int idParcel;
-  final String orderNumber;
+  final String idOrder;
   final int totalParcels;
-  final String customerName;
+  final String name;
   final String phoneNumber;
 
   ReadyForDeliveryEntity({
     required this.idParcel,
-    required this.orderNumber,
+    required this.idOrder,
     required this.totalParcels,
-    required this.customerName,
+    required this.name,
     required this.phoneNumber,
   });
 }
