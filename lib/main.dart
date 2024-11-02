@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:test_order_life_cycle/core/setup_service_locator.dart';
+import 'package:test_order_life_cycle/core/simple_bloc_observer.dart';
 import 'package:test_order_life_cycle/core/sqldb.dart';
 import 'package:test_order_life_cycle/core/utils/route.dart';
 
