@@ -3,19 +3,26 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'package:test_order_life_cycle/core/setup_service_locator.dart';
-
-import 'package:test_order_life_cycle/core/simple_bloc_observer.dart';
+import 'package:test_order_life_cycle/core/sqldb.dart';
 import 'package:test_order_life_cycle/core/utils/route.dart';
 
-void main() {
-  // use the depedency injection
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
   setupServiceLocator();
-
-  // use the bloc observer
   Bloc.observer = SimpleBlocObserver();
+  await SqlDb().intialDb();
 
-  runApp(const SindbadManagementApp());
+
+  runApp(
+    MultiProvider(providers: [
+      ChangeNotifierProvider(create: (create) => SqlDb()),
+    ],
+     child: const SindbadManagementApp(),
+  ),
+  );
+
 }
 
 class SindbadManagementApp extends StatelessWidget {

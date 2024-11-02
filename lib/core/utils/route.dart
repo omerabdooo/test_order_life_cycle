@@ -1,8 +1,10 @@
 import 'package:go_router/go_router.dart';
 import 'package:test_order_life_cycle/features/auth_feature/ui/screens/login_screen.dart';
+import 'package:test_order_life_cycle/features/delivery/Home_Delivery/ui/screen/HomeDelivery.dart';
+import 'package:test_order_life_cycle/features/delivery/Offline/ui/screen/Offline.dart';
 import 'package:test_order_life_cycle/features/delivery/Parcel_Delivery/ui/screen/ParcelDelivery.dart';
 import 'package:test_order_life_cycle/features/delivery/Receive_Parcels/ui/screen/ReceiveParcels.dart';
-import 'package:test_order_life_cycle/features/delivery/Remaining_parcels/ui/screen/RemainingParcels.dart';
+import 'package:test_order_life_cycle/features/delivery/Ready_for_Delivery/ui/screen/Ready_for_Delivery.dart';
 import 'package:test_order_life_cycle/features/delivery/QRCodeScanner.dart';
 import 'package:test_order_life_cycle/features/store/home/ui/screen/store_home_page.dart';
 import 'package:test_order_life_cycle/features/store/order_processing/ui/screen/store_order_processing.dart';
@@ -21,13 +23,17 @@ import 'package:test_order_life_cycle/features/y_accountant/confirm_payment/ui/s
 // Update with the actual import paths for your views
 
 class StoreRouters {
-  String kStoreHome = '/';
-  //String kStoreHome = 'storeHome';
-  String kLogin = '/fhdh';
+
+  String kHomeDelivery = '/';
+
   String kParcelDelivery = '/parcelDelivery';
   String kReceiveParcels = '/receiveParcels';
-  String kRemainingParcels = '/remainingParcels';
+  String kReadyForDelivery = '/readyForDelivery';
+  String kOffline = '/offline';
   String kQRCodeScanner = '/qrCodeScanner';
+
+
+  String kStoreHome = '/addProduct';
 
   String kStoreAddProduct = '/store/addProduct';
   String kStoreOrderProcessing = '/store/orderProcessing';
@@ -55,9 +61,15 @@ abstract class AppRouter {
       //   path: AppRouter.storeRouters.kLogin,
       //   builder: (context, state) => const LoginScreen(),
       // ),
+      // GoRoute(
+      //   path: AppRouter.storeRouters.kLogin,
+      //   builder: (context, state) =>  LoginScreen(),
+      // ),
       GoRoute(
-        path: AppRouter.storeRouters.kLogin,
-        builder: (context, state) => ParcelDelivery(),
+
+        path: AppRouter.storeRouters.kHomeDelivery,
+        builder: (context, state) =>  Homedelivery(),
+
       ),
       GoRoute(
         path: AppRouter.storeRouters.kParcelDelivery,
@@ -68,8 +80,14 @@ abstract class AppRouter {
         builder: (context, state) => const ReceiveParcels(),
       ),
       GoRoute(
-        path: AppRouter.storeRouters.kRemainingParcels,
-        builder: (context, state) => Remainingparcels(),
+
+        path: AppRouter.storeRouters.kReadyForDelivery,
+        builder: (context, state) =>  ReadyForDelivery(),
+      ),
+      GoRoute(
+        path: AppRouter.storeRouters.kOffline,
+        builder: (context, state) =>  Offline(),
+
       ),
       GoRoute(
         path: AppRouter.storeRouters.kQRCodeScanner,

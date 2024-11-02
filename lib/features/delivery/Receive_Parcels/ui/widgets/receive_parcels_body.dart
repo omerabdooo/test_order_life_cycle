@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:test_order_life_cycle/core/shared_widgets/salem_drawer/drawer_widget.dart';
 import 'package:test_order_life_cycle/core/widgets/NumberOrder.dart';
 import 'package:test_order_life_cycle/core/widgets/custom_appbar_widget.dart';
 import 'package:test_order_life_cycle/core/widgets/custom_primary_button_widget.dart';
 import 'package:test_order_life_cycle/features/delivery/Receive_Parcels/ui/manger/receive_parcels_cubit/receive_parcels_cubit.dart';
-import 'package:test_order_life_cycle/features/delivery/Receive_Parcels/ui/screen/ReceiveParcels.dart';
 // import 'package:sndbad/features/home_screen/ui/screen/HomeScreen.dart'; // Import the flutter_screenutil package//+
 
 class ReceiveParcelsBody extends StatefulWidget {
@@ -22,9 +20,7 @@ int status = 3;
 class _MyWidgetState extends State<ReceiveParcelsBody> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      drawer: const KDrawerWidget(),
-      body: SingleChildScrollView(
+    return SingleChildScrollView(
         child: Column(children: [
           const KCustomAppBarWidget(
             nameAppbar: "استلام طرود",
@@ -92,7 +88,6 @@ class _MyWidgetState extends State<ReceiveParcelsBody> {
             ],
           ),
         ]),
-      ),
-    );
+      );
   }
 }

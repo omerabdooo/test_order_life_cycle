@@ -11,7 +11,13 @@ class QRCodeScanner extends StatefulWidget {
 }
 
 class _QRCodeScannerState extends State<QRCodeScanner> {
-  bool _scanned = false;
+  final MobileScannerController _controller = MobileScannerController();
+  @override
+  void dispose() {
+    // Dispose the MobileScannerController when done to free up resources
+    _controller.dispose();
+    super.dispose();
+  }  bool _scanned = false;
 
   void _onDetect(BarcodeCapture capture) {
     final List<Barcode> barcodes = capture.barcodes;
@@ -42,6 +48,7 @@ class _QRCodeScannerState extends State<QRCodeScanner> {
       body: _scanned
           ? Container(color: Colors.black) // Show black screen
           : MobileScanner(
+              controller: _controller,
               onDetect: _onDetect,
             ),
     );

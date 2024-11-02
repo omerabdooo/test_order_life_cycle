@@ -24,7 +24,7 @@ class KDrawerWidget extends StatelessWidget {
                       width: 150.w,
                       alignment: Alignment.center,
                       child: Text(
-                        'متجر سندباد',
+                        'Delivery',
                         style: TextStyle(
                             fontSize: 17.5.sp,
                             fontWeight: FontWeight.bold,
@@ -37,37 +37,39 @@ class KDrawerWidget extends StatelessWidget {
                   ],
                 )),
             KDrawerTileWidget(
-              title: 'تسليم الطرد',
-              leading: const Icon(Icons.history),
-              ontap: () {
-                GoRouter.of(context)
-                    .pushReplacement(AppRouter.storeRouters.kParcelDelivery);
-              },
-            ),
+
+                title: 'استلام الطرد',
+                leading: const Icon(Icons.history),
+                ontap: () {
+                      GoRouter.of(context).pushReplacement(
+                      AppRouter.storeRouters.kReceiveParcels);
+
+                },),
             KDrawerTileWidget(
-              title: 'استلام الطرد',
-              leading: const Icon(Icons.history),
-              ontap: () {
-                GoRouter.of(context)
-                    .pushReplacement(AppRouter.storeRouters.kReceiveParcels);
-              },
-            ),
+                title: 'تسليم الطلب',
+                leading: const Icon(Icons.history),
+                ontap: () {
+                      GoRouter.of(context).pushReplacement(
+                      AppRouter.storeRouters.kParcelDelivery);
+
+                },),
             KDrawerTileWidget(
-              title: 'قائمة',
-              leading: const Icon(Icons.history),
-              ontap: () {
-                GoRouter.of(context)
-                    .pushReplacement(AppRouter.storeRouters.kRemainingParcels);
-              },
-            ),
+                title: 'قائمة الطلبات الجاهزة',
+                leading: const Icon(Icons.history),
+                ontap: () {
+                      GoRouter.of(context).pushReplacement(
+                      AppRouter.storeRouters.kReadyForDelivery);
+
+                },),
             KDrawerTileWidget(
-              title: 'الماسح',
-              leading: const Icon(Icons.history),
-              ontap: () {
-                GoRouter.of(context)
-                    .pushReplacement(AppRouter.storeRouters.kQRCodeScanner);
-              },
-            ),
+                title: 'قائمة اوف لاين',
+                leading: const Icon(Icons.history),
+                ontap: () {
+                      GoRouter.of(context).pushReplacement(
+                      AppRouter.storeRouters.kReadyForDelivery);
+
+                },),
+
           ],
         ),
       ),

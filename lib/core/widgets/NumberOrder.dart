@@ -43,16 +43,18 @@ class _KNumberOrderWidgetState extends State<KNumberOrderWidget> {
                         .copyWith(color: AppColors.greyHint),
                   ),
                 ),
-                Padding(
-                  padding:
-                      EdgeInsets.only(top: 40.0.h, right: 20.0.w, left: 80.w),
-                  child: Container(
-                    width: 165.w,
-                    height: 23.h,
-                    color: Colors.white,
-                    child: TextField(
-                      controller: widget.orderId, // Use orderId as controller
-                      keyboardType: TextInputType.number,
+                Expanded(
+                  child: Padding(
+                    padding:
+                        EdgeInsets.only(top: 40.0.h, right: 20.0.w, left: 80.w),
+                    child: Container(
+                      width: 165.w,
+                      height: 23.h,
+                      color: Colors.white,
+                      child: TextField(
+                        controller: widget.orderId, // Use orderId as controller
+                        keyboardType: TextInputType.number,
+                      ),
                     ),
                   ),
                 ),
@@ -71,16 +73,18 @@ class _KNumberOrderWidgetState extends State<KNumberOrderWidget> {
                           .copyWith(color: AppColors.greyHint),
                     ),
                   ),
-                  Padding(
-                    padding: EdgeInsets.only(
-                        bottom: 10.0.h, right: 20.0.w, left: 80.w),
-                    child: Container(
-                      width: 165.w,
-                      height: 23.h,
-                      color: Colors.white,
-                      child: TextField(
-                        controller: widget.receiptCode,
-                        keyboardType: TextInputType.number,
+                  Expanded(
+                    child: Padding(
+                      padding: EdgeInsets.only(
+                          bottom: 10.0.h, right: 20.0.w, left: 80.w),
+                      child: Container(
+                        width: 165.w,
+                        height: 23.h,
+                        color: Colors.white,
+                        child: TextField(
+                          controller: widget.receiptCode,
+                          keyboardType: TextInputType.number,
+                        ),
                       ),
                     ),
                   ),
