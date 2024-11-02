@@ -8,14 +8,14 @@ import 'package:test_order_life_cycle/core/widgets/a_order.dart';
 import 'package:test_order_life_cycle/core/widgets/custom_appbar_widget.dart';
 import 'package:test_order_life_cycle/core/widgets/custom_search_widget.dart';
 
-class Remainingparcels extends StatefulWidget {
-  const Remainingparcels({super.key});
+class Offline extends StatefulWidget {
+  const Offline({super.key});
 
   @override
-  State<Remainingparcels> createState() => _RemainingparcelsState();
+  State<Offline> createState() => _OfflineState();
 }
 
-class _RemainingparcelsState extends State<Remainingparcels> {
+class _OfflineState extends State<Offline> {
   SqlDb sqlDb = SqlDb();
   bool isLoading = true;
   List list = [];

@@ -53,11 +53,19 @@ class KDrawerWidget extends StatelessWidget {
 
                 },),
             KDrawerTileWidget(
-                title: 'قائمة',
+                title: 'قائمة الطلبات الجاهزة',
                 leading: const Icon(Icons.history),
                 ontap: () {
                       GoRouter.of(context).pushReplacement(
-                      AppRouter.storeRouters.kRemainingParcels);
+                      AppRouter.storeRouters.kReadyForDelivery);
+
+                },),
+            KDrawerTileWidget(
+                title: 'قائمة اوف لاين',
+                leading: const Icon(Icons.history),
+                ontap: () {
+                      GoRouter.of(context).pushReplacement(
+                      AppRouter.storeRouters.kReadyForDelivery);
 
                 },),
           ],
