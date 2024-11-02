@@ -48,7 +48,7 @@ class YAccontantRepoimple extends YAccontantRepo {
   }
 
   @override
-  Future<Either<Failure, UpdateBoundStateEntinty>> updateBoundState(
+  Future<Either<Failure, BoundEntitny>> updateBoundState(
       int boundId, String action) {
     return addData(
         () => boundRemoteDataSource.updateBoundState(boundId, action));

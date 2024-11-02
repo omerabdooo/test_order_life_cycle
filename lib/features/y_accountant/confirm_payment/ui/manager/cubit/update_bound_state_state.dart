@@ -14,7 +14,7 @@ class UpdateBoundStateCubitFailure extends UpdateBoundStateState {
 }
 
 class UpdateBoundStateCubitSuccess extends UpdateBoundStateState {
-  final UpdateBoundStateEntinty updateBoundStateEntinty;
+final BoundEntitny boundEntitny;
 
-  UpdateBoundStateCubitSuccess({required this.updateBoundStateEntinty});
+  UpdateBoundStateCubitSuccess({required this.boundEntitny});
 }

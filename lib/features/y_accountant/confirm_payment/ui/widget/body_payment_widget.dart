@@ -36,7 +36,9 @@ class BodyConfirmPaymentWidget extends StatelessWidget {
                   customerName: state.boundEntitny[i].clintName,
                   amountBond: state.boundEntitny[i].boundValue.toString(),
                   numBond: state.boundEntitny[i].boundNumber.toString(),
-                  date:DateFormat('yyyy/MM/dd').format(state.boundEntitny[i].date)
+                  date:DateFormat('yyyy/MM/dd').format(state.boundEntitny[i].date,
+                 
+                  ), image: state.boundEntitny[i].image??'',
                 );
               }),
         );

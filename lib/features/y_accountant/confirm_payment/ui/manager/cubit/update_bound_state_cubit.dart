@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
+import 'package:test_order_life_cycle/features/y_accountant/confirm_payment/domin/entitnies/bound_entitny.dart';
 import 'package:test_order_life_cycle/features/y_accountant/confirm_payment/domin/entitnies/update_bound_state_entinty.dart';
 import 'package:test_order_life_cycle/features/y_accountant/confirm_payment/domin/usecase/update_bound_state_usecase.dart';
 
@@ -17,7 +18,7 @@ class UpdateBoundStateCubit extends Cubit<UpdateBoundStateState> {
         (failure) => emit(UpdateBoundStateCubitFailure(
             errorMessage: failure.message, boundId)),
         (cartItem) => emit(
-            UpdateBoundStateCubitSuccess(updateBoundStateEntinty: cartItem)));
+            UpdateBoundStateCubitSuccess(boundEntitny: cartItem)));
     ;
   }
 }
