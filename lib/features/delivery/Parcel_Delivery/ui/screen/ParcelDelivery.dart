@@ -22,13 +22,12 @@ class _ParcelDeliveryState extends State<ParcelDelivery> {
 
     return MultiBlocProvider(
       providers: [
-        BlocProvider(
-          create: (context) =>
-              ParcelDeliveryCubit(ParcelDeliveryUseCase(
-            getit.get<ParcelDeliveryRepoImpl>(),
-          )),
-
-        ),
+        // BlocProvider(
+        //   create: (context) =>
+        //       ParcelDeliveryCubit(ParcelDeliveryUseCase(
+        //     getit.get<ParcelDeliveryRepoImpl>(),
+        //   )),
+        // ),
       ], 
       child: const Scaffold(
       drawer: KDrawerWidget(),

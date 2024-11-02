@@ -12,13 +12,15 @@ import 'package:test_order_life_cycle/core/utils/route.dart';
 import 'package:test_order_life_cycle/features/auth_feature/data/repo/auth_repo_impl.dart';
 import 'package:test_order_life_cycle/features/auth_feature/domain/usecase/sign_in_use_case.dart';
 import 'package:test_order_life_cycle/features/auth_feature/ui/manger/sgin_in_cubit/sgin_in_cubit_cubit.dart';
+import 'package:test_order_life_cycle/features/delivery/Parcel_Delivery/data/repos/parcel_delivery_repo_impl.dart';
+import 'package:test_order_life_cycle/features/delivery/Parcel_Delivery/domain/usecases/parcel_delivery_use_case.dart';
+import 'package:test_order_life_cycle/features/delivery/Parcel_Delivery/ui/manger/parcel_delivery_cubit/parcel_delivery_cubit.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
   setupServiceLocator();
   Bloc.observer = SimpleBlocObserver();
   await SqlDb().intialDb();
-
 
   runApp(
     MultiProvider(providers: [
@@ -37,6 +39,12 @@ class SindbadManagementApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
+        BlocProvider(
+          create: (context) =>
+              ParcelDeliveryCubit(ParcelDeliveryUseCase(
+            getit.get<ParcelDeliveryRepoImpl>(),
+          )),
+        ),
         BlocProvider(
       create: (context) => SignInCubitCubit(SignInUseCase(
         getit.get<AuthRepoImpl>(),

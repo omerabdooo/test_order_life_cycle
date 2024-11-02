@@ -28,8 +28,7 @@ class SqlDb extends ChangeNotifier{
       CREATE TABLE "delivery" (
         "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, 
         "receiptCode" TEXT,
-        "status" INTEGER,
-        )
+        "status" INTEGER)
 ''');
     await batch.commit();
     print('Create Database and Table ====================');
