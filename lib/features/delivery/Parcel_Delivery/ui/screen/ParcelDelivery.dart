@@ -14,24 +14,14 @@ class ParcelDelivery extends StatefulWidget {
   State<ParcelDelivery> createState() => _ParcelDeliveryState();
 }
 
-TextEditingController receiptCode = TextEditingController();
 
 class _ParcelDeliveryState extends State<ParcelDelivery> {
   @override
   Widget build(BuildContext context) {
 
-    return MultiBlocProvider(
-      providers: [
-        // BlocProvider(
-        //   create: (context) =>
-        //       ParcelDeliveryCubit(ParcelDeliveryUseCase(
-        //     getit.get<ParcelDeliveryRepoImpl>(),
-        //   )),
-        // ),
-      ], 
-      child: const Scaffold(
-      drawer: KDrawerWidget(),
-      body: ParcelDeliveryBody(),
-    ));
+    return const Scaffold(
+    drawer: KDrawerWidget(),
+    body: ParcelDeliveryBody(),
+        );
   }
 }

@@ -42,21 +42,7 @@ class _MyWidgetState extends State<ParcelDeliveryBody> {
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                    BlocConsumer<ParcelDeliveryCubit,
-                    ParcelDeliveryState>(
-                  listener: (context, state) {
-                    if (state is ParcelDeliveryFailure) {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(content: Text(state.errorMessage.toString())),
-                      );
-                    } else if (state is ParcelDeliverySuccess) {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(content: Text(state.parcelDelivery.toString())),
-                      );                      
-                    }
-                  },
-                  builder: (context, state) {
-                    return KCustomPrimaryButtonWidget(
+                     KCustomPrimaryButtonWidget(
                       width: 170,
                       height: 48,
                       buttonName: "تأكيـــد",
@@ -93,9 +79,7 @@ class _MyWidgetState extends State<ParcelDeliveryBody> {
                               );                      
                             }
                       },
-                    );
-                  },
-                ),              
+                     ),
                 SizedBox(width: 20.h), // Space between buttons
                 KCustomPrimaryButtonWidget(
                     width: 85,
