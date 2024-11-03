@@ -21,6 +21,7 @@ class StoreHomePageListViewCancel extends StatelessWidget {
               itemCount: 10,
               itemBuilder: (context, i) {
                 return OrderDetailsButton(
+                  idOrder: state.orders[i].idOrder,
                   bondNum: state.orders[i].orderNum,
                   date: state.orders[i].orderDate.toString(),
                   itemNum: state.orders[i].productNum.toString(),

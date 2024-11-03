@@ -1,3 +1,7 @@
+import 'dart:typed_data';
+
+import 'package:barcode/barcode.dart';
+import 'package:barcode_widget/barcode_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:test_order_life_cycle/core/styles/Colors.dart';
@@ -5,49 +9,6 @@ import 'package:test_order_life_cycle/core/styles/text_style.dart';
 import 'package:test_order_life_cycle/features/store/order_processing/ui/widget/custom_text.dart';
 import 'package:test_order_life_cycle/features/store/order_processing/ui/widget/image_product.dart';
 import 'package:test_order_life_cycle/features/store/order_processing/ui/widget/product_name.dart';
-
-// class StoreOrderProcessingListViewBody extends StatelessWidget {
-//   const StoreOrderProcessingListViewBody(
-//       {super.key,
-//       required this.orderNum,
-//       required this.imageCode,
-//       required this.productName,
-//       required this.quantity,
-//       required this.price,
-//       required this.totalPrice,
-//       required this.totalQuantity,
-//       required this.imageProduct});
-//   final String orderNum;
-//   final String imageCode;
-//   final String productName;
-//   final String quantity;
-//   final String price;
-//   final String totalPrice;
-//   final String totalQuantity;
-//   final String imageProduct;
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return SizedBox(
-//       width: 370.w,
-//       height: 400.h,
-//       child: ListView.builder(
-//           padding: EdgeInsets.zero,
-//           itemCount: 10,
-//           itemBuilder: (context, i) {
-//             return OrderProcessingBody(
-//                 orderNum: orderNum,
-//                 imageCode: imageCode,
-//                 productName: productName,
-//                 quantity: quantity,
-//                 price: price,
-//                 totalPrice: totalPrice,
-//                 totalQuantity: totalQuantity,
-//                 imageProduct: imageProduct);
-//           }),
-//     );
-//   }
-// }
 
 class OrderProcessingBody extends StatelessWidget {
   const OrderProcessingBody({
@@ -60,6 +21,7 @@ class OrderProcessingBody extends StatelessWidget {
     required this.totalPrice,
     required this.totalQuantity,
     required this.imageProduct,
+    this.code,
   });
 
   final num orderNum;
@@ -70,9 +32,12 @@ class OrderProcessingBody extends StatelessWidget {
   final num totalPrice;
   final int totalQuantity;
   final String imageProduct;
+  final Barcode? code;
 
   @override
   Widget build(BuildContext context) {
+    final svg = code?.toSvg(productName, width: 200, height: 100);
+
     return Container(
       padding: EdgeInsets.only(right: 5.w),
       margin: EdgeInsets.symmetric(vertical: 5.h),
@@ -94,23 +59,29 @@ class OrderProcessingBody extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               // رقم المنتج
-              Container(
-                  width: 200.w,
-                  alignment: Alignment.center,
-                  child: Text(
-                    '$orderNum',
-                    style: KTextStyle.secondaryTitle,
-                  )),
+              // Container(
+              //     width: 200.w,
+              //     alignment: Alignment.center,
+              //     child: Text(
+              //       '$orderNum',
+              //       style: KTextStyle.secondaryTitle,
+              //     )),
               SizedBox(
                 height: 7.h,
               ),
               //  صورة الباركود
-              Image.asset(
-                imageCode,
-                height: 23.h,
+              BarcodeWidget(
+                height: 35.h,
                 width: 210.w,
-                fit: BoxFit.fill,
+                data: orderNum.toString(), // Data here
+                barcode: Barcode.code128(), // Specify the barcode type
               ),
+              // Image.memory(
+              //    Uint8List.fromList(svg.codeUnits),
+              //   height: 23.h,
+              //   width: 210.w,
+              //   fit: BoxFit.fill,
+              // ),
               // اسم المنتج
               ProductName(productName: productName),
               SizedBox(
@@ -167,3 +138,25 @@ class OrderProcessingBody extends StatelessWidget {
     );
   }
 }
+
+// class BarcodeWidget extends StatelessWidget {
+//   final String data;
+//   final Barcode code;
+
+//   const BarcodeWidget({super.key, required this.data, required this.code});
+
+//   @override
+//   Widget build(BuildContext context) {
+//     //final svg = code.toSvg(data, width: 200, height: 100);
+//     return Container(
+//       height: 23.h,
+//       width: 210.w,
+//       padding: const EdgeInsets.all(20),
+//       //child: Center(
+//       //child: Image.memory(
+//       // Uint8List.fromList(svg.codeUnits),
+//       //),
+//       //),
+//     );
+//   }
+// }

@@ -6,10 +6,22 @@ import 'package:test_order_life_cycle/features/store/home/ui/manger/cubit/all_or
 import 'package:test_order_life_cycle/features/store/home/ui/manger/cubit/all_order_state.dart';
 import 'package:test_order_life_cycle/features/store/home/ui/widget/order_details_button.dart';
 
-class StoreHomePageListViewNew extends StatelessWidget {
+class StoreHomePageListViewNew extends StatefulWidget {
   const StoreHomePageListViewNew({
     super.key,
   });
+
+  @override
+  State<StoreHomePageListViewNew> createState() =>
+      _StoreHomePageListViewNewState();
+}
+
+class _StoreHomePageListViewNewState extends State<StoreHomePageListViewNew> {
+  @override
+  void initState() {
+    super.initState();
+    context.read<AllOrderCubit>().fetchAllOrder(1, 10, '10', 1, false);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -21,6 +33,7 @@ class StoreHomePageListViewNew extends StatelessWidget {
               itemCount: 10,
               itemBuilder: (context, i) {
                 return OrderDetailsButton(
+                  idOrder: state.orders[i].idOrder,
                   bondNum: state.orders[i].orderNum,
                   date: state.orders[i].orderDate.toString(),
                   itemNum: state.orders[i].productNum.toString(),
@@ -28,7 +41,7 @@ class StoreHomePageListViewNew extends StatelessWidget {
               });
         } else if (state is AllOrderFailuer) {
           return Text(state.errMessage);
-        } else {
+        } else if (state is AllOrderLoading) {
           return Shimmer.fromColors(
             baseColor: Colors.grey[300]!,
             highlightColor: Colors.grey[100]!,
@@ -45,6 +58,13 @@ class StoreHomePageListViewNew extends StatelessWidget {
                 );
               },
             ),
+          );
+        } else {
+          return Container(
+            color: Colors.red.shade400,
+            height: 50,
+            width: 300,
+            child: Divider(),
           );
         }
       },

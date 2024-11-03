@@ -3,7 +3,7 @@ import 'package:test_order_life_cycle/features/store/order_processing/domain/ent
 class OrderProcessingModel extends OrderProcessingEntity {
   int? orderDetailId;
   String? productName;
-  int? productPrice;
+  num? productPrice;
   String? productDescription;
   String? productMainImageUrl;
   int? quantity;
@@ -27,7 +27,7 @@ class OrderProcessingModel extends OrderProcessingEntity {
     return OrderProcessingModel(
       orderDetailId: json['orderDetailId'] as int?,
       productName: json['productName'] as String?,
-      productPrice: json['productPrice'] as int?,
+      productPrice: json['productPrice'] as num?,
       productDescription: json['productDescription'] as String?,
       productMainImageUrl: json['productMainImageUrl'] as String?,
       quantity: json['quantity'] as int?,

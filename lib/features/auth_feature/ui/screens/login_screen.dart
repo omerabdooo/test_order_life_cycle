@@ -21,13 +21,10 @@ class LoginScreen extends StatelessWidget {
       // Validate the phone input (you can add more validation logic here)
       if (phoneInput.isNotEmpty) {
         if (phoneInput == "123") {
-          GoRouter.of(context).push(AppRouter.storeRouters.kStoreHome);
-        } else if (phoneInput == "1234") {
-          GoRouter.of(context).push(AppRouter.storeRouters.kAccountant);
-        } else if (phoneInput == "12345") {
-          GoRouter.of(context).push(AppRouter.storeRouters.kStoreHome);
-        } else if (phoneInput == "12346") {
-          GoRouter.of(context).push(AppRouter.storeRouters.kStoreHome);
+          Navigator.pushNamed(
+            context,
+            "/storeHome",
+          );
         }
       }
     }

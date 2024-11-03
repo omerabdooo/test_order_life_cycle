@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:test_order_life_cycle/features/auth_feature/ui/screens/login_screen.dart';
 import 'package:test_order_life_cycle/features/store/home/ui/screen/store_home_page.dart';
@@ -18,7 +19,7 @@ import 'package:test_order_life_cycle/features/y_accountant/confirm_payment/ui/s
 
 class StoreRouters {
   String kLogin = '/';
-  String kStoreHome = 'storeHome';
+  String kStoreHome = '/storeHome';
   String kStoreAddProduct = '/store/addProduct';
   String kStoreOrderProcessing = '/store/orderProcessing';
   String kStoreProducts = '/store/products';
@@ -35,77 +36,87 @@ class StoreRouters {
 }
 
 abstract class AppRouter {
+  static Route<dynamic> routeApp(RouteSettings routeSettings) {
+    switch (routeSettings.name) {
+      case '/':
+        return MaterialPageRoute(builder: (ctx) => const LoginScreen());
+      case '/storeHome':
+        return MaterialPageRoute(builder: (ctx) => const StoreHomePage());
+
+      case '/store/order/processing':
+        return MaterialPageRoute(
+            builder: (ctx) => const StoreOrderProcessing(),
+            settings: RouteSettings(arguments: routeSettings.arguments));
+
+      default:
+        return MaterialPageRoute(builder: (ctx) => const LoginScreen());
+    }
+  }
+
   // static const kStoreHome = 'storeHome';
-  static const kLogin = '/';
+  // static const kLogin = '/';
 
-  static StoreRouters storeRouters = StoreRouters();
-  static final router = GoRouter(
-    routes: [
-      // Store Routes
-      // GoRoute(
-      //   path: AppRouter.storeRouters.kLogin,
-      //   builder: (context, state) => const LoginScreen(),
-      // ),
+  // static StoreRouters storeRouters = StoreRouters();
+  // static final router = GoRouter(
+  //   routes: [
+  // Store Routes
+  // GoRoute(
+  //   path: AppRouter.storeRouters.kLogin,
+  //   builder: (context, state) => const LoginScreen(),
+  // ),
 
-      GoRoute(
-        path: AppRouter.storeRouters.kStoreHome,
-        builder: (context, state) => const StoreHomePage(),
-      ),
-      GoRoute(
-        path: kLogin,
-        builder: (context, state) => const LoginScreen(),
-      ),
-      GoRoute(
-        path: AppRouter.storeRouters.kStoreOrderProcessing,
-        builder: (context, state) => const StoreOrderProcessing(),
-      ),
-      GoRoute(
-        path: AppRouter.storeRouters.kAccountant,
-        builder: (context, state) => const ConfirmPayment(),
-      ),
-      // GoRoute(
-      //   path: AppRouter.storeRouters.kStoreProducts,
-      //   builder: (context, state) => const StoreProducts(),
-      // ),
-      // GoRoute(
-      //   path: AppRouter.storeRouters.kStoreSearchProduct,
-      //   builder: (context, state) => const StoreSearchProduct(),
-      // ),
-      // GoRoute(
-      //   path: AppRouter.storeRouters.kStoreOffer,
-      //   builder: (context, state) => const StoreOffer(),
-      // ),
-      // GoRoute(
-      //   path: AppRouter.storeRouters.kStoreStopProduct,
-      //   builder: (context, state) => const StoreStopProduct(),
-      // ),
-      // GoRoute(
-      //   path: AppRouter.storeRouters.kStoreOfferProduct,
-      //   builder: (context, state) => const StoreOfferProduct(),
-      // ),
-      // GoRoute(
-      //   path: AppRouter.storeRouters.kStoreStoppedProduct,
-      //   builder: (context, state) => const StoreStoppedProduct(),
-      // ),
-      // GoRoute(
-      //   path: AppRouter.storeRouters.kStoreExcelFile,
-      //   builder: (context, state) => const StoreExcelFile(),
-      // ),
-      // GoRoute(
-      //   path: AppRouter.storeRouters.kStoreReport,
-      //   builder: (context, state) => const StoreReport(),
-      // ),
-    ],
-  );
-}
-
-
-
-
-
-
-
-
+  // GoRoute(
+  //   path: AppRouter.storeRouters.kStoreHome,
+  //   builder: (context, state) => const StoreHomePage(),
+  // ),
+  // GoRoute(
+  //   path: kLogin,
+  //   builder: (context, state) => const LoginScreen(),
+  // ),
+  // GoRoute(
+  //   path: AppRouter.storeRouters.kStoreOrderProcessing,
+  //   builder: (context, state) => const StoreOrderProcessing(),
+  //   settings: RouteSettings(arguments: routeSettings.arguments)
+  // ),
+  // GoRoute(
+  //   path: AppRouter.storeRouters.kAccountant,
+  //   builder: (context, state) => const ConfirmPayment(),
+  // ),
+  // GoRoute(
+  //   path: AppRouter.storeRouters.kStoreProducts,
+  //   builder: (context, state) => const StoreProducts(),
+  // ),
+  // GoRoute(
+  //   path: AppRouter.storeRouters.kStoreSearchProduct,
+  //   builder: (context, state) => const StoreSearchProduct(),
+  // ),
+  // GoRoute(
+  //   path: AppRouter.storeRouters.kStoreOffer,
+  //   builder: (context, state) => const StoreOffer(),
+  // ),
+  // GoRoute(
+  //   path: AppRouter.storeRouters.kStoreStopProduct,
+  //   builder: (context, state) => const StoreStopProduct(),
+  // ),
+  // GoRoute(
+  //   path: AppRouter.storeRouters.kStoreOfferProduct,
+  //   builder: (context, state) => const StoreOfferProduct(),
+  // ),
+  // GoRoute(
+  //   path: AppRouter.storeRouters.kStoreStoppedProduct,
+  //   builder: (context, state) => const StoreStoppedProduct(),
+  // ),
+  // GoRoute(
+  //   path: AppRouter.storeRouters.kStoreExcelFile,
+  //   builder: (context, state) => const StoreExcelFile(),
+  // ),
+  // GoRoute(
+  //   path: AppRouter.storeRouters.kStoreReport,
+  //   builder: (context, state) => const StoreReport(),
+  // ),
+//     ],
+//   );
+// }
 
 // abstract class AppRouter {
 //   ///////////////////////////////
@@ -114,7 +125,7 @@ abstract class AppRouter {
 
 //   // Accountant Routes
 //   static AcontantRouters acontantRouters = AcontantRouters();
-  
+
 //   // Accountant Routes
 //   static const kAccountantHome = '/accountant/home';
 //   static const kAccountantConfirm = '/accountant/confirm';
@@ -333,3 +344,4 @@ abstract class AppRouter {
 //     ],
 //   );
 // }
+}
