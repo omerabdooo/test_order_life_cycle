@@ -176,24 +176,7 @@ class ApiService {
       print('Data provided: $data');
 
       // Check if Date is present and valid
-      if (data.containsKey('Date')) {
-        var dateValue = data['Date'];
-        if (dateValue is DateTime) {
-          String formattedDate = dateValue.toIso8601String();
-          formData.fields.add(MapEntry('Date', formattedDate));
-          print('Date: $formattedDate');
-        } else {
-          throw Exception('Date must be of type DateTime');
-        }
-      } else {
-        throw Exception('Date is required');
-      }
-      if (data.containsKey('orderDetailsId')) {
-        formData.fields
-            .add(MapEntry('orderDetailsId', data['orderDetailsId'].toString()));
-      } else {
-        throw Exception('orderDetailsId is required');
-      }
+    
 
       // Add invoice number and amount
       if (data.containsKey('InvoiceNumber')) {

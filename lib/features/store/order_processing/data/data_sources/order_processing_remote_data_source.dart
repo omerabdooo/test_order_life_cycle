@@ -75,6 +75,7 @@ class OrderProcessingRemotDataSourceImpl
 
   //////////////////////////////////////////////////////////////
   ///ارسال الفاتورة
+  List<int> nums= [5];
   @override
   Future<OrderProcessingBillEntity> fetchOrderProcessingBill(
       List<int> ids,
@@ -83,12 +84,16 @@ class OrderProcessingRemotDataSourceImpl
       String invoiceNumber,
       DateTime invoiceDate) async {
     String? token = await getToken();
-    FormData formData = FormData.fromMap({
-      'InvoiceAmount': invoiceAmount,
-      'InvoiceNumber': invoiceNumber,
-      'InvoiceImage': invoiceImage,
-      'Date': '2024-10-15T02:01:18.5809414',
-    });
+    FormData formData =FormData();
+   formData=  FormData.fromMap({
+     'InvoiceAmount':5.5,
+'InvoiceNumber':'5',
+'Date':DateTime.now().toString(),
+'orderDetailsId': nums.map((e) => e.toString()).toList(),
+
+      
+    },);
+
     var data = await apiService.postRequestWithFiles(
       endPoint: 'OrderDetails/Store/CreateInvoiceForOrderdetailsInStore',
       headers: {
@@ -106,12 +111,20 @@ class OrderProcessingRemotDataSourceImpl
       // },
       file: invoiceImage,
       data: {
-        'orderDetailsId': ids,
-        'InvoiceAmount': invoiceAmount,
-        'InvoiceNumber': invoiceNumber,
-        'InvoiceImage': invoiceImage,
-        'Date': invoiceDate,
-      },
+     'InvoiceAmount':5,
+'InvoiceNumber':invoiceNumber,
+'Date':DateTime.now().toString(),
+'orderDetailsId':[5,6,5]
+
+      
+    }
+        // 'orderDetailsId': ids,
+        // 'InvoiceAmount': invoiceAmount,
+        // 'InvoiceNumber': invoiceNumber,
+        // 'InvoiceImage': invoiceImage,
+        // 'Date': invoiceDate,
+       
+      
     );
     OrderProcessingBillEntity bill =
         OrderProcessingBillModel.fromJson(data.values.last);
