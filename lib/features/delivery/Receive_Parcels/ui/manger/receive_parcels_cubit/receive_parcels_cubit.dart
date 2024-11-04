@@ -12,14 +12,14 @@ class ReceiveParcelsCubit extends Cubit<ReceiveParcelsState> {
       : super(ReceiveParcelsInitial());
 
   Future<void> receiveParcels(
-    int orderId,
+    int parcelId,
     int status,
   ) async {
     emit(ReceiveParcelsLoading());
 
     try {
       var params = ReceiveParcelsParams(
-        orderId,
+        parcelId,
         status,
       );
       final result = await receiveParcelsUseCase.execute(params);
@@ -35,9 +35,9 @@ class ReceiveParcelsCubit extends Cubit<ReceiveParcelsState> {
          } //else if(userData.serverMessage == "The customer already has an address") {
         //   emit(ReceiveParcelsFailure("لديك عنوان بالفعل "));
         // }
-        // else {
+        else {
         emit(ReceiveParcelsSuccess("تم استلام الطرد بنجاح"));
-        // }
+        }
       });
     } catch (e) {
       if (e is DioException) {

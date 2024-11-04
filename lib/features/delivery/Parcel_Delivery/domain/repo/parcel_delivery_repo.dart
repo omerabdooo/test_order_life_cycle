@@ -5,8 +5,8 @@ import 'package:test_order_life_cycle/features/delivery/Parcel_Delivery/domain/e
 abstract class ParcelDeliveryRepo {
   //Future<Either<Failure, CustomerAddressEntity>> getAllCustomerAddress();
   Future<Either<Failure, ParcelDeliveryEntity>> parcelDelivery(
-    int orderId,
-    String receiptCode,
+    int parcelId,
+    String orderId,
     int status,
   );
 }

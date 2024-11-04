@@ -66,13 +66,13 @@ class ParcelDeliveryRepoImpl extends ParcelDeliveryRepo {
 
   @override
   Future<Either<Failure, ParcelDeliveryEntity>> parcelDelivery(
-    int orderId,
-    String receiptCode,
+    int parcelId,
+    String orderId,
     int status,
   ) async {
     return postData(() => parcelDeliveryRemoteDataSource.parcelDelivery(
+          parcelId,
           orderId,
-          receiptCode,
           status,
         ));
   }

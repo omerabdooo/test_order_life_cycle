@@ -5,7 +5,6 @@ import 'package:test_order_life_cycle/core/widgets/NumberOrder.dart';
 import 'package:test_order_life_cycle/core/widgets/custom_appbar_widget.dart';
 import 'package:test_order_life_cycle/core/widgets/custom_primary_button_widget.dart';
 import 'package:test_order_life_cycle/features/delivery/Receive_Parcels/ui/manger/receive_parcels_cubit/receive_parcels_cubit.dart';
-// import 'package:sndbad/features/home_screen/ui/screen/HomeScreen.dart'; // Import the flutter_screenutil package//+
 
 class ReceiveParcelsBody extends StatefulWidget {
   const ReceiveParcelsBody({super.key});
@@ -14,7 +13,7 @@ class ReceiveParcelsBody extends StatefulWidget {
   State<ReceiveParcelsBody> createState() => _MyWidgetState();
 }
 
-TextEditingController orderId = TextEditingController();
+TextEditingController parcelId = TextEditingController();
 int status = 5;
 
 class _MyWidgetState extends State<ReceiveParcelsBody> {
@@ -27,7 +26,7 @@ class _MyWidgetState extends State<ReceiveParcelsBody> {
           ),
           KNumberOrderWidget(
             isShow: true,
-            orderId: orderId,
+            parcelId: parcelId,
           ),
           SizedBox(
             height: 10.h,
@@ -56,7 +55,7 @@ class _MyWidgetState extends State<ReceiveParcelsBody> {
                     height: 48,
                     buttonName: "تأكيـــد",
                     onPressed: () async {
-                      if (orderId.text == "") {
+                      if (parcelId.text == "") {
                         ScaffoldMessenger.of(context).showSnackBar(
                           const SnackBar(
                             content: Text('من فضلك قم بقراءة الباركود اولا...'),
@@ -67,8 +66,8 @@ class _MyWidgetState extends State<ReceiveParcelsBody> {
                         // Call the function after all checks have passed
                         await context
                             .read<ReceiveParcelsCubit>()
-                            .receiveParcels(int.parse(orderId.text), status);
-                        print(orderId.text);
+                            .receiveParcels(int.parse(parcelId.text), status);
+                        print(parcelId.text);
                       }
                     },
                   );

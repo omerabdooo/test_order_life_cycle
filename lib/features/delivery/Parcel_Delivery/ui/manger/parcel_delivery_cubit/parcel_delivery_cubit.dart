@@ -12,16 +12,16 @@ class ParcelDeliveryCubit extends Cubit<ParcelDeliveryState> {
       : super(ParcelDeliveryInitial());
 
   Future<void> parcelDelivery(
-    int orderId,
-    String receiptCode,
+    int parcelId,
+    String orderId,
     int status,
   ) async {
     emit(ParcelDeliveryLoading());
 
     try {
       var params = ParcelDeliveryParams(
-          orderId, 
-          receiptCode,
+          parcelId, 
+          orderId,
           status,
           );
       final result = await parcelDeliveryUseCase.execute(params);

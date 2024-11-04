@@ -15,11 +15,17 @@ class ParcelDeliveryBody extends StatefulWidget {
   State<ParcelDeliveryBody> createState() => _MyWidgetState();
 }
   SqlDb sqlDb = SqlDb();
+TextEditingController parcelId = TextEditingController();
 TextEditingController orderId = TextEditingController();
-TextEditingController receiptCode = TextEditingController();
 int status = 3;
 
 class _MyWidgetState extends State<ParcelDeliveryBody> {
+  @override
+  void dispose() {
+    super.dispose();
+    parcelId.dispose();
+    orderId.dispose();
+  }
   @override
   Widget build(BuildContext context) {
       return SingleChildScrollView(
@@ -30,8 +36,8 @@ class _MyWidgetState extends State<ParcelDeliveryBody> {
             ),
             KNumberOrderWidget(
               isShow: false,
-              receiptCode: receiptCode,
-              orderId: orderId
+              orderId: orderId,
+              parcelId: parcelId
             ),
             SizedBox(
               height: 10.h,
@@ -47,7 +53,7 @@ class _MyWidgetState extends State<ParcelDeliveryBody> {
                       height: 48,
                       buttonName: "تأكيـــد",
                       onPressed: () async {
-                        if (receiptCode.text == "") {
+                        if (orderId.text == "") {
                           ScaffoldMessenger.of(context).showSnackBar(
                             const SnackBar(
                               content:
@@ -60,17 +66,17 @@ class _MyWidgetState extends State<ParcelDeliveryBody> {
                           // await context
                           //     .read<ParcelDeliveryCubit>()
                           //     .parcelDelivery(
-                          //         int.parse(orderId.text),
-                          //         receiptCode.text,
+                          //         int.parse(parcelId.text),
+                          //         orderId.text,
                           //         status,
                           //         );
+                          print(parcelId.text);
                           print(orderId.text);
-                          print(receiptCode.text);
                         }
                           int response = await sqlDb.insertData(
                               '''
                                         INSERT INTO delivery (receiptCode , status)
-                                        VALUES ("${receiptCode.text}" , 3)
+                                        VALUES ("${orderId.text}" , 3)
                                         '''
                           );
                             if(response > 0){

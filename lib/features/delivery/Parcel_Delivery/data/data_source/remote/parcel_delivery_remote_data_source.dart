@@ -6,8 +6,8 @@ import 'package:test_order_life_cycle/features/delivery/Parcel_Delivery/domain/e
 abstract class ParcelDeliveryRemoteDataSource {
   //Future<List<CustomerAddressEntity>> getAllCustomerAddress();
   Future<ParcelDeliveryEntity> parcelDelivery(
-    int orderId,
-    String receiptCode,
+    int parcelId,
+    String orderId,
     int status,
   );
 }
@@ -55,13 +55,13 @@ class ParcelDeliveryRemoteDataSourceImpl
 
   @override
   Future<ParcelDeliveryEntity> parcelDelivery(
-    int orderId,
-    String receiptCode,
+    int parcelId,
+    String orderId,
     int status,
   ) async {
     var data =
         await apiService.post(endPoint: "DeliveryApp/ChangeOrderStatus", data: {
-      'orderNumber': receiptCode,
+      'orderNumber': orderId,
       'orderStatus': status,
     });
     ParcelDeliveryEntity parcelDelivery = OrderStatus.fromJson(data);

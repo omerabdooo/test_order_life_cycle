@@ -59,18 +59,14 @@ class ReceiveParcelsRepoImpl extends ReceiveParcelsRepo {
     }
   }
 
-  // @override
-  // Future<Either<Failure, List<CustomerAddressEntity>?>> getAllCustomerAddress() async {
-  //   return fetchDataNullable(() => shippingAddressRemoteDataSource.getAllCustomerAddress());
-  // }
 
   @override
   Future<Either<Failure, ReceiveParcelsEntity>> receiveParcels(
-    int orderId,
+    int parcelId,
     int status,
   ) async {
     return postData(() => receiveParcelsRemoteDataSource.receiveParcels(
-          orderId,
+          parcelId,
           status,
         ));
   }
