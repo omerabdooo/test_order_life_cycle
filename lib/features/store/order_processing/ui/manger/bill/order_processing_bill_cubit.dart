@@ -14,11 +14,12 @@ class OrderProcessingBillCubit extends Cubit<OrderProcessingBillState> {
   OrderProcessingBillCubit(this.orderProcessingBillUseCase)
       : super(OrderProcessingBillInitial());
   final OrderProcessingBillUseCase orderProcessingBillUseCase;
-  Future<void> fechOrderBill(String invoiceAmount, File invoiceImage,
-      Object invoiceNumber, DateTime invoiceDate) async {
+  Future<void> fechOrderBill(List<int> ids, num invoiceAmount,
+      File invoiceImage, String invoiceNumber, DateTime invoiceDate) async {
     emit(OrderProcessingBillLoading());
     try {
       var params = OrderProcessingBillParam(
+        ids: ids,
         invoiceAmounts: invoiceAmount,
         invoiceNumbers: invoiceNumber,
         invoiceImages: invoiceImage,
@@ -29,11 +30,14 @@ class OrderProcessingBillCubit extends Cubit<OrderProcessingBillState> {
       result.fold(
           (failure) =>
               emit(OrderProcessingBillFailuer(errMessage: failure.message)),
-          (bill) {
-        if (bill.isSuccess == true) {
-          emit(OrderProcessingBillSuccess(bill: bill));
+          (serverMessage) {
+        if (serverMessage.isSuccess == true) {
+          emit(OrderProcessingBillSuccess(serverMessage: serverMessage));
+          print("Omar and Qais");
         } else {
-          emit(OrderProcessingBillFailuer(errMessage: bill.serverMessage));
+          emit(OrderProcessingBillFailuer(
+              errMessage: serverMessage.serverMessage));
+          print("fjdiofghsjkdfhsjkahfjkhglk");
         }
       });
     } catch (e) {

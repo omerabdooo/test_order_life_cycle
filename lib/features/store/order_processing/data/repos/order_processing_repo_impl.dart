@@ -54,13 +54,14 @@ class OrderProcessingRepoImpl extends OrderProcessingRepo {
 
   @override
   Future<Either<Failure, OrderProcessingBillEntity>> fetchOrderProcessingBill({
-    required String invoiceAmount,
+    required List<int> ids,
+    required num invoiceAmount,
     required File invoiceImage,
-    required Object invoiceNumber,
+    required String invoiceNumber,
     required DateTime invoiceDate,
   }) {
     return fetchDataBill(() =>
         orderProcessingRemoteDataSource.fetchOrderProcessingBill(
-            invoiceAmount, invoiceImage, invoiceNumber, invoiceDate));
+            ids, invoiceAmount, invoiceImage, invoiceNumber, invoiceDate));
   }
 }

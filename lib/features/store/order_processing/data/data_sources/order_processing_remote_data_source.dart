@@ -14,9 +14,10 @@ abstract class OrderProcessingRemoteDataSource {
     int orderId,
   );
   Future<OrderProcessingBillEntity> fetchOrderProcessingBill(
-      String invoiceAmount,
+      List<int> ids,
+      num invoiceAmount,
       File invoiceImage,
-      Object invoiceNumber,
+      String invoiceNumber,
       DateTime invoiceDate);
 }
 
@@ -76,9 +77,10 @@ class OrderProcessingRemotDataSourceImpl
   ///ارسال الفاتورة
   @override
   Future<OrderProcessingBillEntity> fetchOrderProcessingBill(
-      String invoiceAmount,
+      List<int> ids,
+      num invoiceAmount,
       File invoiceImage,
-      Object invoiceNumber,
+      String invoiceNumber,
       DateTime invoiceDate) async {
     String? token = await getToken();
     FormData formData = FormData.fromMap({
@@ -104,12 +106,15 @@ class OrderProcessingRemotDataSourceImpl
       // },
       file: invoiceImage,
       data: {
+        'orderDetailsId': ids,
         'InvoiceAmount': invoiceAmount,
         'InvoiceNumber': invoiceNumber,
+        'InvoiceImage': invoiceImage,
         'Date': invoiceDate,
       },
     );
-    OrderProcessingBillEntity bill = OrderProcessingBillModel.fromJson(data);
+    OrderProcessingBillEntity bill =
+        OrderProcessingBillModel.fromJson(data.values.last);
     print(bill);
     return bill;
   }

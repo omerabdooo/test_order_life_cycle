@@ -14,7 +14,7 @@ final class OrderProcessingBillFailuer extends OrderProcessingBillState {
 }
 
 final class OrderProcessingBillSuccess extends OrderProcessingBillState {
-  final OrderProcessingBillEntity bill;
+  final OrderProcessingBillEntity serverMessage;
 
-  OrderProcessingBillSuccess({required this.bill});
+  OrderProcessingBillSuccess({required this.serverMessage});
 }

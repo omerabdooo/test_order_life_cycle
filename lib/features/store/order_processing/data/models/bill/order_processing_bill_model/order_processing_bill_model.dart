@@ -12,7 +12,7 @@ class OrderProcessingBillModel extends OrderProcessingBillEntity {
             isSuccess: success ?? false,
             serverMessage: message ?? "",
             invoiceDate: data!.date!,
-            invoiceNumbers: data.invoiceNumber ?? 0,
+            invoiceNumbers: data.invoiceNumber ?? "",
             invoiceAmounts: data.invoiceAmount ?? 0,
             invoiceImages: data.invoiceImageUrl,
             invoiceId: 0);

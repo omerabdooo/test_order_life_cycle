@@ -17,20 +17,24 @@ class OrderProcessingBillUseCase extends UseCaseWithParam<
   Future<Either<Failure, OrderProcessingBillEntity>> execute(
       OrderProcessingBillParam params) async {
     return await orderProcessingRepo.fetchOrderProcessingBill(
-        invoiceNumber: params.invoiceNumbers,
-        invoiceAmount: params.invoiceAmounts,
-        invoiceImage: params.invoiceImages,
-        invoiceDate: params.invoiceDate);
+      ids: params.ids,
+      invoiceNumber: params.invoiceNumbers,
+      invoiceAmount: params.invoiceAmounts,
+      invoiceImage: params.invoiceImages,
+      invoiceDate: params.invoiceDate,
+    );
   }
 }
 
 class OrderProcessingBillParam {
-  final Object invoiceNumbers;
-  final String invoiceAmounts;
+  final List<int> ids;
+  final String invoiceNumbers;
+  final num invoiceAmounts;
   final File invoiceImages;
   final DateTime invoiceDate;
 
   OrderProcessingBillParam({
+    required this.ids,
     required this.invoiceNumbers,
     required this.invoiceAmounts,
     required this.invoiceImages,

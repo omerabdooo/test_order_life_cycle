@@ -163,6 +163,13 @@ class ApiService {
     Map<String, String>? headers,
   }) async {
     try {
+//       FormData formData = FormData.fromMap({
+//   "image-param-name": await MultipartFile.fromFile(
+//     imageFile.path,
+//     filename: fileName,
+//     contentType: new MediaType("image", "jpeg"), //add this
+//   ),
+// });
       FormData formData = FormData();
 
       // Print the entire data map for debugging
@@ -180,6 +187,12 @@ class ApiService {
         }
       } else {
         throw Exception('Date is required');
+      }
+      if (data.containsKey('orderDetailsId')) {
+        formData.fields
+            .add(MapEntry('orderDetailsId', data['orderDetailsId'].toString()));
+      } else {
+        throw Exception('orderDetailsId is required');
       }
 
       // Add invoice number and amount

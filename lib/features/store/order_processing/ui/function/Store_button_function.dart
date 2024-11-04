@@ -22,7 +22,7 @@ class StoreButtonList extends StatelessWidget {
           SizedBox(
             height: 20.h,
           ),
-          const Row(
+          Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               ButtonBill(

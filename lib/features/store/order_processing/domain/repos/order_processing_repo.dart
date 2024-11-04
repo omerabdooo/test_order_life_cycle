@@ -11,8 +11,9 @@ abstract class OrderProcessingRepo {
       {required int orderId});
   //////////////////////////////////////////////////////////////////////////
   Future<Either<Failure, OrderProcessingBillEntity>> fetchOrderProcessingBill(
-      {required Object invoiceNumber,
-      required String invoiceAmount,
+      {required List<int> ids,
+      required String invoiceNumber,
+      required num invoiceAmount,
       required File invoiceImage,
       required DateTime invoiceDate});
 }

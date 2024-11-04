@@ -24,7 +24,7 @@ class OrderProcessingBillEntity {
   final bool isSuccess;
   final String serverMessage;
   final DateTime invoiceDate;
-  final Object invoiceNumbers;
+  final String invoiceNumbers;
   final num invoiceAmounts;
   final File? invoiceImages;
   final int invoiceId;
