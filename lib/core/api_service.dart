@@ -163,29 +163,28 @@ class ApiService {
     Map<String, String>? headers,
   }) async {
     try {
-//       FormData formData = FormData.fromMap({
-//   "image-param-name": await MultipartFile.fromFile(
-//     imageFile.path,
-//     filename: fileName,
-//     contentType: new MediaType("image", "jpeg"), //add this
-//   ),
-// });
       FormData formData = FormData();
 
       // Print the entire data map for debugging
       print('Data provided: $data');
 
       // Check if Date is present and valid
-    
 
-      // Add invoice number and amount
+      // Add invoice number
       if (data.containsKey('InvoiceNumber')) {
         formData.fields
             .add(MapEntry('InvoiceNumber', data['InvoiceNumber'].toString()));
       } else {
         throw Exception('InvoiceNumber is required');
       }
-
+      // Add orderDetailsId
+      if (data.containsKey('orderDetailsId')) {
+        formData.fields
+            .add(MapEntry('orderDetailsId', data['orderDetailsId'].toString()));
+      } else {
+        throw Exception('orderDetailsId is required');
+      }
+      // Add invoice Amount and amount
       if (data.containsKey('InvoiceAmount')) {
         formData.fields
             .add(MapEntry('InvoiceAmount', data['InvoiceAmount'].toString()));

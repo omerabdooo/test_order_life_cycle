@@ -11,10 +11,10 @@ class OrderProcessingBillModel extends OrderProcessingBillEntity {
       : super(
             isSuccess: success ?? false,
             serverMessage: message ?? "",
-            invoiceDate: data!.date!,
-            invoiceNumbers: data.invoiceNumber ?? "",
-            invoiceAmounts: data.invoiceAmount ?? 0,
-            invoiceImages: data.invoiceImageUrl,
+            //invoiceDate: data!.date!,
+            invoiceNumbers: data?.invoiceNumber ?? "",
+            invoiceAmounts: data?.invoiceAmount ?? 0,
+            invoiceImages: data?.invoiceImageUrl,
             invoiceId: 0);
 
   factory OrderProcessingBillModel.fromJson(Map<String, dynamic> json) {

@@ -75,7 +75,7 @@ class OrderProcessingRemotDataSourceImpl
 
   //////////////////////////////////////////////////////////////
   ///ارسال الفاتورة
-  List<int> nums= [5];
+  List<int> nums = [5];
   @override
   Future<OrderProcessingBillEntity> fetchOrderProcessingBill(
       List<int> ids,
@@ -84,48 +84,31 @@ class OrderProcessingRemotDataSourceImpl
       String invoiceNumber,
       DateTime invoiceDate) async {
     String? token = await getToken();
-    FormData formData =FormData();
-   formData=  FormData.fromMap({
-     'InvoiceAmount':5.5,
-'InvoiceNumber':'5',
-'Date':DateTime.now().toString(),
-'orderDetailsId': nums.map((e) => e.toString()).toList(),
-
-      
-    },);
+    FormData formData = FormData();
+    formData = FormData.fromMap(
+      {
+        'InvoiceAmount': 5.5,
+        'InvoiceNumber': '5',
+        'Date': DateTime.now().toString(),
+        'orderDetailsId': nums.map((e) => e.toString()).toList(),
+      },
+    );
 
     var data = await apiService.postRequestWithFiles(
-      endPoint: 'OrderDetails/Store/CreateInvoiceForOrderdetailsInStore',
-      headers: {
-        // 'Authorization': 'Bearer $token',
-        'Authorization':
-            'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJmZDVjMWIwMi1lODRhLTQ1MmEtYmZhMi1kNzRkYTM3Mjg1OTYiLCJlbWFpbCI6Im1AbSIsIm5hbWUiOiLYtdin2YTZiNmGINmF2LHYudmKINio2YYg2YfZhNin2KjZiiDZhNij2K3Yr9irINmC2LXYp9iqINin2YTYtNi52LEiLCJJc0VuYWJsZWQiOiJUcnVlIiwiUGhvbmVOdW1iZXIiOiI3Nzc3Nzc3NzgiLCJJZCI6Ijg1ZGRhNGU4LTQ2ODUtNGFlMy1iMWJiLWVhNzg1NjlmYjk2NiIsInJvbGVzIjoiU3RvcmUiLCJleHAiOjE3MzU1NzY5OTAsImlzcyI6IkZhc3RTdG9yZSIsImF1ZCI6IkZhc3RTdG9yZSJ9.xpxyxn9MBPzxBcwh-MN778mAECGkQtuVdfZ9EQCAYUA',
-      },
-      // data: formData,
-      // data: {
-      //   formData
-      //   // 'InvoiceAmount': invoiceAmount,
-      //   // 'InvoiceImage': invoiceImage,
-      //   // 'InvoiceNumber': invoiceNumber,
-      //   // 'Date': invoiceDate,
-      // },
-      file: invoiceImage,
-      data: {
-     'InvoiceAmount':5,
-'InvoiceNumber':invoiceNumber,
-'Date':DateTime.now().toString(),
-'orderDetailsId':[5,6,5]
-
-      
-    }
-        // 'orderDetailsId': ids,
-        // 'InvoiceAmount': invoiceAmount,
-        // 'InvoiceNumber': invoiceNumber,
-        // 'InvoiceImage': invoiceImage,
-        // 'Date': invoiceDate,
-       
-      
-    );
+        endPoint: 'OrderDetails/Store/CreateInvoiceForOrderdetailsInStore',
+        headers: {
+          // 'Authorization': 'Bearer $token',
+          'Authorization':
+              'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJmZDVjMWIwMi1lODRhLTQ1MmEtYmZhMi1kNzRkYTM3Mjg1OTYiLCJlbWFpbCI6Im1AbSIsIm5hbWUiOiLYtdin2YTZiNmGINmF2LHYudmKINio2YYg2YfZhNin2KjZiiDZhNij2K3Yr9irINmC2LXYp9iqINin2YTYtNi52LEiLCJJc0VuYWJsZWQiOiJUcnVlIiwiUGhvbmVOdW1iZXIiOiI3Nzc3Nzc3NzgiLCJJZCI6Ijg1ZGRhNGU4LTQ2ODUtNGFlMy1iMWJiLWVhNzg1NjlmYjk2NiIsInJvbGVzIjoiU3RvcmUiLCJleHAiOjE3MzU1NzY5OTAsImlzcyI6IkZhc3RTdG9yZSIsImF1ZCI6IkZhc3RTdG9yZSJ9.xpxyxn9MBPzxBcwh-MN778mAECGkQtuVdfZ9EQCAYUA',
+        },
+        file: invoiceImage,
+        data: {
+          'InvoiceAmount': invoiceAmount,
+          'InvoiceNumber': invoiceNumber,
+          'Date': DateTime.now().toString(),
+          'orderDetailsId': 5,
+          'orderDetailsId': 9,
+        });
     OrderProcessingBillEntity bill =
         OrderProcessingBillModel.fromJson(data.values.last);
     print(bill);
