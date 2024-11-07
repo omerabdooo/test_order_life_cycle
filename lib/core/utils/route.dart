@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:test_order_life_cycle/features/auth_feature/ui/screens/login_screen.dart';
 import 'package:test_order_life_cycle/features/delivery/Home_Delivery/ui/screen/HomeDelivery.dart';
@@ -23,7 +24,6 @@ import 'package:test_order_life_cycle/features/y_accountant/confirm_payment/ui/s
 // Update with the actual import paths for your views
 
 class StoreRouters {
-
   String kHomeDelivery = '/home';
 
   String kParcelDelivery = '/parcelDelivery';
@@ -32,9 +32,10 @@ class StoreRouters {
   String kOffline = '/offline';
   String kQRCodeScanner = '/qrCodeScanner';
 
+  // String kStoreHome = '/addProduct';
 
-  String kStoreHome = '/addProduct';
-
+  String kLogin = '/';
+  String kStoreHome = '/storeHome';
   String kStoreAddProduct = '/store/addProduct';
   String kStoreOrderProcessing = '/store/orderProcessing';
   String kStoreProducts = '/store/products';
@@ -45,7 +46,7 @@ class StoreRouters {
   String kStoreStoppedProduct = '/store/stoppedProduct';
   String kStoreExcelFile = '/store/excelFile';
   String kStoreReport = '/store/report';
-  String klogin='/';
+  String klogin = '/';
   //////////////////////////////////
   ///Accountant
   String kAccountant = 'accountant';
@@ -67,10 +68,8 @@ abstract class AppRouter {
       //   builder: (context, state) =>  LoginScreen(),
       // ),
       GoRoute(
-
         path: AppRouter.storeRouters.kHomeDelivery,
-        builder: (context, state) =>  Homedelivery(),
-
+        builder: (context, state) => Homedelivery(),
       ),
       GoRoute(
         path: AppRouter.storeRouters.kParcelDelivery,
@@ -81,14 +80,12 @@ abstract class AppRouter {
         builder: (context, state) => const ReceiveParcels(),
       ),
       GoRoute(
-
         path: AppRouter.storeRouters.kReadyForDelivery,
-        builder: (context, state) =>  ReadyForDelivery(),
+        builder: (context, state) => ReadyForDelivery(),
       ),
       GoRoute(
         path: AppRouter.storeRouters.kOffline,
-        builder: (context, state) =>  Offline(),
-
+        builder: (context, state) => Offline(),
       ),
       GoRoute(
         path: AppRouter.storeRouters.kQRCodeScanner,
@@ -102,7 +99,7 @@ abstract class AppRouter {
       GoRoute(
         path: AppRouter.storeRouters.klogin,
         builder: (context, state) => const LoginScreen(),
-        ),
+      ),
       // GoRoute(
       //   path: AppRouter.storeRouters.kStoreAddProduct,
       //   builder: (context, state) => const StoreAddProduct(),
@@ -115,6 +112,27 @@ abstract class AppRouter {
         path: AppRouter.storeRouters.kAccountant,
         builder: (context, state) => const ConfirmPayment(),
       ),
+
+      GoRoute(
+        path: '/store/order/processing',
+        builder: (context, state) {
+          final arguments = state.extra; // Retrieve arguments if needed
+          return const StoreOrderProcessing();
+        },
+      ),
+      GoRoute(
+        path: '/',
+        builder: (context, state) {
+          return const LoginScreen();
+        },
+      ),
+      GoRoute(
+        path: '/storeHome',
+        builder: (context, state) {
+          return const StoreHomePage();
+        },
+      ),
+
       // GoRoute(
       //   path: AppRouter.storeRouters.kStoreProducts,
       //   builder: (context, state) => const StoreProducts(),
@@ -150,230 +168,21 @@ abstract class AppRouter {
     ],
   );
 }
+  // static Route<dynamic> routeApp(RouteSettings routeSettings) {
+  //   switch (routeSettings.name) {
+  //     // case '/':
+  //     //   return MaterialPageRoute(builder: (ctx) => const LoginScreen());
+  //     // case '/storeHome':
+  //     //   return MaterialPageRoute(builder: (ctx) => const StoreHomePage());
 
-// abstract class AppRouter {
-//   ///////////////////////////////
-//   /// login router
-//   static const kLoginScreen = '/';
+  //     // case '/store/order/processing':
+  //     //   return MaterialPageRoute(
+  //     //       builder: (ctx) => const StoreOrderProcessing(),
+  //     //       settings: RouteSettings(arguments: routeSettings.arguments));
 
-//   // Accountant Routes
-//   static AcontantRouters acontantRouters = AcontantRouters();
+  //     default:
+  //       return MaterialPageRoute(builder: (ctx) => const LoginScreen());
+  //   }
+  // }
 
-//   // Accountant Routes
-//   static const kAccountantHome = '/accountant/home';
-//   static const kAccountantConfirm = '/accountant/confirm';
-//   static const kAccountantReport = '/accountant/report';
-//   static const kAccountantMovement = '/accountant/movement';
-//   static const kAccountantSearch = '/accountant/search';
-//   static const kAccountantMatching = '/accountant/matching';
-//   static const kAccountantExchange = '/accountant/exchange';
-//   static const kAccountantCancel = '/accountant/cancel';
-//   static const kAccountantAccountBalance = '/accountant/balance';
-//   static const kAccountantAddBond = '/accountant/addBond';
-//   static const kAccountantAskBond = '/accountant/askBond';
-//   static const kAccountantReportBond = '/accountant/reportBond';
 
-//   // Admin Routes
-//   static const kAdminHome = '/admin/home';
-//   static const kOrdersScreen = '/admin/orders';
-//   static const kCancelOrders = '/admin/cancelOrders';
-//   static const kPrepareOrder = '/admin/prepareOrder';
-
-//   // Store Routes
-//   static const kStoreHome = '/store/home';
-//   static const kStoreAddProduct = '/store/addProduct';
-//   static const kStoreOrderProcessing = '/store/orderProcessing';
-//   static const kStoreProducts = '/store/products';
-//   static const kStoreSearchProduct = '/store/searchProduct';
-//   static const kStoreOffer = '/store/offer';
-//   static const kStoreStopProduct = '/store/stopProduct';
-//   static const kStoreOfferProduct = '/store/offerProduct';
-//   static const kStoreStoppedProduct = '/store/stoppedProduct';
-//   static const kStoreExcelFile = '/store/excelFile';
-//   static const kStoreReport = '/store/report';
-
-//   // Delivery Routes
-//   static const kDeliverHomePage = '/deliver/home';
-//   static const kParcelDelivered = '/deliver/parcelDelivered';
-//   static const kParcelDelivery = '/deliver/parcelDelivery';
-//   static const kParcelRoad = '/deliver/parcelRoad';
-//   static const kParcelsReceived = '/deliver/parcelsReceived';
-//   static const kReceiveParcels = '/deliver/receiveParcels';
-//   static const kRemainingParcels = '/deliver/remainingParcels';
-
-//   // MND Routes
-//   static const kMndHomePage = '/mnd/home';
-//   static const kMnd22OrderPrecedent = '/mnd/orderPrecedent';
-//   static const kMnd22OrderReady = '/mnd/orderReady';
-//   static const kMnd2OrderPrice = '/mnd/orderPrice';
-
-//   static final router = GoRouter(
-//     routes: [
-//       // Accountant Routes
-//       GoRoute(
-//         path: kLoginScreen,
-//         builder: (context, state) => const LoginScreen(),
-//       ),
-//       GoRoute(
-//         path: kAccountantHome,
-//         builder: (context, state) => const HomePage(),
-//       ),
-//       GoRoute(
-//         path: kAccountantConfirm,
-//         builder: (context, state) => const ConfirmPayment(),
-//       ),
-//       GoRoute(
-//         path: kAccountantReport,
-//         builder: (context, state) => const ConfirmPaymentReport(),
-//       ),
-//       GoRoute(
-//         path: kAccountantMovement,
-//         builder: (context, state) => const BankMovmentReport(),
-//       ),
-//       GoRoute(
-//         path: kAccountantSearch,
-//         builder: (context, state) => const SearchPayment(),
-//       ),
-//       GoRoute(
-//         path: kAccountantMatching,
-//         builder: (context, state) => const MatchingMovment(),
-//       ),
-//       GoRoute(
-//         path: kAccountantExchange,
-//         builder: (context, state) => const ExchangeBond(),
-//       ),
-//       GoRoute(
-//         path: kAccountantCancel,
-//         builder: (context, state) => const CancelPayment(),
-//       ),
-//       GoRoute(
-//         path: kAccountantAccountBalance,
-//         builder: (context, state) => const BankAccountBalanceReport(),
-//       ),
-//       GoRoute(
-//         path: kAccountantAddBond,
-//         builder: (context, state) => const AddExchangeBond(),
-//       ),
-//       GoRoute(
-//         path: kAccountantAskBond,
-//         builder: (context, state) => const AskExchangeBond(),
-//       ),
-//       GoRoute(
-//         path: kAccountantReportBond,
-//         builder: (context, state) => const ExchangeBondReport(),
-//       ),
-
-//       // Admin Routes
-//       GoRoute(
-//         path: kAdminHome,
-//         builder: (context, state) => const HomeAdminScreen(),
-//       ),
-//       GoRoute(
-//         path: kOrdersScreen,
-//         builder: (context, state) => const OrdersAdminScreen(),
-//       ),
-//       GoRoute(
-//         path: kCancelOrders,
-//         builder: (context, state) => const CancelOrdersAdminScreen(),
-//       ),
-//       GoRoute(
-//         path: kPrepareOrder,
-//         builder: (context, state) => const PrepareOrderAdminScreen(),
-//       ),
-
-//       // Store Routes
-//       GoRoute(
-//         path: kStoreHome,
-//         builder: (context, state) => const StoreHomePage(),
-//       ),
-//       GoRoute(
-//         path: kStoreAddProduct,
-//         builder: (context, state) => const StoreAddProduct(),
-//       ),
-//       GoRoute(
-//         path: kStoreOrderProcessing,
-//         builder: (context, state) => const StoreOrderProcessing(),
-//       ),
-//       GoRoute(
-//         path: kStoreProducts,
-//         builder: (context, state) => const StoreProducts(),
-//       ),
-//       GoRoute(
-//         path: kStoreSearchProduct,
-//         builder: (context, state) => const StoreSearchProduct(),
-//       ),
-//       GoRoute(
-//         path: kStoreOffer,
-//         builder: (context, state) => const StoreOffer(),
-//       ),
-//       GoRoute(
-//         path: kStoreStopProduct,
-//         builder: (context, state) => const StoreStopProduct(),
-//       ),
-//       GoRoute(
-//         path: kStoreOfferProduct,
-//         builder: (context, state) => const StoreOfferProduct(),
-//       ),
-//       GoRoute(
-//         path: kStoreStoppedProduct,
-//         builder: (context, state) => const StoreStoppedProduct(),
-//       ),
-//       GoRoute(
-//         path: kStoreExcelFile,
-//         builder: (context, state) => const StoreExcelFile(),
-//       ),
-//       GoRoute(
-//         path: kStoreReport,
-//         builder: (context, state) => const StoreReport(),
-//       ),
-
-//       // Delivery Routes
-//       GoRoute(
-//         path: kDeliverHomePage,
-//         builder: (context, state) =>  Homescreen(),
-//       ),
-//       GoRoute(
-//         path: kParcelDelivered,
-//         builder: (context, state) =>  Parceldelivered(),
-//       ),
-//       GoRoute(
-//         path: kParcelDelivery,
-//         builder: (context, state) =>  ParcelDelivery(),
-//       ),
-//       GoRoute(
-//         path: kParcelRoad,
-//         builder: (context, state) =>  Parcelroad(),
-//       ),
-//       GoRoute(
-//         path: kParcelsReceived,
-//         builder: (context, state) =>  Parcelsreceived(),
-//       ),
-//       GoRoute(
-//         path: kReceiveParcels,
-//         builder: (context, state) => const ReceiveParcels(),
-//       ),
-//       GoRoute(
-//         path: kRemainingParcels,
-//         builder: (context, state) =>  Remainingparcels(),
-//       ),
-
-//       // MND Routes
-//       GoRoute(
-//         path: kMndHomePage,
-//         builder: (context, state) =>  home_mnd2(),
-//       ),
-//       GoRoute(
-//         path: kMnd22OrderPrecedent,
-//         builder: (context, state) => const mnd22_OrderPrecedend(),
-//       ),
-//       GoRoute(
-//         path: kMnd22OrderReady,
-//         builder: (context, state) =>  mnd22_order_ready(),
-//       ),
-//       GoRoute(
-//         path: kMnd2OrderPrice,
-//         builder: (context, state) =>  mnd2_order_price(),
-//       ),
-//     ],
-//   );
-// }

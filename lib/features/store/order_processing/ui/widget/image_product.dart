@@ -13,7 +13,7 @@ class ImageProduct extends StatelessWidget {
   Widget build(BuildContext context) {
     return AspectRatio(
       aspectRatio: .88,
-      child: Image.asset(
+      child: Image.network(
         imageProduct,
         width: MediaQuery.of(context).size.width * .36,
         height: 140.h,

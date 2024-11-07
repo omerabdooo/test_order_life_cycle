@@ -15,21 +15,24 @@ import 'package:test_order_life_cycle/features/auth_feature/ui/manger/sgin_in_cu
 import 'package:test_order_life_cycle/features/delivery/Parcel_Delivery/data/repos/parcel_delivery_repo_impl.dart';
 import 'package:test_order_life_cycle/features/delivery/Parcel_Delivery/domain/usecases/parcel_delivery_use_case.dart';
 import 'package:test_order_life_cycle/features/delivery/Parcel_Delivery/ui/manger/parcel_delivery_cubit/parcel_delivery_cubit.dart';
+import 'package:test_order_life_cycle/features/store/order_processing/data/repos/order_processing_repo_impl.dart';
+import 'package:test_order_life_cycle/features/store/order_processing/domain/usecases/order_processing_bill_use_case.dart';
+import 'package:test_order_life_cycle/features/store/order_processing/ui/manger/bill/order_processing_bill_cubit.dart';
 
-void main() async{
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   setupServiceLocator();
   Bloc.observer = SimpleBlocObserver();
   await SqlDb().intialDb();
 
   runApp(
-    MultiProvider(providers: [
-      ChangeNotifierProvider(create: (create) => SqlDb()),
-    ],
-     child: const SindbadManagementApp(),
-  ),
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (create) => SqlDb()),
+      ],
+      child: const SindbadManagementApp(),
+    ),
   );
-
 }
 
 class SindbadManagementApp extends StatelessWidget {
@@ -41,14 +44,19 @@ class SindbadManagementApp extends StatelessWidget {
       providers: [
         BlocProvider(
           create: (context) =>
-              ParcelDeliveryCubit(ParcelDeliveryUseCase(
+              OrderProcessingBillCubit(OrderProcessingBillUseCase(
+            orderProcessingRepo: getit<OrderProcessingRepoImpl>(),
+          )),
+        ),
+        BlocProvider(
+          create: (context) => ParcelDeliveryCubit(ParcelDeliveryUseCase(
             getit.get<ParcelDeliveryRepoImpl>(),
           )),
         ),
         BlocProvider(
-      create: (context) => SignInCubitCubit(SignInUseCase(
-        getit.get<AuthRepoImpl>(),
-      ))),
+            create: (context) => SignInCubitCubit(SignInUseCase(
+                  getit.get<AuthRepoImpl>(),
+                ))),
       ],
       child: ScreenUtilInit(
         designSize: const Size(375, 650),
@@ -63,7 +71,7 @@ class SindbadManagementApp extends StatelessWidget {
             scaffoldBackgroundColor:
                 const Color(0xFFF9F9F9), // Set default background color
           ),
-      
+
           localizationsDelegates: const [
             GlobalMaterialLocalizations.delegate,
             GlobalWidgetsLocalizations.delegate,
@@ -74,12 +82,12 @@ class SindbadManagementApp extends StatelessWidget {
           ],
           locale: const Locale('ar', 'AR'),
           debugShowCheckedModeBanner: false,
-          
+
           // home:  home_mnd2(),
-      
+
           // home: const HomePage(),
           // home: const LoginScreen(),
-      
+
           //   // admin routes
           //   "admin_home" :(context) => const HomeAdminScreen(),
           //   // "search_by_Order_number" :(context) => const HomeAdminScreen(),
@@ -94,7 +102,7 @@ class SindbadManagementApp extends StatelessWidget {
           //   // "accounts" :(context) => const HomeAdminScreen(),
           //   // "statistics" :(context) => const HomeAdminScreen(),
           //   "PrepareOrder" :(context) => const PrepareOrderAdminScreen(),
-      
+
           //    "store_home": (context) => const StoreHomePage(),
           //   "store_add_product" :(context) => const StoreAddProduct(),
           //   "store_order_processing" :(context) => const StoreOrderProcessing(),

@@ -6,6 +6,8 @@ import 'package:test_order_life_cycle/core/styles/Colors.dart';
 import 'package:test_order_life_cycle/core/styles/text_style.dart';
 import 'package:test_order_life_cycle/core/widgets/custom_primary_button_widget.dart';
 
+File? images;
+
 class KImagePickerFunction extends StatefulWidget {
   const KImagePickerFunction({super.key});
 
@@ -45,7 +47,7 @@ class _KImagePickerFunctionState extends State<KImagePickerFunction> {
         // icon: const Icon(Icons.image_rounded)),
 
         selectedImage != null ? Image.file(selectedImage!) : const Text(""),
-        KCustomPrimaryButtonWidget(buttonName: "تاكيد", onPressed: () {})
+        // KCustomPrimaryButtonWidget(buttonName: "تاكيد", onPressed: () {})
       ],
     );
   }
@@ -56,6 +58,7 @@ class _KImagePickerFunctionState extends State<KImagePickerFunction> {
     if (returnImage == null) return;
     setState(() {
       selectedImage = File(returnImage.path);
+      images = selectedImage;
     });
   }
 

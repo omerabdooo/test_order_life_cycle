@@ -11,47 +11,47 @@ class StoreHomePageItemWidget extends StatelessWidget {
     final List<Map<String, String>> parts = [
       {
         "name": "اضافة منتج",
-        "route": AppRouter.storeRouters.kStoreAddProduct,
+        //"route": AppRouter.storeRouters.kStoreAddProduct,
         "partCount": "7",
       },
       {
         "name": "قائمة المنتجات",
-        "route": AppRouter.storeRouters.kStoreProducts,
+        //"route": AppRouter.storeRouters.kStoreProducts,
         "partCount": "7",
       },
       {
         "name": "بحث عن منتج",
-        "route": AppRouter.storeRouters.kStoreSearchProduct,
+        //"route": AppRouter.storeRouters.kStoreSearchProduct,
         "partCount": "7",
       },
       {
         "name": "العروض",
-        "route": AppRouter.storeRouters.kStoreOffer,
+        // "route": AppRouter.storeRouters.kStoreOffer,
         "partCount": "7",
       },
       {
         "name": "ايقاف منتج",
-        "route": AppRouter.storeRouters.kStoreStopProduct,
+        //"route": AppRouter.storeRouters.kStoreStopProduct,
         "partCount": "7",
       },
       {
         "name": "المنتجات التي بها عروض",
-        "route": AppRouter.storeRouters.kStoreOfferProduct,
+        //"route": AppRouter.storeRouters.kStoreOfferProduct,
         "partCount": "7",
       },
       {
         "name": "المنتجات الموقوفة",
-        "route": AppRouter.storeRouters.kStoreStoppedProduct,
+        // "route": AppRouter.storeRouters.kStoreStoppedProduct,
         "partCount": "7",
       },
       {
         "name": "ملف اكسل",
-        "route": AppRouter.storeRouters.kStoreExcelFile,
+        //"route": AppRouter.storeRouters.kStoreExcelFile,
         "partCount": "7",
       },
       {
         "name": "تقارير",
-        "route": AppRouter.storeRouters.kStoreReport,
+        //"route": AppRouter.storeRouters.kStoreReport,
         "partCount": "7",
       },
     ];

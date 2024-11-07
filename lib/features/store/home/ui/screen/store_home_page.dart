@@ -10,9 +10,14 @@ import 'package:test_order_life_cycle/features/store/home/ui/manger/cubit/all_or
 import 'package:test_order_life_cycle/features/store/home/ui/widget/store_home_page_item_widget.dart';
 import 'package:test_order_life_cycle/features/store/home/ui/widget/store_home_page_order_widget.dart';
 
-class StoreHomePage extends StatelessWidget {
+class StoreHomePage extends StatefulWidget {
   const StoreHomePage({super.key});
 
+  @override
+  State<StoreHomePage> createState() => _StoreHomePageState();
+}
+
+class _StoreHomePageState extends State<StoreHomePage> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(

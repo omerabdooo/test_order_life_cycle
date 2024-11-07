@@ -3,34 +3,25 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:test_order_life_cycle/core/functions/image_picker_function.dart';
 import 'package:test_order_life_cycle/core/styles/Colors.dart';
 import 'package:test_order_life_cycle/core/styles/text_style.dart';
+import 'package:test_order_life_cycle/core/widgets/custom_primary_button_widget.dart';
+
+TextEditingController dateConroller = TextEditingController();
+TextEditingController numberConroller = TextEditingController();
+TextEditingController mountConroller = TextEditingController();
 
 class CustomDataDialogWidget extends StatelessWidget {
-  // final String date;
-  // final String dateContent;
-  // final String invoiceNumber;
-  // final int invoiceNumberContent;
-  // final String invoiceCost;
-  // final String shippingCompany;
-  final String headTitle;
+  final String? headTitle;
   final String firstTitle;
-  final String firstTitleContent;
   final String secondTitle;
-  final String secondTitleContent;
   final String thierdTitle;
-  final String thierdTitleContent;
-
-  const CustomDataDialogWidget({
+  final GestureTapCallback onPressedSure;
+  CustomDataDialogWidget({
     super.key,
-    required this.headTitle,
+    this.headTitle,
     required this.firstTitle,
-    required this.firstTitleContent,
     required this.secondTitle,
-    required this.secondTitleContent,
     required this.thierdTitle,
-    required this.thierdTitleContent,
-    // required this.date,
-    // required this.invoiceNumber,
-    // required this.invoiceValue,
+    required this.onPressedSure,
   });
 
   @override
@@ -52,7 +43,7 @@ class CustomDataDialogWidget extends StatelessWidget {
         ),
         // const StoreTextTitleDialogWidget(textDialog: "بيانات الفاتورة"),
         Text(
-          headTitle,
+          'بيانات الفاتورة',
           style: KTextStyle.secondaryTitle.copyWith(color: AppColors.black),
           // TextStyle(
           //   color:Colors.grey,fontSize: 14.sp, fontWeight: FontWeight.w700
@@ -71,17 +62,19 @@ class CustomDataDialogWidget extends StatelessWidget {
       child: SingleChildScrollView(
         child: Column(
           children: [
-            _buildInfoRow(firstTitle, firstTitleContent),
-            _buildInfoRow(secondTitle, secondTitleContent),
-            _buildInfoRow(thierdTitle, thierdTitleContent),
+            _buildInfoRow(firstTitle, dateConroller),
+            _buildInfoRow(secondTitle, numberConroller),
+            _buildInfoRow(thierdTitle, mountConroller),
             _buildImageSection(),
+            KCustomPrimaryButtonWidget(
+                buttonName: "تاكيد", onPressed: onPressedSure)
           ],
         ),
       ),
     );
   }
 
-  Widget _buildInfoRow(String title, String info) {
+  Widget _buildInfoRow(String title, TextEditingController info) {
     return Padding(
       padding: EdgeInsets.only(bottom: 5.h),
       child: Row(
@@ -93,30 +86,12 @@ class CustomDataDialogWidget extends StatelessWidget {
             style:
                 KTextStyle.secondaryTitle.copyWith(color: AppColors.greyHint),
           ),
-          // TextStyle(color:Colors.grey,fontSize: 14.sp, fontWeight: FontWeight.w700),),
-          ///
-          // Container(
-          //   width: 160.w,
-          //   height: 30.h,
-          //   alignment: Alignment.center,
-          //   decoration: BoxDecoration(
-          //     border: Border.all(
-          //       // color: AppColors.scaffColor,
-          //       color: AppColors.backgroundColor,
-          //       width: 2.w,
-          //     ),
-          //   ),
-          //   // child: StoreTextInfoDialogWidget(textDialog: info),
-          //   child:Text(
-          //     info,
-          //     style: KTextStyle.secondaryTitle.copyWith(color: AppColors.black),
-          //     // style: TextStyle(color:Colors.black,fontSize: 14.sp, fontWeight: FontWeight.w700),),
-          // ),)
           const Spacer(),
           SizedBox(
             width: 140.w,
             child: TextField(
-              controller: TextEditingController(text: info),
+              // controller: TextEditingController(text: info),
+              controller: info,
               decoration: InputDecoration(
                 contentPadding:
                     EdgeInsets.symmetric(vertical: 5.h, horizontal: 10.w),

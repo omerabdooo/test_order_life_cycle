@@ -29,13 +29,10 @@ class LoginScreen extends StatelessWidget {
       // Validate the phone input (you can add more validation logic here)
       if (phoneInput.isNotEmpty) {
         if (phoneInput == "123") {
-          GoRouter.of(context).push(AppRouter.storeRouters.kStoreHome);
-        } else if (phoneInput == "1234") {
-          GoRouter.of(context).push(AppRouter.storeRouters.kAccountant);
-        } else if (phoneInput == "12345") {
-          GoRouter.of(context).push(AppRouter.storeRouters.kStoreHome);
-        } else if (phoneInput == "123D") {
-          GoRouter.of(context).push(AppRouter.storeRouters.kHomeDelivery);
+          Navigator.pushNamed(
+            context,
+            "/storeHome",
+          );
         }
       }
     }
@@ -77,34 +74,39 @@ class LoginScreen extends StatelessWidget {
             SizedBox(height: 50.0.h),
             BlocListener<SignInCubitCubit, SignInCubitState>(
               listener: (context, state) {
-             if (state is SignInCubitFailure) {
-                    // Show error message
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(content: Text(state.errorMessage.toString())),
-                    );
-    
-                    print(state.errorMessage);
-                  } else if (state is SignInCubitSuccess) {
-                      if(state.user.userRoles[0]=='Accountant'){
-                        context.go(AppRouter.storeRouters.kStoreHome);
-                      }
-                      else if(state.user.userRoles[0]=='Store'){
-                       Navigator.push(context, MaterialPageRoute(builder: (context)=>StoreHomePage()));
-                      }
-                    
+                if (state is SignInCubitFailure) {
+                  // Show error message
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(content: Text(state.errorMessage.toString())),
+                  );
+
+                  print(state.errorMessage);
+                } else if (state is SignInCubitSuccess) {
+                  if (state.user.userRoles[0] == 'Accountant') {
+                    context.go(AppRouter.storeRouters.kStoreHome);
+                  } else if (state.user.userRoles[0] == 'Store') {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => StoreHomePage()));
                   }
+                }
               },
               child: KCustomPrimaryButtonWidget(
                 buttonName: "تسجيل الدخول",
                 width: (media - 70).w,
                 height: 40.0.h,
                 onPressed: () {
-                  if(phoneController.text=='0000'){
-                       Navigator.push(context, MaterialPageRoute(builder: (context)=>Homedelivery()));
-                  }
-                  else{
-                  context.read<SignInCubitCubit>().signIn(phoneController.text, passwordController.text);
-                  }// Navigator.pushNamed(context, '/home');
+                  if (phoneController.text == '0000') {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => Homedelivery()));
+                  } else {
+                    context
+                        .read<SignInCubitCubit>()
+                        .signIn(phoneController.text, passwordController.text);
+                  } // Navigator.pushNamed(context, '/home');
                 },
               ),
             )

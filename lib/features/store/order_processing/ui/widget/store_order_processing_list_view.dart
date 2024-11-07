@@ -1,3 +1,4 @@
+import 'package:barcode/barcode.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -5,22 +6,27 @@ import 'package:shimmer/shimmer.dart';
 import 'package:test_order_life_cycle/features/store/order_processing/ui/manger/order_processing_cubit.dart';
 import 'package:test_order_life_cycle/features/store/order_processing/ui/widget/store_order_processing_list_view_body.dart';
 
+List<int> ids = [];
+
 class StoreOrderProcessingListView extends StatefulWidget {
   const StoreOrderProcessingListView({
     super.key,
+    required this.idOrder,
   });
-
+  final int idOrder;
   @override
   State<StoreOrderProcessingListView> createState() =>
       _StoreOrderProcessingListViewState();
 }
+
+List<int>? orderDetailsID;
 
 class _StoreOrderProcessingListViewState
     extends State<StoreOrderProcessingListView> {
   @override
   void initState() {
     super.initState();
-    context.read<OrderProcessingCubit>().fetchOrderProcessing(1);
+    context.read<OrderProcessingCubit>().fetchOrderProcessing(widget.idOrder);
   }
 
   @override
@@ -33,8 +39,9 @@ class _StoreOrderProcessingListViewState
         if (state is OrderProcessingSuccess) {
           return ListView.builder(
             padding: EdgeInsets.zero,
-            itemCount: 10,
+            itemCount: 5,
             itemBuilder: (context, i) {
+              ids.add(state.orders[i].orderDetailsId);
               return OrderProcessingBody(
                   orderNum: state.orders[i].orderDetailsId,
                   imageCode: state.orders[i].productImage,

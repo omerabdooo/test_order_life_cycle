@@ -14,30 +14,36 @@ class StoreOrderProcessing extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    int orderId = ModalRoute.of(context)?.settings.arguments as int;
+
     return Scaffold(
       body: BlocProvider(
         create: (context) => OrderProcessingCubit(OrderProcessingUsecase(
           getit<OrderProcessingRepoImpl>(),
         )),
-        child: const Column(
-          children: [
-            //AppBar
-            KCustomAppBarWidget(
-              nameAppbar: "تجهيز الطلب",
-              count: 0,
-              isHome: false,
-            ),
-            //Container that show detalis
-            SingleChildScrollView(
-              child: Column(
-                children: [
-                  StoreOrderProcessingContainer(),
-                  StoreOrderProcessingListView(),
-                ],
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              //AppBar
+              const KCustomAppBarWidget(
+                nameAppbar: "تجهيز الطلب",
+                count: 0,
+                isHome: false,
               ),
-            ),
-            StoreButtonList()
-          ],
+              //Container that show detalis
+              SingleChildScrollView(
+                child: Column(
+                  children: [
+                    const StoreOrderProcessingContainer(),
+                    StoreOrderProcessingListView(
+                      idOrder: orderId,
+                    ),
+                  ],
+                ),
+              ),
+              const StoreButtonList()
+            ],
+          ),
         ),
       ),
     );

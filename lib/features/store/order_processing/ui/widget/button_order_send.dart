@@ -5,7 +5,15 @@ import 'package:test_order_life_cycle/core/widgets/custom_primary_button_widget.
 class ButtonOrderSend extends StatelessWidget {
   const ButtonOrderSend({
     super.key,
+    this.testConroller,
+    this.dateConroller,
+    this.numberConroller,
+    this.mountConroller,
   });
+  final TextEditingController? testConroller;
+  final TextEditingController? dateConroller;
+  final TextEditingController? numberConroller;
+  final TextEditingController? mountConroller;
 
   @override
   Widget build(BuildContext context) {
@@ -15,14 +23,15 @@ class ButtonOrderSend extends StatelessWidget {
           showDialog(
               context: context,
               builder: (context) {
-                return const CustomDataDialogWidget(
+                return CustomDataDialogWidget(
                   headTitle: 'بيانات الشحن',
                   firstTitle: 'التاريخ',
-                  firstTitleContent: '2024/10/2',
                   secondTitle: 'رقم فاتورة الشحن',
-                  secondTitleContent: '2102511025',
                   thierdTitle: 'شركة النقل',
-                  thierdTitleContent: 'اسم الشركة الناقلة',
+                  onPressedSure: () {},
+                  // dateController: dateConroller!,
+                  // numberController: numberConroller!,
+                  // mountController: mountConroller!,
                 );
               });
         });
