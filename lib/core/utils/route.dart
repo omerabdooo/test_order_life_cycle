@@ -100,38 +100,43 @@ abstract class AppRouter {
         path: AppRouter.storeRouters.klogin,
         builder: (context, state) => const LoginScreen(),
       ),
-      // GoRoute(
-      //   path: AppRouter.storeRouters.kStoreAddProduct,
-      //   builder: (context, state) => const StoreAddProduct(),
-      // ),
+      GoRoute(
+        path: AppRouter.storeRouters.kStoreHome,
+        builder: (context, state) => const StoreHomePage(),
+      ),
       GoRoute(
         path: AppRouter.storeRouters.kStoreOrderProcessing,
-        builder: (context, state) => const StoreOrderProcessing(),
+        builder: (context, state) {
+          final orderId = state.extra as int; // Retrieve arguments if needed
+          return StoreOrderProcessing(
+            orderId: orderId,
+          );
+        },
       ),
       GoRoute(
         path: AppRouter.storeRouters.kAccountant,
         builder: (context, state) => const ConfirmPayment(),
       ),
 
-      GoRoute(
-        path: '/store/order/processing',
-        builder: (context, state) {
-          final arguments = state.extra; // Retrieve arguments if needed
-          return const StoreOrderProcessing();
-        },
-      ),
-      GoRoute(
-        path: '/',
-        builder: (context, state) {
-          return const LoginScreen();
-        },
-      ),
-      GoRoute(
-        path: '/storeHome',
-        builder: (context, state) {
-          return const StoreHomePage();
-        },
-      ),
+      // GoRoute(
+      //   path: '/store/order/processing',
+      //   builder: (context, state) {
+      //   final arguments = state.extra; // Retrieve arguments if needed
+      //   return const StoreOrderProcessing();
+      // },
+      // ),
+      // GoRoute(
+      //   path: '/',
+      //   builder: (context, state) {
+      //     return const LoginScreen();
+      //   },
+      // ),
+      // GoRoute(
+      //   path: '/storeHome',
+      //   builder: (context, state) {
+      //     return const StoreHomePage();
+      //   },
+      // ),
 
       // GoRoute(
       //   path: AppRouter.storeRouters.kStoreProducts,
