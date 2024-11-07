@@ -10,11 +10,12 @@ import 'package:test_order_life_cycle/features/store/order_processing/ui/widget/
 import 'package:test_order_life_cycle/features/store/order_processing/ui/widget/store_order_processing_list_view.dart';
 
 class StoreOrderProcessing extends StatelessWidget {
-  const StoreOrderProcessing({super.key});
+  final int orderId;
+  const StoreOrderProcessing({super.key, required this.orderId});
 
   @override
   Widget build(BuildContext context) {
-    int orderId = ModalRoute.of(context)?.settings.arguments as int;
+    // int orderId = ModalRoute.of(context)?.settings.arguments as int;
 
     return Scaffold(
       body: BlocProvider(
