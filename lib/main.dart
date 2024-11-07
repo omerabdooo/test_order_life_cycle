@@ -63,6 +63,8 @@ class SindbadManagementApp extends StatelessWidget {
         minTextAdapt: true,
         splitScreenMode: true,
         builder: (context, child) => MaterialApp.router(
+          // routerDelegate: AppRouter.router.routerDelegate,
+          // routeInformationParser: AppRouter.router.routeInformationParser,
           routerConfig: AppRouter.router,
           theme: ThemeData(
             textTheme: GoogleFonts.almaraiTextTheme(
