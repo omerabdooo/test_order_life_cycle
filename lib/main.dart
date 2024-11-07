@@ -1,17 +1,38 @@
+import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'package:test_order_life_cycle/core/setup_service_locator.dart';
+import 'package:test_order_life_cycle/core/simple_bloc_observer.dart';
+import 'package:test_order_life_cycle/core/sqldb.dart';
 import 'package:test_order_life_cycle/core/utils/route.dart';
+import 'package:test_order_life_cycle/features/auth_feature/data/repo/auth_repo_impl.dart';
+import 'package:test_order_life_cycle/features/auth_feature/domain/usecase/sign_in_use_case.dart';
+import 'package:test_order_life_cycle/features/auth_feature/ui/manger/sgin_in_cubit/sgin_in_cubit_cubit.dart';
+import 'package:test_order_life_cycle/features/delivery/Parcel_Delivery/data/repos/parcel_delivery_repo_impl.dart';
+import 'package:test_order_life_cycle/features/delivery/Parcel_Delivery/domain/usecases/parcel_delivery_use_case.dart';
+import 'package:test_order_life_cycle/features/delivery/Parcel_Delivery/ui/manger/parcel_delivery_cubit/parcel_delivery_cubit.dart';
 import 'package:test_order_life_cycle/features/store/order_processing/data/repos/order_processing_repo_impl.dart';
 import 'package:test_order_life_cycle/features/store/order_processing/domain/usecases/order_processing_bill_use_case.dart';
 import 'package:test_order_life_cycle/features/store/order_processing/ui/manger/bill/order_processing_bill_cubit.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   setupServiceLocator();
-  runApp(const SindbadManagementApp());
+  Bloc.observer = SimpleBlocObserver();
+  await SqlDb().intialDb();
+
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (create) => SqlDb()),
+      ],
+      child: const SindbadManagementApp(),
+    ),
+  );
 }
 
 class SindbadManagementApp extends StatelessWidget {
@@ -19,26 +40,34 @@ class SindbadManagementApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ScreenUtilInit(
-      designSize: const Size(375, 650),
-      minTextAdapt: true,
-      splitScreenMode: true,
-      builder: (context, child) => MultiBlocProvider(
-        providers: [
-          BlocProvider(
-            create: (context) =>
-                OrderProcessingBillCubit(OrderProcessingBillUseCase(
-              orderProcessingRepo: getit<OrderProcessingRepoImpl>(),
-            )),
-          )
-        ],
-        child: MaterialApp(
-          onGenerateRoute: AppRouter.routeApp,
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) =>
+              OrderProcessingBillCubit(OrderProcessingBillUseCase(
+            orderProcessingRepo: getit<OrderProcessingRepoImpl>(),
+          )),
+        ),
+        BlocProvider(
+          create: (context) => ParcelDeliveryCubit(ParcelDeliveryUseCase(
+            getit.get<ParcelDeliveryRepoImpl>(),
+          )),
+        ),
+        BlocProvider(
+            create: (context) => SignInCubitCubit(SignInUseCase(
+                  getit.get<AuthRepoImpl>(),
+                ))),
+      ],
+      child: ScreenUtilInit(
+        designSize: const Size(375, 650),
+        minTextAdapt: true,
+        splitScreenMode: true,
+        builder: (context, child) => MaterialApp.router(
+          routerConfig: AppRouter.router,
           theme: ThemeData(
             textTheme: GoogleFonts.almaraiTextTheme(
               Theme.of(context).textTheme,
             ),
-
             scaffoldBackgroundColor:
                 const Color(0xFFF9F9F9), // Set default background color
           ),
@@ -53,6 +82,7 @@ class SindbadManagementApp extends StatelessWidget {
           ],
           locale: const Locale('ar', 'AR'),
           debugShowCheckedModeBanner: false,
+
           // home:  home_mnd2(),
 
           // home: const HomePage(),

@@ -5,20 +5,22 @@ import 'package:test_order_life_cycle/core/styles/text_style.dart';
 
 class KOrdersWidget extends StatefulWidget {
   // const card({super.key});
-  String NumberParcels;
+  int? NumberParcels;
   String Phone;
   String Costmor;
   String OrderNumber;
-  String TotalNumber;
+  String receiptCode;
+  int? TotalNumber;
   final Color Backcolor;
 
   KOrdersWidget({
     super.key,
     required this.OrderNumber,
+    this.receiptCode = "",
     this.Phone = "",
     this.Costmor = "",
-    this.NumberParcels = "",
-    this.TotalNumber = "",
+    this.NumberParcels,
+    this.TotalNumber,
     required this.Backcolor,
   });
 
@@ -38,6 +40,26 @@ class _KOrdersWidgetState extends State<KOrdersWidget> {
         padding:
             EdgeInsets.only(left: 8.0.w, top: 8.h, bottom: 8.h, right: 22.w),
         child: Column(crossAxisAlignment: CrossAxisAlignment.end, children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              // SizedBox(
+              //   width: 10.w,
+              // ),
+              Text(
+                "كود الطلب:",
+                style:
+                    KTextStyle.textStyle12.copyWith(color: AppColors.greyHint),
+              ),
+              SizedBox(
+                width: 10.w,
+              ),
+              Text(
+                widget.receiptCode,
+                style: KTextStyle.textStyle12.copyWith(color: AppColors.black),
+              ),
+            ],
+          ),
           Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
@@ -101,7 +123,7 @@ class _KOrdersWidgetState extends State<KOrdersWidget> {
                     KTextStyle.textStyle12.copyWith(color: AppColors.greyHint),
               ),
               Text(
-                widget.NumberParcels,
+                "${widget.NumberParcels}",
                 style: KTextStyle.textStyle12.copyWith(color: AppColors.black),
               ),
               SizedBox(
@@ -113,7 +135,7 @@ class _KOrdersWidgetState extends State<KOrdersWidget> {
                     KTextStyle.textStyle12.copyWith(color: AppColors.greyHint),
               ),
               Text(
-                widget.TotalNumber,
+                "${widget.TotalNumber}",
                 style: KTextStyle.textStyle12.copyWith(color: AppColors.black),
               ),
             ],
