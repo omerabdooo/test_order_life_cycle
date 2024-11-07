@@ -24,8 +24,11 @@ class OrderDetailsButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Navigator.pushNamed(context, "/store/order/processing",
-            arguments: idOrder);
+        context.go(AppRouter.storeRouters.kStoreOrderProcessing,
+            extra: idOrder);
+        // GoRouter.of(context).push(AppRouter.storeRouters.kStoreOrderProcessing);
+        // Navigator.pushNamed(context, "/store/order/processing",
+        //     arguments: idOrder);
       },
       child: Container(
         margin: EdgeInsets.symmetric(vertical: 10.h, horizontal: 10.w),
