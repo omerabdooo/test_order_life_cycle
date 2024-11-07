@@ -39,7 +39,7 @@ class _StoreOrderProcessingListViewState
         if (state is OrderProcessingSuccess) {
           return ListView.builder(
             padding: EdgeInsets.zero,
-            itemCount: 5,
+            itemCount: state.orders.length,
             itemBuilder: (context, i) {
               ids.add(state.orders[i].orderDetailsId);
               return OrderProcessingBody(
