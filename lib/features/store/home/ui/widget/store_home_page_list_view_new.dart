@@ -30,7 +30,7 @@ class _StoreHomePageListViewNewState extends State<StoreHomePageListViewNew> {
         if (state is AllOrderSuccess) {
           return ListView.builder(
               padding: EdgeInsets.zero,
-              itemCount: 10,
+              itemCount: state.orders.length,
               itemBuilder: (context, i) {
                 return OrderDetailsButton(
                   idOrder: state.orders[i].idOrder,
