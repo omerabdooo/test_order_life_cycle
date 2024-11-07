@@ -1,10 +1,11 @@
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:test_order_life_cycle/core/api_service.dart';
 import 'package:test_order_life_cycle/features/delivery/Receive_Parcels/data/models/order_detail_status/order_detail_status_model.dart';
+import 'package:test_order_life_cycle/features/delivery/Receive_Parcels/domain/entities/order_information_entity.dart';
 import 'package:test_order_life_cycle/features/delivery/Receive_Parcels/domain/entities/receive_parcels_entity.dart';
 
 abstract class ReceiveParcelsRemoteDataSource {
-  //Future<List<CustomerAddressEntity>> getAllCustomerAddress();
+  // Future<OrderInformationEntity> getOrderInformation(int parcelId);  
   Future<ReceiveParcelsEntity> receiveParcels(
     int parcelId,
     int status,
@@ -62,4 +63,16 @@ class ReceiveParcelsRemoteDataSourceImpl
     return receiveParcels;
   }
 
+
+  // @override
+  // Future<OrderInformationEntity> getOrderInformation(int parcelId) async {
+  //   var data =
+  //       await apiService.get(endPoint: '//$parcelId');
+
+  //   OrderInformationEntity orderInformation =
+  //       ProductDetailsModels.fromJson(data.values.last);
+
+    
+  //   return orderInformation;
+  // }
 }

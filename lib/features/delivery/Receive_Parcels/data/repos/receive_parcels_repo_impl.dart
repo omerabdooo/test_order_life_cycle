@@ -4,6 +4,7 @@ import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:test_order_life_cycle/core/errors/failure.dart';
 import 'package:test_order_life_cycle/features/delivery/Receive_Parcels/data/data_source/remote/receive_parcels_remote_data_source.dart';
+import 'package:test_order_life_cycle/features/delivery/Receive_Parcels/domain/entities/order_information_entity.dart';
 import 'package:test_order_life_cycle/features/delivery/Receive_Parcels/domain/entities/receive_parcels_entity.dart';
 import 'package:test_order_life_cycle/features/delivery/Receive_Parcels/domain/repo/receive_parcels_repo.dart';
 
@@ -15,8 +16,8 @@ class ReceiveParcelsRepoImpl extends ReceiveParcelsRepo {
   });
 
 // basic fetch list Entity function
-  Future<Either<Failure, List<T>>> fetchData<T>(
-      Future<List<T>> Function() fetchFunction) async {
+    Future<Either<Failure, T>> fetchData<T>(
+      Future<T> Function() fetchFunction) async {
     try {
       var data = await fetchFunction();
       return right(data);
@@ -28,6 +29,7 @@ class ReceiveParcelsRepoImpl extends ReceiveParcelsRepo {
       }
     }
   }
+ 
 
 // basic fetch list Entity function
   Future<Either<Failure, List<T>?>> fetchDataNullable<T>(
@@ -59,7 +61,10 @@ class ReceiveParcelsRepoImpl extends ReceiveParcelsRepo {
     }
   }
 
-
+  // Future<Either<Failure, OrderInformationEntity>> getOrderInformation({required int parcelId})async {
+  //   return fetchData(()=> receiveParcelsRemoteDataSource.getOrderInformation(parcelId));
+    
+  // }
   @override
   Future<Either<Failure, ReceiveParcelsEntity>> receiveParcels(
     int parcelId,

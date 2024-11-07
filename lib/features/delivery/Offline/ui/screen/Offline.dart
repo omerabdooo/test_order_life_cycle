@@ -37,7 +37,6 @@ class _OfflineState extends State<Offline> {
   }
 
 Future<void> uploadDataSequentially() async {
-  bool allUploadedSuccessfully = true;
 
   for (var i = 0; i < list.length; i++) {
     try {
@@ -47,14 +46,17 @@ Future<void> uploadDataSequentially() async {
         list[i]['receiptCode'],
         list[i]['status']
       );
+      await sqlDb.deleteData("DELETE FROM delivery WHERE id = $i");
+      list.removeAt(i); // تفريغ القائمة محليًا بعد الحذف من قاعدة البيانات
+      setState(() {}); // تحديث الواجهة لإعادة عرض القائمة الفارغة
 
       // إظهار رسالة نجاح لكل صف يتم رفعه
+      if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('تم رفع الطلب رقم ${list[i]['receiptCode']} بنجاح'))
+        SnackBar(content: Text('تم رفع الطلب رقم ${list[i]['receiptCode']} بنجاح')),
       );
 
     } catch (e) {
-      allUploadedSuccessfully = false; // التوقف عن الحذف إذا فشل رفع أي صف
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('حدث خطأ أثناء رفع الطلب رقم ${list[i]['receiptCode']}: $e'))
       );
@@ -62,7 +64,7 @@ Future<void> uploadDataSequentially() async {
   }
 
   // إذا تم رفع كل العناصر بنجاح، يتم حذفها من قاعدة البيانات المحلية
-  if (allUploadedSuccessfully) {
+  if (list.isEmpty) {
     await sqlDb.deleteData("DELETE FROM delivery");
     list.clear(); // تفريغ القائمة محليًا بعد الحذف من قاعدة البيانات
     setState(() {}); // تحديث الواجهة لإعادة عرض القائمة الفارغة
