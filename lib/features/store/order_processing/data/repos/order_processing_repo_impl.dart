@@ -6,6 +6,7 @@ import 'package:test_order_life_cycle/core/errors/failure.dart';
 import 'package:test_order_life_cycle/features/store/order_processing/data/data_sources/order_processing_remote_data_source.dart';
 import 'package:test_order_life_cycle/features/store/order_processing/domain/entities/order_processing_bill_entity.dart';
 import 'package:test_order_life_cycle/features/store/order_processing/domain/entities/order_processing_entity.dart';
+import 'package:test_order_life_cycle/features/store/order_processing/domain/entities/order_processing_shipping_entity.dart';
 import 'package:test_order_life_cycle/features/store/order_processing/domain/repos/order_processing_repo.dart';
 
 class OrderProcessingRepoImpl extends OrderProcessingRepo {
@@ -38,7 +39,7 @@ class OrderProcessingRepoImpl extends OrderProcessingRepo {
         () => orderProcessingRemoteDataSource.fetchOrderProcessing(orderId));
   }
 
-  Future<Either<Failure, T>> fetchDataBill<T>(
+  Future<Either<Failure, T>> fetchDataOrder<T>(
       Future<T> Function() postDataFunction) async {
     try {
       var dataPosted = await postDataFunction();
@@ -60,8 +61,20 @@ class OrderProcessingRepoImpl extends OrderProcessingRepo {
     required String invoiceNumber,
     required DateTime invoiceDate,
   }) {
-    return fetchDataBill(() =>
+    return fetchDataOrder(() =>
         orderProcessingRemoteDataSource.fetchOrderProcessingBill(
             ids, invoiceAmount, invoiceImage, invoiceNumber, invoiceDate));
+  }
+
+  @override
+  Future<Either<Failure, OrderProcessingShippingEntity>>
+      sendOrderProcessingShipping(
+          {required List<int> ids,
+          required String shippingNumber,
+          required String shippingCompany,
+          required File invoiceImage}) {
+    return fetchDataOrder(() =>
+        orderProcessingRemoteDataSource.fetchOrderProcessingShipping(
+            ids, shippingNumber, shippingCompany, invoiceImage));
   }
 }

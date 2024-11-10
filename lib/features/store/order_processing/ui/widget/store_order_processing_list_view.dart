@@ -6,7 +6,7 @@ import 'package:shimmer/shimmer.dart';
 import 'package:test_order_life_cycle/features/store/order_processing/ui/manger/order_processing_cubit.dart';
 import 'package:test_order_life_cycle/features/store/order_processing/ui/widget/store_order_processing_list_view_body.dart';
 
-List<int> ids = [];
+List<int>? ids;
 
 class StoreOrderProcessingListView extends StatefulWidget {
   const StoreOrderProcessingListView({
@@ -41,7 +41,7 @@ class _StoreOrderProcessingListViewState
             padding: EdgeInsets.zero,
             itemCount: state.orders.length,
             itemBuilder: (context, i) {
-              ids.add(state.orders[i].orderDetailsId);
+              ids?.add(state.orders[i].orderDetailsId);
               return OrderProcessingBody(
                   orderNum: state.orders[i].orderDetailsId,
                   imageCode: state.orders[i].productImage,

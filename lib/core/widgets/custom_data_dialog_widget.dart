@@ -10,14 +10,14 @@ TextEditingController numberConroller = TextEditingController();
 TextEditingController mountConroller = TextEditingController();
 
 class CustomDataDialogWidget extends StatelessWidget {
-  final String? headTitle;
+  final String headTitle;
   final String firstTitle;
   final String secondTitle;
   final String thierdTitle;
   final GestureTapCallback onPressedSure;
   CustomDataDialogWidget({
     super.key,
-    this.headTitle,
+    required this.headTitle,
     required this.firstTitle,
     required this.secondTitle,
     required this.thierdTitle,
@@ -43,7 +43,7 @@ class CustomDataDialogWidget extends StatelessWidget {
         ),
         // const StoreTextTitleDialogWidget(textDialog: "بيانات الفاتورة"),
         Text(
-          'بيانات الفاتورة',
+          headTitle,
           style: KTextStyle.secondaryTitle.copyWith(color: AppColors.black),
           // TextStyle(
           //   color:Colors.grey,fontSize: 14.sp, fontWeight: FontWeight.w700

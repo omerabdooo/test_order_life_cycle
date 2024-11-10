@@ -295,4 +295,61 @@ class ApiService {
 
   //   //   return response.data;
   // }
+  Future<Map<String, dynamic>> postRequestWithFilesShipping({
+    required String endPoint,
+    required Map<String, dynamic> data,
+    required File file,
+    Map<String, String>? headers,
+  }) async {
+    try {
+      FormData formData = FormData();
+
+      // Print the entire data map for debugging
+      print('Data provided: $data');
+
+      // Check if Date is present and valid
+
+      // Add invoice number
+      if (data.containsKey('ParcelNumber')) {
+        formData.fields
+            .add(MapEntry('ParcelNumber', data['ParcelNumber'].toString()));
+      } else {
+        throw Exception('ParcelNumber is required');
+      }
+      // Add orderDetailsId
+      if (data.containsKey('OrderDetailsIds')) {
+        formData.fields.add(
+            MapEntry('OrderDetailsIds', data['OrderDetailsIds'].toString()));
+      } else {
+        throw Exception('OrderDetailsIds is required');
+      }
+      // Add invoice Amount and amount
+      if (data.containsKey('CompanyName')) {
+        formData.fields
+            .add(MapEntry('CompanyName', data['CompanyName'].toString()));
+      } else {
+        throw Exception('InvoiceAmount is required');
+      }
+
+      // Check the file
+      if (file.existsSync()) {
+        String fileName = file.path.split('/').last;
+        formData.files.add(MapEntry(
+          "Imageurl",
+          await MultipartFile.fromFile(file.path, filename: fileName),
+        ));
+      } else {
+        throw Exception('File does not exist');
+      }
+
+      // Make the POST request
+      var response = await _dio.post('$baseUrl$endPoint',
+          data: formData, options: Options(headers: headers));
+      print('Response: ${response.data}');
+      return response.data;
+    } catch (error, stacktrace) {
+      throw Exception(
+          'Failed to make POST request with files, Error: $error, Stacktrace: $stacktrace');
+    }
+  }
 }

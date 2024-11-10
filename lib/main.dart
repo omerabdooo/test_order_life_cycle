@@ -17,7 +17,9 @@ import 'package:test_order_life_cycle/features/delivery/Parcel_Delivery/domain/u
 import 'package:test_order_life_cycle/features/delivery/Parcel_Delivery/ui/manger/parcel_delivery_cubit/parcel_delivery_cubit.dart';
 import 'package:test_order_life_cycle/features/store/order_processing/data/repos/order_processing_repo_impl.dart';
 import 'package:test_order_life_cycle/features/store/order_processing/domain/usecases/order_processing_bill_use_case.dart';
+import 'package:test_order_life_cycle/features/store/order_processing/domain/usecases/order_processing_shipping_usecase.dart';
 import 'package:test_order_life_cycle/features/store/order_processing/ui/manger/bill/order_processing_bill_cubit.dart';
+import 'package:test_order_life_cycle/features/store/order_processing/ui/manger/shipping/shipping_cubit.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -42,6 +44,11 @@ class SindbadManagementApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
+        BlocProvider(
+          create: (context) => ShippingCubit(OrderProcessingShippingUseCase(
+            orderProcessingRepo: getit<OrderProcessingRepoImpl>(),
+          )),
+        ),
         BlocProvider(
           create: (context) =>
               OrderProcessingBillCubit(OrderProcessingBillUseCase(

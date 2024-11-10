@@ -13,49 +13,44 @@ class StoreButtonList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => OrderProcessingBillCubit(OrderProcessingBillUseCase(
-        orderProcessingRepo: getit<OrderProcessingRepoImpl>(),
-      )),
-      child: Column(
-        children: [
-          SizedBox(
-            height: 20.h,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              ButtonBill(
-                  // billDate: '2024/10/2',
-                  // billNumber: '2102511025',
-                  // billMount: '125.00',
-                  ),
-              // SizedBox(
-              //   width: 50.w,
-              // ),
-              //const ButtonPrintOrderTitle(),
-            ],
-          ),
-          SizedBox(
-            height: 7.h,
-          ),
-          const Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              ButtonOrderSend(),
-              // SizedBox(
-              //   width: 50.w,
-              // ),
-              // KCustomPrimaryButtonWidget(
-              //   buttonName: "الغاء الطلب",
-              //   onPressed: () {
-              //     orderCancle(context);
-              //   },
-              // )
-            ],
-          )
-        ],
-      ),
+    return Column(
+      children: [
+        SizedBox(
+          height: 20.h,
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            ButtonBill(
+                // billDate: '2024/10/2',
+                // billNumber: '2102511025',
+                // billMount: '125.00',
+                ),
+            // SizedBox(
+            //   width: 50.w,
+            // ),
+            //const ButtonPrintOrderTitle(),
+          ],
+        ),
+        SizedBox(
+          height: 7.h,
+        ),
+        const Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            ButtonOrderSend(),
+            // SizedBox(
+            //   width: 50.w,
+            // ),
+            // KCustomPrimaryButtonWidget(
+            //   buttonName: "الغاء الطلب",
+            //   onPressed: () {
+            //     orderCancle(context);
+            //   },
+            // )
+          ],
+        )
+      ],
     );
   }
 

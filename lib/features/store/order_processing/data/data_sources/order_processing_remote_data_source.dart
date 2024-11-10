@@ -4,8 +4,10 @@ import 'package:dio/dio.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:test_order_life_cycle/core/api_service.dart';
 import 'package:test_order_life_cycle/features/store/order_processing/data/models/bill/order_processing_bill_model/order_processing_bill_model.dart';
+import 'package:test_order_life_cycle/features/store/order_processing/data/models/shipping.dart';
 import 'package:test_order_life_cycle/features/store/order_processing/domain/entities/order_processing_bill_entity.dart';
 import 'package:test_order_life_cycle/features/store/order_processing/domain/entities/order_processing_entity.dart';
+import 'package:test_order_life_cycle/features/store/order_processing/domain/entities/order_processing_shipping_entity.dart';
 
 import '../models/order_processing_model/order_processing_model.dart';
 
@@ -19,6 +21,12 @@ abstract class OrderProcessingRemoteDataSource {
       File invoiceImage,
       String invoiceNumber,
       DateTime invoiceDate);
+  Future<OrderProcessingShippingEntity> fetchOrderProcessingShipping(
+    List<int> ids,
+    String shippingNumber,
+    String shippingCompany,
+    File invoiceImage,
+  );
 }
 
 class OrderProcessingRemotDataSourceImpl
@@ -66,7 +74,7 @@ class OrderProcessingRemotDataSourceImpl
       headers: {
         // 'Authorization': 'Bearer $token',
         'Authorization':
-            'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJmZDVjMWIwMi1lODRhLTQ1MmEtYmZhMi1kNzRkYTM3Mjg1OTYiLCJlbWFpbCI6Im1AbSIsIm5hbWUiOiLYtdin2YTZiNmGINmF2LHYudmKINio2YYg2YfZhNin2KjZiiDZhNij2K3Yr9irINmC2LXYp9iqINin2YTYtNi52LEiLCJJc0VuYWJsZWQiOiJUcnVlIiwiUGhvbmVOdW1iZXIiOiI3Nzc3Nzc3NzgiLCJJZCI6Ijg1ZGRhNGU4LTQ2ODUtNGFlMy1iMWJiLWVhNzg1NjlmYjk2NiIsInJvbGVzIjoiU3RvcmUiLCJleHAiOjE3MzU1NzY5OTAsImlzcyI6IkZhc3RTdG9yZSIsImF1ZCI6IkZhc3RTdG9yZSJ9.xpxyxn9MBPzxBcwh-MN778mAECGkQtuVdfZ9EQCAYUA',
+            'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJjNjY0NzkzNS02YWVhLTRmOTItYTVkZS1iYWQyNGIxYjc4YzkiLCJlbWFpbCI6Im1AbSIsIm5hbWUiOiLYtdin2YTZiNmGINmF2LHYudmKINio2YYg2YfZhNin2KjZiiDZhNij2K3Yr9irINmC2LXYp9iqINin2YTYtNi52LEiLCJJc0VuYWJsZWQiOiJUcnVlIiwiUGhvbmVOdW1iZXIiOiI3Nzc3Nzc3NzgiLCJJZCI6Ijg1ZGRhNGU4LTQ2ODUtNGFlMy1iMWJiLWVhNzg1NjlmYjk2NiIsInJvbGVzIjoiU3RvcmUiLCJleHAiOjE3MzYzNDgxNTAsImlzcyI6IkZhc3RTdG9yZSIsImF1ZCI6IkZhc3RTdG9yZSJ9.uNXQTjwUSjCW76rxQux6GYTCGMvO6U8pyNLKdLU8lIw',
       },
     );
     List<OrderProcessingEntity> orders = getOrderProcessingList(data);
@@ -99,7 +107,7 @@ class OrderProcessingRemotDataSourceImpl
         headers: {
           // 'Authorization': 'Bearer $token',
           'Authorization':
-              'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJmZDVjMWIwMi1lODRhLTQ1MmEtYmZhMi1kNzRkYTM3Mjg1OTYiLCJlbWFpbCI6Im1AbSIsIm5hbWUiOiLYtdin2YTZiNmGINmF2LHYudmKINio2YYg2YfZhNin2KjZiiDZhNij2K3Yr9irINmC2LXYp9iqINin2YTYtNi52LEiLCJJc0VuYWJsZWQiOiJUcnVlIiwiUGhvbmVOdW1iZXIiOiI3Nzc3Nzc3NzgiLCJJZCI6Ijg1ZGRhNGU4LTQ2ODUtNGFlMy1iMWJiLWVhNzg1NjlmYjk2NiIsInJvbGVzIjoiU3RvcmUiLCJleHAiOjE3MzU1NzY5OTAsImlzcyI6IkZhc3RTdG9yZSIsImF1ZCI6IkZhc3RTdG9yZSJ9.xpxyxn9MBPzxBcwh-MN778mAECGkQtuVdfZ9EQCAYUA',
+              'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJjNjY0NzkzNS02YWVhLTRmOTItYTVkZS1iYWQyNGIxYjc4YzkiLCJlbWFpbCI6Im1AbSIsIm5hbWUiOiLYtdin2YTZiNmGINmF2LHYudmKINio2YYg2YfZhNin2KjZiiDZhNij2K3Yr9irINmC2LXYp9iqINin2YTYtNi52LEiLCJJc0VuYWJsZWQiOiJUcnVlIiwiUGhvbmVOdW1iZXIiOiI3Nzc3Nzc3NzgiLCJJZCI6Ijg1ZGRhNGU4LTQ2ODUtNGFlMy1iMWJiLWVhNzg1NjlmYjk2NiIsInJvbGVzIjoiU3RvcmUiLCJleHAiOjE3MzYzNDgxNTAsImlzcyI6IkZhc3RTdG9yZSIsImF1ZCI6IkZhc3RTdG9yZSJ9.uNXQTjwUSjCW76rxQux6GYTCGMvO6U8pyNLKdLU8lIw',
         },
         file: invoiceImage,
         data: {
@@ -113,5 +121,41 @@ class OrderProcessingRemotDataSourceImpl
         OrderProcessingBillModel.fromJson(data.values.last);
     print(bill);
     return bill;
+  }
+
+  @override
+  Future<OrderProcessingShippingEntity> fetchOrderProcessingShipping(
+      List<int> ids,
+      String shippingNumber,
+      String shippingCompany,
+      File invoiceImage) async {
+    String? token = await getToken();
+    // FormData formData = FormData();
+    // formData = FormData.fromMap(
+    //   {
+    //     'InvoiceAmount': 5.5,
+    //     'InvoiceNumber': '5',
+    //     'orderDetailsId': nums.map((e) => e.toString()).toList(),
+    //   },
+    // );
+
+    var data = await apiService.postRequestWithFilesShipping(
+        endPoint: 'ShippingInformations/CreateShippingInformation',
+        headers: {
+          // 'Authorization': 'Bearer $token',
+          'Authorization':
+              'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJmZDVjMWIwMi1lODRhLTQ1MmEtYmZhMi1kNzRkYTM3Mjg1OTYiLCJlbWFpbCI6Im1AbSIsIm5hbWUiOiLYtdin2YTZiNmGINmF2LHYudmKINio2YYg2YfZhNin2KjZiiDZhNij2K3Yr9irINmC2LXYp9iqINin2YTYtNi52LEiLCJJc0VuYWJsZWQiOiJUcnVlIiwiUGhvbmVOdW1iZXIiOiI3Nzc3Nzc3NzgiLCJJZCI6Ijg1ZGRhNGU4LTQ2ODUtNGFlMy1iMWJiLWVhNzg1NjlmYjk2NiIsInJvbGVzIjoiU3RvcmUiLCJleHAiOjE3MzU1NzY5OTAsImlzcyI6IkZhc3RTdG9yZSIsImF1ZCI6IkZhc3RTdG9yZSJ9.xpxyxn9MBPzxBcwh-MN778mAECGkQtuVdfZ9EQCAYUA',
+        },
+        file: invoiceImage,
+        data: {
+          'ParcelNumber': shippingNumber,
+          'CompanyName': shippingCompany,
+          // 'Date': DateTime.now().toString(),
+          'OrderDetailsIds': 5,
+          //'OrderDetailsIds': 9,
+        });
+    OrderProcessingShippingEntity shipping = ShippingModel.fromJson(data);
+    print(shipping);
+    return shipping;
   }
 }

@@ -39,6 +39,7 @@ class ButtonBill extends StatelessWidget {
               context: context,
               builder: (context) {
                 return CustomDataDialogWidget(
+                  headTitle: 'بياتات الفاتورة',
                   firstTitle: 'التاريخ',
                   secondTitle: 'رقم الفاتورة',
                   thierdTitle: 'قيمة الفاتورة',
@@ -55,7 +56,7 @@ class ButtonBill extends StatelessWidget {
                       await context
                           .read<OrderProcessingBillCubit>()
                           .fechOrderBill(
-                            ids,
+                            ids ?? [],
                             mount = num.parse(mountConroller.text),
 
                             // num.parse(mountConroller.text),

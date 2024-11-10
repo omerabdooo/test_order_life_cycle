@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:dartz/dartz.dart';
 import 'package:test_order_life_cycle/core/errors/failure.dart';
 import 'package:test_order_life_cycle/features/store/order_processing/domain/entities/order_processing_bill_entity.dart';
+import 'package:test_order_life_cycle/features/store/order_processing/domain/entities/order_processing_shipping_entity.dart';
 
 import '../entities/order_processing_entity.dart';
 
@@ -16,4 +17,12 @@ abstract class OrderProcessingRepo {
       required num invoiceAmount,
       required File invoiceImage,
       required DateTime invoiceDate});
+
+  Future<Either<Failure, OrderProcessingShippingEntity>>
+      sendOrderProcessingShipping({
+    required List<int> ids,
+    required String shippingNumber,
+    required String shippingCompany,
+    required File invoiceImage,
+  });
 }
