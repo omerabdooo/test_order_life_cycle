@@ -4,6 +4,7 @@ import 'package:test_order_life_cycle/core/functions/image_picker_function.dart'
 import 'package:test_order_life_cycle/core/setup_service_locator.dart';
 import 'package:test_order_life_cycle/core/widgets/custom_data_dialog_widget.dart';
 import 'package:test_order_life_cycle/core/widgets/custom_primary_button_widget.dart';
+import 'package:test_order_life_cycle/core/widgets/diaolg_shipping.dart';
 import 'package:test_order_life_cycle/features/store/order_processing/data/repos/order_processing_repo_impl.dart';
 import 'package:test_order_life_cycle/features/store/order_processing/domain/usecases/order_processing_shipping_usecase.dart';
 import 'package:test_order_life_cycle/features/store/order_processing/ui/manger/shipping/shipping_cubit.dart';
@@ -29,24 +30,27 @@ class ButtonOrderSend extends StatelessWidget {
           showDialog(
               context: context,
               builder: (context) {
-                return CustomDataDialogWidget(
+                return CustomDataDialogWidgetShipping(
                   headTitle: 'بيانات الشحن',
                   firstTitle: 'التاريخ',
                   secondTitle: 'رقم فاتورة الشحن',
                   thierdTitle: 'شركة النقل',
                   onPressedSure: () async {
-                    String mountText = mountConroller?.text ?? '';
+                    String mountText = mountConrollers.text;
                     try {
                       await context.read<ShippingCubit>().fechOrderShipping(
                             ids ?? [],
-                            numberConroller?.text ?? "",
+                            numberConrollers.text,
                             images!,
                             mountText,
+
                             // mountConroller?.text ?? ""
                           );
-                      //Navigator.of(context).pop();
+                      String? cc = numberConrollers.text;
+                      Navigator.of(context).pop();
                       print(
                           'amarrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr ');
+                      print('تبا لك $cc');
                     } catch (e) {
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(

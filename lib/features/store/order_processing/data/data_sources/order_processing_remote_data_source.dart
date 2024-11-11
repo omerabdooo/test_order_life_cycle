@@ -141,11 +141,6 @@ class OrderProcessingRemotDataSourceImpl
 
     var data = await apiService.postRequestWithFilesShipping(
         endPoint: 'ShippingInformations/CreateShippingInformation',
-        headers: {
-          // 'Authorization': 'Bearer $token',
-          'Authorization':
-              'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJmZDVjMWIwMi1lODRhLTQ1MmEtYmZhMi1kNzRkYTM3Mjg1OTYiLCJlbWFpbCI6Im1AbSIsIm5hbWUiOiLYtdin2YTZiNmGINmF2LHYudmKINio2YYg2YfZhNin2KjZiiDZhNij2K3Yr9irINmC2LXYp9iqINin2YTYtNi52LEiLCJJc0VuYWJsZWQiOiJUcnVlIiwiUGhvbmVOdW1iZXIiOiI3Nzc3Nzc3NzgiLCJJZCI6Ijg1ZGRhNGU4LTQ2ODUtNGFlMy1iMWJiLWVhNzg1NjlmYjk2NiIsInJvbGVzIjoiU3RvcmUiLCJleHAiOjE3MzU1NzY5OTAsImlzcyI6IkZhc3RTdG9yZSIsImF1ZCI6IkZhc3RTdG9yZSJ9.xpxyxn9MBPzxBcwh-MN778mAECGkQtuVdfZ9EQCAYUA',
-        },
         file: invoiceImage,
         data: {
           'ParcelNumber': shippingNumber,
