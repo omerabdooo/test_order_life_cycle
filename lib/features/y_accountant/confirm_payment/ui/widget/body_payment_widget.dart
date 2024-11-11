@@ -25,7 +25,7 @@ class BodyConfirmPaymentWidget extends StatelessWidget {
         
         return SizedBox(
           width: 330.w,
-          height: 450.h,
+          height: 500.h,
           child: ListView.builder(
               padding: EdgeInsets.zero,
               itemCount: state.boundEntitny.length,
