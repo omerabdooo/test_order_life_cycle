@@ -7,13 +7,14 @@ class CustomLabelPart extends StatelessWidget {
   final String partName;
   final String partCount;
   // final Function()? partOnTap;
-  final String navigatorName;
+  // final String navigatorName;
   const CustomLabelPart(
       {super.key,
       required this.partName,
       required this.partCount,
       //  required this.partOnTap,
-      required this.navigatorName});
+      // required this.navigatorName
+      });
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +23,7 @@ class CustomLabelPart extends StatelessWidget {
         InkWell(
           // onTap: partOnTap ,
           onTap: () {
-            GoRouter.of(context).push(navigatorName);
+            // GoRouter.of(context).push(navigatorName);
           },
           child: Container(
             padding: EdgeInsets.symmetric(horizontal: 30.w, vertical: 10.h),
