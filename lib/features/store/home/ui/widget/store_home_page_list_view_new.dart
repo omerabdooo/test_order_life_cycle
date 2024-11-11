@@ -20,7 +20,7 @@ class _StoreHomePageListViewNewState extends State<StoreHomePageListViewNew> {
   @override
   void initState() {
     super.initState();
-    context.read<AllOrderCubit>().fetchAllOrder(1, 10, '10', 1, false);
+    context.read<AllOrderCubit>().fetchAllOrder(1, 100, '10', 1, false);
   }
 
   @override
