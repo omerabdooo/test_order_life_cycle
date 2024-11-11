@@ -66,8 +66,7 @@ class BoundRemoteDataSourceImpl implements BoundRemoteDataSource {
             'Bonds/Accountant/UpdateBondStatus?bondId=$boundId&action=$action',
         data: formData,
         headers: {
-          'Authorization':
-              'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI1ZjNmMGEwMi1jNmFiLTQ3OTgtYmJhOS0wN2IxZWMwZTM3OGUiLCJlbWFpbCI6Im1AbS5tIiwibmFtZSI6Im1vaCIsIklzRW5hYmxlZCI6IlRydWUiLCJQaG9uZU51bWJlciI6Ijc3IiwiSWQiOiIwMDBhNDYyNS1jMWE4LTQ2YWEtODA0Ni03ODVkM2NlODdlMmEiLCJyb2xlcyI6IkFjY291bnRhbnQiLCJleHAiOjE3MzQxMzI1ODUsImlzcyI6IkZhc3RTdG9yZSIsImF1ZCI6IkZhc3RTdG9yZSJ9.T3KEet6jR54ZdHyOBD9la5nd8wLsJQgoWjkqKidXYdo'
+          'Authorization': 'Bearer $token',
         });
     BoundEntitny addOrderEntity = BoundsModel.fromJson(data);
     print(addOrderEntity);
