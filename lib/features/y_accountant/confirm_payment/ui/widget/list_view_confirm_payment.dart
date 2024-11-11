@@ -157,7 +157,7 @@ class ListViewConfirmPayment extends StatelessWidget {
                             Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>ConfirmPayment()));
 
                             ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(content: Text('تم حذف المنتج بنجاح')),
+                              const SnackBar(content: Text('تم تأكيذ السداد بنجاح')),
                             );
                           } else if (state is UpdateBoundStateCubitLoading) {
                             ScaffoldMessenger.of(context).showSnackBar(
