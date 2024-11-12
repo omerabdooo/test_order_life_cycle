@@ -21,7 +21,7 @@ class OrderProcessingBody extends StatelessWidget {
     required this.totalPrice,
     required this.totalQuantity,
     required this.imageProduct,
-    this.code,
+    // this.code,
   });
 
   final num orderNum;
@@ -32,11 +32,11 @@ class OrderProcessingBody extends StatelessWidget {
   final num totalPrice;
   final int totalQuantity;
   final String imageProduct;
-  final Barcode? code;
+  // final Barcode? code;
 
   @override
   Widget build(BuildContext context) {
-    final svg = code?.toSvg(productName, width: 200, height: 100);
+    // final svg = code?.toSvg(productName, width: 200, height: 100);
 
     return Container(
       padding: EdgeInsets.only(right: 5.w),
@@ -72,7 +72,7 @@ class OrderProcessingBody extends StatelessWidget {
               //  صورة الباركود
               BarcodeWidget(
                 height: 35.h,
-                width: 210.w,
+                width: 200.w,
                 data: orderNum.toString(), // Data here
                 barcode: Barcode.code128(), // Specify the barcode type
               ),
