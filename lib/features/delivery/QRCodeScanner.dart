@@ -17,7 +17,9 @@ class _QRCodeScannerState extends State<QRCodeScanner> {
     // Dispose the MobileScannerController when done to free up resources
     _controller.dispose();
     super.dispose();
-  }  bool _scanned = false;
+  }
+
+  bool _scanned = false;
 
   void _onDetect(BarcodeCapture capture) {
     final List<Barcode> barcodes = capture.barcodes;

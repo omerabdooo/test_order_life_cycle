@@ -71,7 +71,7 @@ class StoreHomePageItemWidget extends StatelessWidget {
                   return CustomLabelPart(
                     partName: parts[index]["name"]!,
                     partCount: parts[index]["partCount"]!,
-                    navigatorName: parts[index]["route"]!,
+                    // navigatorName: parts[index]["route"]!,
                   );
                 },
               ),

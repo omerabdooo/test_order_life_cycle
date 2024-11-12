@@ -16,7 +16,6 @@ class ReadyForDelivery extends StatefulWidget {
 }
 
 class _ReadyForDeliveryState extends State<ReadyForDelivery> {
-
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
@@ -29,10 +28,10 @@ class _ReadyForDeliveryState extends State<ReadyForDelivery> {
         ),
       ],
       child: const Scaffold(
-        resizeToAvoidBottomInset: false,
-        backgroundColor: AppColors.backgroundColor,
-        drawer: KDrawerWidget(), 
-        body: ReadyForDeliveryBody()),
+          resizeToAvoidBottomInset: false,
+          backgroundColor: AppColors.backgroundColor,
+          drawer: KDrawerWidget(),
+          body: ReadyForDeliveryBody()),
     );
   }
 }

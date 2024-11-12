@@ -4,7 +4,8 @@ import 'package:test_order_life_cycle/core/styles/Colors.dart';
 import 'package:test_order_life_cycle/core/widgets/a_order.dart';
 
 /// Generic ListView Builder for view shipping address
-Widget buildListView<CubitType extends StateStreamable<StateType>, StateType, LoadingStateType, FailureStateType, SuccessStateType, T>({
+Widget buildListView<CubitType extends StateStreamable<StateType>, StateType,
+    LoadingStateType, FailureStateType, SuccessStateType, T>({
   required Widget Function(StateType state)? stateBuilder,
   required int Function(StateType state)? itemCount,
 }) {
@@ -12,18 +13,20 @@ Widget buildListView<CubitType extends StateStreamable<StateType>, StateType, Lo
     child: BlocBuilder<CubitType, StateType>(
       builder: (context, state) {
         if (state is LoadingStateType) {
-          return const Center(child: CircularProgressIndicator(),);
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
         } else if (state is FailureStateType) {
           return Center(
-                    child: Text(
-                      (state as dynamic).errorMessage,
-                      style: const TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 20,
-                      ),
-                    ),
-                  );
-        // Handle success state
+            child: Text(
+              (state as dynamic).errorMessage,
+              style: const TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 20,
+              ),
+            ),
+          );
+          // Handle success state
         } else if (state is SuccessStateType) {
           // Assuming SuccessStateType has a property called `customerAddress`
           final deliveries = (state as dynamic).delivery;
@@ -32,7 +35,7 @@ Widget buildListView<CubitType extends StateStreamable<StateType>, StateType, Lo
           if (deliveries.isEmpty) {
             return const Center(
               child: Text(
-                "لم يتم اضافة طلبات جاهزة للاستلام...",  // Message for empty list
+                "لم يتم اضافة طلبات جاهزة للاستلام...", // Message for empty list
                 style: TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
@@ -48,21 +51,21 @@ Widget buildListView<CubitType extends StateStreamable<StateType>, StateType, Lo
             itemCount: deliveries.length, // Use the length of the list
             physics: const AlwaysScrollableScrollPhysics(),
             itemBuilder: (context, index) {
-              final delivery = deliveries[index]; // Access the individual address
+              final delivery =
+                  deliveries[index]; // Access the individual address
 
               return KOrdersWidget(
-                      OrderNumber: delivery.idOrder,
-                      Phone: delivery.phoneNumber,
-                      Costmor: delivery.name,
-                      NumberParcels: delivery.idParcel,
-                      TotalNumber: delivery.totalParcels,
-                      Backcolor: AppColors.greyLight);
+                  OrderNumber: delivery.idOrder,
+                  Phone: delivery.phoneNumber,
+                  Costmor: delivery.name,
+                  NumberParcels: delivery.idParcel,
+                  TotalNumber: delivery.totalParcels,
+                  Backcolor: AppColors.greyLight);
             },
           );
         }
 
-        return stateBuilder?.call(state) ??
-            const SizedBox.shrink();
+        return stateBuilder?.call(state) ?? const SizedBox.shrink();
       },
     ),
   );

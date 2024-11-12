@@ -3,11 +3,8 @@ import 'package:test_order_life_cycle/core/api_service.dart';
 import 'package:test_order_life_cycle/features/auth_feature/data/model/sign_in_model/sgin_in_model.dart';
 import 'package:test_order_life_cycle/features/auth_feature/domain/entity/sign_in_entity.dart';
 
-
 abstract class AuthRemoteDataSource {
   Future<SignInEntity> signIn(String email, String password);
-
-  
 }
 
 class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
@@ -39,5 +36,4 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
     print(userVerification);
     return userVerification;
   }
-
-  }
+}

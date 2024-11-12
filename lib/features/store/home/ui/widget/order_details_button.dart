@@ -28,6 +28,7 @@ class OrderDetailsButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
+
         idOrders = idOrder;
         orderNum = bondNum;
         orderDate = date;
@@ -36,6 +37,10 @@ class OrderDetailsButton extends StatelessWidget {
           AppRouter.storeRouters.kStoreOrderProcessing,
           extra: idOrder,
         );
+
+        // context.push(AppRouter.storeRouters.kStoreOrderProcessing,
+        //     extra: idOrder);
+
         // GoRouter.of(context).push(AppRouter.storeRouters.kStoreOrderProcessing);
         // Navigator.pushNamed(context, "/store/order/processing",
         //     arguments: idOrder);

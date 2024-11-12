@@ -72,9 +72,7 @@ class OrderProcessingRemotDataSourceImpl
       endPoint:
           'OrderDetails/Store/GetStoreOrderDetailssByOrderIdAndStoreId/$orderId',
       headers: {
-        // 'Authorization': 'Bearer $token',
-        'Authorization':
-            'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJjNjY0NzkzNS02YWVhLTRmOTItYTVkZS1iYWQyNGIxYjc4YzkiLCJlbWFpbCI6Im1AbSIsIm5hbWUiOiLYtdin2YTZiNmGINmF2LHYudmKINio2YYg2YfZhNin2KjZiiDZhNij2K3Yr9irINmC2LXYp9iqINin2YTYtNi52LEiLCJJc0VuYWJsZWQiOiJUcnVlIiwiUGhvbmVOdW1iZXIiOiI3Nzc3Nzc3NzgiLCJJZCI6Ijg1ZGRhNGU4LTQ2ODUtNGFlMy1iMWJiLWVhNzg1NjlmYjk2NiIsInJvbGVzIjoiU3RvcmUiLCJleHAiOjE3MzYzNDgxNTAsImlzcyI6IkZhc3RTdG9yZSIsImF1ZCI6IkZhc3RTdG9yZSJ9.uNXQTjwUSjCW76rxQux6GYTCGMvO6U8pyNLKdLU8lIw',
+        'Authorization': 'Bearer $token',
       },
     );
     List<OrderProcessingEntity> orders = getOrderProcessingList(data);
@@ -106,6 +104,7 @@ class OrderProcessingRemotDataSourceImpl
         endPoint: 'OrderDetails/Store/CreateInvoiceForOrderdetailsInStore',
         headers: {
           // 'Authorization': 'Bearer $token',
+
           'Authorization': 'Bearer $token',
         },
         file: invoiceImage,

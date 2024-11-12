@@ -1,4 +1,3 @@
-
 class ReadyForDeliveryEntity {
   final int idParcel;
   final String idOrder;
@@ -14,4 +13,3 @@ class ReadyForDeliveryEntity {
     required this.phoneNumber,
   });
 }
-

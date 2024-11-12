@@ -17,7 +17,7 @@ class ListViewConfirmPayment extends StatelessWidget {
   final String amountBond;
   final String date;
   final String image;
-  
+
   const ListViewConfirmPayment(
       {super.key,
       required this.idBond,
@@ -142,32 +142,39 @@ class ListViewConfirmPayment extends StatelessWidget {
                   ),
                   BlocListener<UpdateBoundStateCubit, UpdateBoundStateState>(
                     listenWhen: (previous, current) =>
-                            current is UpdateBoundStateCubitSuccess &&
-                                current.boundEntitny.boundId.toString() == idBond ||
-                            (current is UpdateBoundStateCubitFailure &&
-                                current.boundId.toString() == idBond),
+                        current is UpdateBoundStateCubitSuccess &&
+                            current.boundEntitny.boundId.toString() == idBond ||
+                        (current is UpdateBoundStateCubitFailure &&
+                            current.boundId.toString() == idBond),
                     listener: (context, state) {
-                       if (state is UpdateBoundStateCubitFailure) {
-                            print(state.errorMessage);
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(
-                                  content: Text(state.errorMessage.toString())),
-                            );
-                          } else if (state is UpdateBoundStateCubitSuccess) {
-                            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>ConfirmPayment()));
+                      if (state is UpdateBoundStateCubitFailure) {
+                        print(state.errorMessage);
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                              content: Text(state.errorMessage.toString())),
+                        );
+                      } else if (state is UpdateBoundStateCubitSuccess) {
+                        Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => ConfirmPayment()));
 
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(content: Text('تم حذف المنتج بنجاح')),
-                            );
-                          } else if (state is UpdateBoundStateCubitLoading) {
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(content: Text('جاري تنفيذ طلبك')),
-                            );
-                          
-                          }},
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                              content: Text('تم تأكيذ السداد بنجاح')),
+                        );
+                      } else if (state is UpdateBoundStateCubitLoading) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(content: Text('جاري تنفيذ طلبك')),
+                        );
+                      }
+                    },
                     child: KCustomPrimaryButtonWidget(
-                        buttonName: " تاكيد", onPressed: () {
-                    context.read<UpdateBoundStateCubit>().updateBoundState(int.parse(idBond), 'confirm');
+                        buttonName: " تاكيد",
+                        onPressed: () {
+                          context
+                              .read<UpdateBoundStateCubit>()
+                              .updateBoundState(int.parse(idBond), 'confirm');
                         }),
                   ),
                 ],

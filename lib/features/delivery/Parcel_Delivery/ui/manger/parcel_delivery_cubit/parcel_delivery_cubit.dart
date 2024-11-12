@@ -20,10 +20,10 @@ class ParcelDeliveryCubit extends Cubit<ParcelDeliveryState> {
 
     try {
       var params = ParcelDeliveryParams(
-          orderId, 
-          receiptCode,
-          status,
-          );
+        orderId,
+        receiptCode,
+        status,
+      );
       final result = await parcelDeliveryUseCase.execute(params);
 
       result.fold(
@@ -31,15 +31,17 @@ class ParcelDeliveryCubit extends Cubit<ParcelDeliveryState> {
           (failure) => emit(ParcelDeliveryFailure(failure.message)),
           // right
           (userData) {
-         if (userData.serverMessage == " رقم الطلب غير صحيح أو ان الطلب غير جاهز للتسليم") {
-           emit(ParcelDeliveryFailure("رقم الطلب غير صحيح أو ان الطلب غير جاهز للتسليم..."));
-        //   //
-         } //else if(userData.serverMessage == "The customer already has an address") {
+        if (userData.serverMessage ==
+            " رقم الطلب غير صحيح أو ان الطلب غير جاهز للتسليم") {
+          emit(ParcelDeliveryFailure(
+              "رقم الطلب غير صحيح أو ان الطلب غير جاهز للتسليم..."));
+          //   //
+        } //else if(userData.serverMessage == "The customer already has an address") {
         //   emit(ParcelDeliveryFailure("لديك عنوان بالفعل "));
-        // }        
-         else {
+        // }
+        else {
           emit(ParcelDeliverySuccess("تم استلام الطرد بنجاح"));
-         }
+        }
       });
     } catch (e) {
       if (e is DioException) {

@@ -12,6 +12,7 @@ import 'package:test_order_life_cycle/features/auth_feature/domain/usecase/sign_
 import 'package:test_order_life_cycle/features/auth_feature/ui/manger/sgin_in_cubit/sgin_in_cubit_cubit.dart';
 import 'package:test_order_life_cycle/features/auth_feature/ui/widgets/auth_text_Field_widget.dart';
 import 'package:test_order_life_cycle/features/delivery/Home_Delivery/ui/screen/HomeDelivery.dart';
+import 'package:test_order_life_cycle/features/k_accounant/confirm_payment/ui/screen/confirm_payment.dart';
 import 'package:test_order_life_cycle/features/store/home/ui/screen/store_home_page.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -89,8 +90,19 @@ class LoginScreen extends StatelessWidget {
                         context,
                         MaterialPageRoute(
                             builder: (context) => StoreHomePage()));
+                  } else if (state.user.userRoles[0] == 'SauidAccountant') {
+                    // context.go(AppRouter.storeRouters.kSAAccountant);
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const KSAConfirmPayment()));
                   }
                 }
+                //  else if (state is SignInCubitSuccess) {
+                //   if (state.user.userRoles[0] == 'SauidAccountant') {
+                //     context.go(AppRouter.storeRouters.kSAAccountant);
+                //   }
+                // }
               },
               child: KCustomPrimaryButtonWidget(
                 buttonName: "تسجيل الدخول",

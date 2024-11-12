@@ -5,7 +5,6 @@ import 'package:test_order_life_cycle/features/auth_feature/data/data_source/aut
 import 'package:test_order_life_cycle/features/auth_feature/domain/entity/sign_in_entity.dart';
 import 'package:test_order_life_cycle/features/auth_feature/domain/repo/auth_repo.dart';
 
-
 class AuthRepoImpl extends AuthRepo {
   final AuthRemoteDataSource authRemoteDataSource;
 
@@ -31,8 +30,4 @@ class AuthRepoImpl extends AuthRepo {
       String phoneNumber, String password) async {
     return postData(() => authRemoteDataSource.signIn(phoneNumber, password));
   }
-
-  
-  
-
 }

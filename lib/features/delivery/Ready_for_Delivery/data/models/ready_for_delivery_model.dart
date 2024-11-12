@@ -1,6 +1,6 @@
 import 'package:test_order_life_cycle/features/delivery/Ready_for_Delivery/domain/entities/ready_for_delivery_entity.dart';
 
-class OrderSummary extends ReadyForDeliveryEntity{
+class OrderSummary extends ReadyForDeliveryEntity {
   int? id;
   String? orderNumber;
   String? customerName;
@@ -12,11 +12,11 @@ class OrderSummary extends ReadyForDeliveryEntity{
     this.customerName,
     this.totalOrdersDetails,
   }) : super(
-    idParcel: id ?? 0, 
-    idOrder: orderNumber ?? '', 
-    totalParcels: totalOrdersDetails ?? 0, 
-    name: customerName ?? '', 
-    phoneNumber: '775445127');
+            idParcel: id ?? 0,
+            idOrder: orderNumber ?? '',
+            totalParcels: totalOrdersDetails ?? 0,
+            name: customerName ?? '',
+            phoneNumber: '775445127');
 
   // Factory constructor to create an instance from JSON
   factory OrderSummary.fromJson(Map<String, dynamic> json) => OrderSummary(

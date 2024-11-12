@@ -20,48 +20,56 @@ class ReadyForDeliveryBody extends StatefulWidget {
 }
 
 class _ReadyForDeliveryBodyState extends State<ReadyForDeliveryBody> {
-    @override
+  @override
   void initState() {
     context.read<ReadyForDeliveryCubit>().getAllReadyForDelivery();
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return Column(
-        // crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          KCustomAppBarWidget(
-            nameAppbar: "الطرود الجاهزة للاستلام",
+      // crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        KCustomAppBarWidget(
+          nameAppbar: "الطرود الجاهزة للاستلام",
+        ),
+        SizedBox(
+          height: 2.h,
+        ),
+        KCustomSearchWidget(
+          height: 23,
+          width: 338,
+          hintText: "رقم الطلب:",
+        ),
+        KCustomSearchWidget(
+          height: 23,
+          width: 338,
+          hintText: "رقم تلفون:",
+        ),
+        Expanded(
+          child: buildListView<
+              ReadyForDeliveryCubit,
+              ReadyForDeliveryState,
+              ReadyForDeliveryLoading,
+              ReadyForDeliveryFailure,
+              ReadyForDeliverySuccess,
+              ReadyForDeliveryEntity>(
+            itemCount: (state) {
+              if (state is ReadyForDeliverySuccess) {
+                return state.delivery
+                    .length; // Extract the length from the success state
+              }
+              return 0; // Return an empty length if not in success state
+            },
+            //state.customerAddress.length
+            stateBuilder: (state) {
+              return const SizedBox.shrink();
+            },
           ),
-          SizedBox(
-            height: 2.h,
-          ),
-          KCustomSearchWidget(
-            height: 23,
-            width: 338,
-            hintText: "رقم الطلب:",
-          ),
-          KCustomSearchWidget(
-            height: 23,
-            width: 338,
-            hintText: "رقم تلفون:",
-          ),
-          Expanded(
-            child: buildListView<ReadyForDeliveryCubit, ReadyForDeliveryState, ReadyForDeliveryLoading, ReadyForDeliveryFailure, ReadyForDeliverySuccess, ReadyForDeliveryEntity>(
-              itemCount: (state) {
-                if (state is ReadyForDeliverySuccess) {
-                  return state.delivery.length; // Extract the length from the success state
-                }
-                return 0; // Return an empty length if not in success state
-              },
-              //state.customerAddress.length
-              stateBuilder: (state) {
-                return const SizedBox.shrink();
-              },
-            ),
-          ),
-        ],
-      );
+        ),
+      ],
+    );
   }
 }
 
