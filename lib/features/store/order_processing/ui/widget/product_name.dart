@@ -13,7 +13,7 @@ class ProductName extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: MediaQuery.of(context).size.width * .6,
+      width: MediaQuery.of(context).size.width * .57,
       height: 35.h,
       child: Text(
         productName,
