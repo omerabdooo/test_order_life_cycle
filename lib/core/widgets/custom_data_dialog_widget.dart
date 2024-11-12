@@ -38,6 +38,9 @@ class CustomDataDialogWidget extends StatelessWidget {
         IconButton(
           onPressed: () {
             Navigator.of(context).pop();
+            dateConroller.clear();
+            numberConroller.clear();
+            mountConroller.clear();
           },
           icon: const Icon(Icons.cancel),
         ),
@@ -66,8 +69,11 @@ class CustomDataDialogWidget extends StatelessWidget {
             _buildInfoRow(secondTitle, numberConroller),
             _buildInfoRow(thierdTitle, mountConroller),
             _buildImageSection(),
+            SizedBox(
+              height: 7.h,
+            ),
             KCustomPrimaryButtonWidget(
-                buttonName: "تاكيد", onPressed: onPressedSure)
+                height: 25.h, buttonName: "تاكيد", onPressed: onPressedSure)
           ],
         ),
       ),
@@ -90,6 +96,7 @@ class CustomDataDialogWidget extends StatelessWidget {
           SizedBox(
             width: 140.w,
             child: TextField(
+              keyboardType: TextInputType.number,
               // controller: TextEditingController(text: info),
               controller: info,
               decoration: InputDecoration(

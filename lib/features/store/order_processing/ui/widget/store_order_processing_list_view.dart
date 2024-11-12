@@ -40,7 +40,7 @@ class _StoreOrderProcessingListViewState
   Widget build(BuildContext context) {
     return SizedBox(
       width: 370.w,
-      height: 400.h,
+      height: 420.h,
       child: BlocBuilder<OrderProcessingCubit, OrderProcessingState>(
           builder: (context, state) {
         if (state is OrderProcessingSuccess) {

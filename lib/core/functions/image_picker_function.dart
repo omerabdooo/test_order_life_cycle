@@ -36,6 +36,9 @@ class _KImagePickerFunctionState extends State<KImagePickerFunction> {
           icon: Icons.image_rounded,
           title: "المعرض",
         ),
+        SizedBox(
+          height: 10.h,
+        ),
 
         // /////////
         // IconButton(
@@ -46,7 +49,10 @@ class _KImagePickerFunctionState extends State<KImagePickerFunction> {
 
         // icon: const Icon(Icons.image_rounded)),
 
-        selectedImage != null ? Image.file(selectedImage!) : const Text(""),
+        selectedImage != null
+            ? SizedBox(
+                height: 200.h, width: 200, child: Image.file(selectedImage!))
+            : const Text(""),
         // KCustomPrimaryButtonWidget(buttonName: "تاكيد", onPressed: () {})
       ],
     );
@@ -68,6 +74,7 @@ class _KImagePickerFunctionState extends State<KImagePickerFunction> {
     if (returnImage == null) return;
     setState(() {
       selectedImage = File(returnImage.path);
+      images = selectedImage;
     });
   }
 }

@@ -43,6 +43,17 @@ class _StoreOrderProcessingContainerState
             date: orderDate!,
             numberItem: productNum!,
           );
+        } else if (state is OrderProcessingLoading) {
+          return Shimmer.fromColors(
+              baseColor: Colors.grey[300]!,
+              highlightColor: Colors.grey[100]!,
+              child: ListTile(
+                title: Container(
+                  color: Colors.white,
+                  height: 100.h,
+                  width: MediaQuery.of(context).size.width,
+                ),
+              ));
         } else {
           return Shimmer.fromColors(
             baseColor: Colors.grey[300]!,

@@ -1,10 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:test_order_life_cycle/core/setup_service_locator.dart';
-import 'package:test_order_life_cycle/features/store/order_processing/data/repos/order_processing_repo_impl.dart';
-import 'package:test_order_life_cycle/features/store/order_processing/domain/usecases/order_processing_bill_use_case.dart';
-import 'package:test_order_life_cycle/features/store/order_processing/ui/manger/bill/order_processing_bill_cubit.dart';
 import 'package:test_order_life_cycle/features/store/order_processing/ui/widget/button_bill.dart';
 import 'package:test_order_life_cycle/features/store/order_processing/ui/widget/button_order_send.dart';
 
@@ -14,10 +9,8 @@ class StoreButtonList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      mainAxisAlignment: MainAxisAlignment.start,
       children: [
-        SizedBox(
-          height: 20.h,
-        ),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -33,7 +26,7 @@ class StoreButtonList extends StatelessWidget {
           ],
         ),
         SizedBox(
-          height: 7.h,
+          height: 5.h,
         ),
         const Row(
           mainAxisAlignment: MainAxisAlignment.center,
