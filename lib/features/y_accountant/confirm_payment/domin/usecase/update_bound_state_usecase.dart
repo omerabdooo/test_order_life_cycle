@@ -12,8 +12,7 @@ class UpdateBoundStateUsecase
   UpdateBoundStateUsecase({required this.yAccontantRepo});
 
   @override
-  Future<Either<Failure, BoundEntitny>> execute(
-      BoundParameter params) {
+  Future<Either<Failure, BoundEntitny>> execute(BoundParameter params) {
     return yAccontantRepo.updateBoundState(params.boundId, params.action);
   }
 }

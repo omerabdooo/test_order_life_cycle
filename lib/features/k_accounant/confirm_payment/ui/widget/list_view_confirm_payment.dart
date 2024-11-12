@@ -16,18 +16,21 @@ class KSAListViewConfirmPayment extends StatelessWidget {
   final String date;
   final GestureTapCallback confrmOnPressed;
   final GestureTapCallback transOnPressed;
-  const KSAListViewConfirmPayment(
-      {super.key,
-      required this.billNum,
-      required this.storeName,
-      required this.mandobName,
-      required this.amountOrderItems,
-      required this.orderNum,
-      required this.date,
-      required this.amountBill,
-      required this.different,
-      required this.confrmOnPressed,
-      required this.transOnPressed});
+  final String imageBond;
+  const KSAListViewConfirmPayment({
+    super.key,
+    required this.billNum,
+    required this.storeName,
+    required this.mandobName,
+    required this.amountOrderItems,
+    required this.orderNum,
+    required this.date,
+    required this.amountBill,
+    required this.different,
+    required this.confrmOnPressed,
+    required this.transOnPressed,
+    required this.imageBond,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -57,7 +60,7 @@ class KSAListViewConfirmPayment extends StatelessWidget {
                   "$billNum",
                   style: KTextStyle.secondaryTitle,
                 ),
-                const ButtonAddImageBond(imageBond: "assets/1.png")
+                ButtonAddImageBond(imageBond: imageBond),
               ],
             ),
           ),
@@ -105,8 +108,8 @@ class KSAListViewConfirmPayment extends StatelessWidget {
             children: [
               Text(
                 "رقم الطلب:  ",
-                style: KTextStyle.secondaryTitle
-                    .copyWith(color: AppColors.greyHint),
+                style:
+                    KTextStyle.textStyle12.copyWith(color: AppColors.greyHint),
               ),
               Text(
                 orderNum,
@@ -118,8 +121,8 @@ class KSAListViewConfirmPayment extends StatelessWidget {
               ),
               Text(
                 "قيمة اصناف الطلب:  ",
-                style: KTextStyle.secondaryTitle
-                    .copyWith(color: AppColors.greyHint),
+                style:
+                    KTextStyle.textStyle12.copyWith(color: AppColors.greyHint),
               ),
               Text(
                 "$amountOrderItems",
@@ -130,54 +133,71 @@ class KSAListViewConfirmPayment extends StatelessWidget {
           ),
           Row(
             children: [
-              Row(
-                children: [
-                  Text(
-                    "قيمة الفاتورة: ",
-                    style: KTextStyle.secondaryTitle
-                        .copyWith(color: AppColors.greyHint),
-                  ),
-                  Text(
-                    "$amountBill",
-                    style: KTextStyle.secondaryTitle
-                        .copyWith(fontWeight: FontWeight.w400),
-                  ),
-                  SizedBox(
-                    width: 30.w,
-                  ),
-                  Text(
-                    " الفرق:  ",
-                    style: KTextStyle.secondaryTitle
-                        .copyWith(color: AppColors.greyHint),
-                  ),
-                  Text(
-                    "$different",
-                    style: KTextStyle.secondaryTitle
-                        .copyWith(fontWeight: FontWeight.w400),
-                  ),
-                ],
+              Text(
+                "قيمة الفاتورة: ",
+                style:
+                    KTextStyle.textStyle12.copyWith(color: AppColors.greyHint),
               ),
-              Row(
-                children: [
-                  Text(
-                    " التاريخ:  ",
-                    style: KTextStyle.secondaryTitle
-                        .copyWith(color: AppColors.greyHint),
-                  ),
-                  Text(
-                    date,
-                    style: KTextStyle.secondaryTitle
-                        .copyWith(fontWeight: FontWeight.w400),
-                  ),
-                  SizedBox(
-                    width: 70.w,
-                  ),
-                  KCustomPrimaryButtonWidget(
-                      buttonName: " تاكيد", onPressed: confrmOnPressed),
-                  KCustomPrimaryButtonWidget(
-                      buttonName: " تحويل", onPressed: transOnPressed),
-                ],
-              )
+              Text(
+                "$amountBill",
+                style: KTextStyle.secondaryTitle
+                    .copyWith(fontWeight: FontWeight.w400),
+              ),
+              SizedBox(
+                width: 30.w,
+              ),
+              Text(
+                " الفرق:  ",
+                style:
+                    KTextStyle.textStyle12.copyWith(color: AppColors.greyHint),
+              ),
+              Text(
+                "$different",
+                style: KTextStyle.secondaryTitle
+                    .copyWith(fontWeight: FontWeight.w400),
+              ),
+            ],
+          ),
+          Row(
+            children: [
+              Text(
+                " التاريخ:  ",
+                style: KTextStyle.secondaryTitle
+                    .copyWith(color: AppColors.greyHint),
+              ),
+              Text(
+                date,
+                style: KTextStyle.secondaryTitle
+                    .copyWith(fontWeight: FontWeight.w400),
+              ),
+              SizedBox(
+                width: 70.w,
+              ),
+              // KCustomPrimaryButtonWidget(
+              //     buttonName: " تاكيد", onPressed: confrmOnPressed),
+              // KCustomPrimaryButtonWidget(
+              //     buttonName: " تحويل", onPressed: transOnPressed),
+            ],
+          ),
+          Row(
+            children: [
+              // Text(
+              //   " التاريخ:  ",
+              //   style: KTextStyle.secondaryTitle
+              //       .copyWith(color: AppColors.greyHint),
+              // ),
+              // Text(
+              //   date,
+              //   style: KTextStyle.secondaryTitle
+              //       .copyWith(fontWeight: FontWeight.w400),
+              // ),
+              // SizedBox(
+              //   width: 70.w,
+              // ),
+              KCustomPrimaryButtonWidget(
+                  buttonName: " تاكيد", onPressed: confrmOnPressed),
+              KCustomPrimaryButtonWidget(
+                  buttonName: " تحويل", onPressed: transOnPressed),
             ],
           ),
         ],

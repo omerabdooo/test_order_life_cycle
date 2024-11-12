@@ -36,42 +36,39 @@ class _OfflineState extends State<Offline> {
     }
   }
 
-Future<void> uploadDataSequentially() async {
-  bool allUploadedSuccessfully = true;
+  Future<void> uploadDataSequentially() async {
+    bool allUploadedSuccessfully = true;
 
-  for (var i = 0; i < list.length; i++) {
-    try {
-      // رفع الصف الحالي إلى السيرفر
-      await context.read<ParcelDeliveryCubit>().parcelDelivery(
-        list[i]['id'], // تمرير الـ id أو المعرف الخاص بالصف
-        list[i]['receiptCode'],
-        list[i]['status']
-      );
+    for (var i = 0; i < list.length; i++) {
+      try {
+        // رفع الصف الحالي إلى السيرفر
+        await context.read<ParcelDeliveryCubit>().parcelDelivery(
+            list[i]['id'], // تمرير الـ id أو المعرف الخاص بالصف
+            list[i]['receiptCode'],
+            list[i]['status']);
 
-      // إظهار رسالة نجاح لكل صف يتم رفعه
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('تم رفع الطلب رقم ${list[i]['receiptCode']} بنجاح'))
-      );
+        // إظهار رسالة نجاح لكل صف يتم رفعه
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+            content: Text('تم رفع الطلب رقم ${list[i]['receiptCode']} بنجاح')));
+      } catch (e) {
+        allUploadedSuccessfully = false; // التوقف عن الحذف إذا فشل رفع أي صف
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+            content: Text(
+                'حدث خطأ أثناء رفع الطلب رقم ${list[i]['receiptCode']}: $e')));
+      }
+    }
 
-    } catch (e) {
-      allUploadedSuccessfully = false; // التوقف عن الحذف إذا فشل رفع أي صف
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('حدث خطأ أثناء رفع الطلب رقم ${list[i]['receiptCode']}: $e'))
-      );
+    // إذا تم رفع كل العناصر بنجاح، يتم حذفها من قاعدة البيانات المحلية
+    if (allUploadedSuccessfully) {
+      await sqlDb.deleteData("DELETE FROM delivery");
+      list.clear(); // تفريغ القائمة محليًا بعد الحذف من قاعدة البيانات
+      setState(() {}); // تحديث الواجهة لإعادة عرض القائمة الفارغة
+
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          content:
+              Text('تم رفع جميع الطلبات وحذفها من قاعدة البيانات المحلية')));
     }
   }
-
-  // إذا تم رفع كل العناصر بنجاح، يتم حذفها من قاعدة البيانات المحلية
-  if (allUploadedSuccessfully) {
-    await sqlDb.deleteData("DELETE FROM delivery");
-    list.clear(); // تفريغ القائمة محليًا بعد الحذف من قاعدة البيانات
-    setState(() {}); // تحديث الواجهة لإعادة عرض القائمة الفارغة
-
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text('تم رفع جميع الطلبات وحذفها من قاعدة البيانات المحلية'))
-    );
-  }
-}
 
   @override
   Widget build(BuildContext context) {
@@ -99,73 +96,72 @@ Future<void> uploadDataSequentially() async {
             hintText: "رقم تلفون:",
           ),
           isLoading == true
-            ? const Center(
-                child: Text('القائمة في الانتظار'),
-              )
-            : Expanded(
-            child: list.isEmpty
-            ? const Center(
-                child: Text("لا يوجد طلبات تم تسليمها"),
-              )
-            : ListView(
-              children: [
-                ListView.builder(
-                    itemCount: list.length,
-                    physics: const NeverScrollableScrollPhysics(),
-                    shrinkWrap: true,
-                    itemBuilder: (context, i) {
-                      return KOrdersWidget(
-                          OrderNumber: list[i]['receiptCode'],
-                          Backcolor: AppColors.greyLight);
-                    }),
-              ],
-            ),
-          ),
+              ? const Center(
+                  child: Text('القائمة في الانتظار'),
+                )
+              : Expanded(
+                  child: list.isEmpty
+                      ? const Center(
+                          child: Text("لا يوجد طلبات تم تسليمها"),
+                        )
+                      : ListView(
+                          children: [
+                            ListView.builder(
+                                itemCount: list.length,
+                                physics: const NeverScrollableScrollPhysics(),
+                                shrinkWrap: true,
+                                itemBuilder: (context, i) {
+                                  return KOrdersWidget(
+                                      OrderNumber: list[i]['receiptCode'],
+                                      Backcolor: AppColors.greyLight);
+                                }),
+                          ],
+                        ),
+                ),
         ],
       ),
       floatingActionButton: Column(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
-                  BlocConsumer<ParcelDeliveryCubit,
-                    ParcelDeliveryState>(
-                  listener: (context, state) {
-                    if (state is ParcelDeliveryFailure) {
+          BlocConsumer<ParcelDeliveryCubit, ParcelDeliveryState>(
+            listener: (context, state) {
+              if (state is ParcelDeliveryFailure) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(content: Text(state.errorMessage.toString())),
+                );
+              } else if (state is ParcelDeliverySuccess) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(content: Text(state.parcelDelivery.toString())),
+                );
+              }
+            },
+            builder: (context, state) {
+              return Padding(
+                padding: const EdgeInsets.all(5.0),
+                child: FloatingActionButton(
+                  onPressed: () async {
+                    if (list.isEmpty) {
                       ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(content: Text(state.errorMessage.toString())),
+                        const SnackBar(
+                          content: Text(
+                              'لا يوجد اي طرود مسلمة للزبون في وضع الاوف لاين'),
+                        ),
                       );
-                    } else if (state is ParcelDeliverySuccess) {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(content: Text(state.parcelDelivery.toString())),
-                      );                      
+                      return;
+                    } else {
+                      await uploadDataSequentially();
                     }
                   },
-                  builder: (context, state) {
-                    return Padding(
-                      padding: const EdgeInsets.all(5.0),
-                      child: FloatingActionButton(
-                        onPressed: () async {
-                        if (list.isEmpty) {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(
-                              content:
-                                  Text('لا يوجد اي طرود مسلمة للزبون في وضع الاوف لاين'),
-                            ),
-                          );
-                          return;
-                        } else{
-                          await uploadDataSequentially();                        
-                          }
-                        },
-                        backgroundColor: Colors.white,
-                        child: const Icon(
-                          Icons.upload,
-                          color:  Colors.black,
-                        ),
-                      ),
-                    );
-                  },
-                ),                  
-                KButtonWidget(),
+                  backgroundColor: Colors.white,
+                  child: const Icon(
+                    Icons.upload,
+                    color: Colors.black,
+                  ),
+                ),
+              );
+            },
+          ),
+          KButtonWidget(),
         ],
       ),
     );

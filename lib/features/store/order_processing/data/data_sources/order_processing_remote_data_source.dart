@@ -72,7 +72,7 @@ class OrderProcessingRemotDataSourceImpl
       endPoint:
           'OrderDetails/Store/GetStoreOrderDetailssByOrderIdAndStoreId/$orderId',
       headers: {
-          'Authorization': 'Bearer $token',
+        'Authorization': 'Bearer $token',
       },
     );
     List<OrderProcessingEntity> orders = getOrderProcessingList(data);

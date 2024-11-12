@@ -13,7 +13,9 @@ import 'package:test_order_life_cycle/features/delivery/Ready_for_Delivery/domai
 class ReadyForDeliveryRepoImpl extends ReadyForDeliveryRepo {
   final ReadyForDeliveryRemoteDataSource readyForDeliveryRemoteDataSource;
 
-  ReadyForDeliveryRepoImpl({required this.readyForDeliveryRemoteDataSource,});
+  ReadyForDeliveryRepoImpl({
+    required this.readyForDeliveryRemoteDataSource,
+  });
 
 // basic fetch list Entity function
   Future<Either<Failure, List<T>>> fetchData<T>(
@@ -29,6 +31,7 @@ class ReadyForDeliveryRepoImpl extends ReadyForDeliveryRepo {
       }
     }
   }
+
 // basic fetch list Entity function
   Future<Either<Failure, List<T>?>> fetchDataNullable<T>(
       Future<List<T>?> Function() fetchFunction) async {
@@ -60,8 +63,9 @@ class ReadyForDeliveryRepoImpl extends ReadyForDeliveryRepo {
   }
 
   @override
-  Future<Either<Failure, List<ReadyForDeliveryEntity>?>> getAllReadyForDelivery() async {
-    return fetchDataNullable(() => readyForDeliveryRemoteDataSource.getAllReadyForDelivery());
+  Future<Either<Failure, List<ReadyForDeliveryEntity>?>>
+      getAllReadyForDelivery() async {
+    return fetchDataNullable(
+        () => readyForDeliveryRemoteDataSource.getAllReadyForDelivery());
   }
-
 }

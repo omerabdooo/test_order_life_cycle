@@ -14,14 +14,12 @@ class ParcelDelivery extends StatefulWidget {
   State<ParcelDelivery> createState() => _ParcelDeliveryState();
 }
 
-
 class _ParcelDeliveryState extends State<ParcelDelivery> {
   @override
   Widget build(BuildContext context) {
-
     return const Scaffold(
-    drawer: KDrawerWidget(),
-    body: ParcelDeliveryBody(),
-        );
+      drawer: KDrawerWidget(),
+      body: ParcelDeliveryBody(),
+    );
   }
 }

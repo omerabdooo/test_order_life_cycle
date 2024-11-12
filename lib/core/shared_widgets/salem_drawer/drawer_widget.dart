@@ -37,39 +37,37 @@ class KDrawerWidget extends StatelessWidget {
                   ],
                 )),
             KDrawerTileWidget(
-
-                title: 'استلام الطرد',
-                leading: const Icon(Icons.history),
-                ontap: () {
-                      GoRouter.of(context).pushReplacement(
-                      AppRouter.storeRouters.kReceiveParcels);
-
-                },),
+              title: 'استلام الطرد',
+              leading: const Icon(Icons.history),
+              ontap: () {
+                GoRouter.of(context)
+                    .pushReplacement(AppRouter.storeRouters.kReceiveParcels);
+              },
+            ),
             KDrawerTileWidget(
-                title: 'تسليم الطلب',
-                leading: const Icon(Icons.history),
-                ontap: () {
-                      GoRouter.of(context).pushReplacement(
-                      AppRouter.storeRouters.kParcelDelivery);
-
-                },),
+              title: 'تسليم الطلب',
+              leading: const Icon(Icons.history),
+              ontap: () {
+                GoRouter.of(context)
+                    .pushReplacement(AppRouter.storeRouters.kParcelDelivery);
+              },
+            ),
             KDrawerTileWidget(
-                title: 'قائمة الطلبات الجاهزة',
-                leading: const Icon(Icons.history),
-                ontap: () {
-                      GoRouter.of(context).pushReplacement(
-                      AppRouter.storeRouters.kReadyForDelivery);
-
-                },),
+              title: 'قائمة الطلبات الجاهزة',
+              leading: const Icon(Icons.history),
+              ontap: () {
+                GoRouter.of(context)
+                    .pushReplacement(AppRouter.storeRouters.kReadyForDelivery);
+              },
+            ),
             KDrawerTileWidget(
-                title: 'قائمة اوف لاين',
-                leading: const Icon(Icons.history),
-                ontap: () {
-                      GoRouter.of(context).pushReplacement(
-                      AppRouter.storeRouters.kOffline);
-
-                },),
-
+              title: 'قائمة اوف لاين',
+              leading: const Icon(Icons.history),
+              ontap: () {
+                GoRouter.of(context)
+                    .pushReplacement(AppRouter.storeRouters.kOffline);
+              },
+            ),
           ],
         ),
       ),

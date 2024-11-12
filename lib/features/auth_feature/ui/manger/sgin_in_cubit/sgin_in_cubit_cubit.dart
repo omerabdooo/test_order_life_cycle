@@ -5,7 +5,6 @@ import 'package:test_order_life_cycle/core/errors/failure.dart';
 import 'package:test_order_life_cycle/features/auth_feature/domain/entity/sign_in_entity.dart';
 import 'package:test_order_life_cycle/features/auth_feature/domain/usecase/sign_in_use_case.dart';
 
-
 part 'sgin_in_cubit_state.dart';
 
 class SignInCubitCubit extends Cubit<SignInCubitState> {

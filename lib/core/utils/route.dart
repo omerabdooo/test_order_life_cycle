@@ -7,6 +7,7 @@ import 'package:test_order_life_cycle/features/delivery/Parcel_Delivery/ui/scree
 import 'package:test_order_life_cycle/features/delivery/Receive_Parcels/ui/screen/ReceiveParcels.dart';
 import 'package:test_order_life_cycle/features/delivery/Ready_for_Delivery/ui/screen/Ready_for_Delivery.dart';
 import 'package:test_order_life_cycle/features/delivery/QRCodeScanner.dart';
+import 'package:test_order_life_cycle/features/k_accounant/confirm_payment/ui/screen/confirm_payment.dart';
 import 'package:test_order_life_cycle/features/store/home/ui/screen/store_home_page.dart';
 import 'package:test_order_life_cycle/features/store/order_processing/ui/screen/store_order_processing.dart';
 import 'package:test_order_life_cycle/features/y_accountant/confirm_payment/ui/screen/confirm_payment.dart';
@@ -50,10 +51,13 @@ class StoreRouters {
   //////////////////////////////////
   ///Accountant
   String kAccountant = 'accountant';
+
+  ///KSA Accountant
+  String kSAAccountant = 'KSAaccountant';
 }
 
 abstract class AppRouter {
-  static const kStoreHome = 'storeHome';
+  // static const kStoreHome = 'storeHome';
 
   static StoreRouters storeRouters = StoreRouters();
   static final router = GoRouter(
@@ -92,10 +96,10 @@ abstract class AppRouter {
         builder: (context, state) => const QRCodeScanner(),
       ),
 
-      GoRoute(
-        path: AppRouter.storeRouters.kStoreHome,
-        builder: (context, state) => const ConfirmPayment(),
-      ),
+      // GoRoute(
+      //   path: AppRouter.storeRouters.kAccountant,
+      //   builder: (context, state) => const ConfirmPayment(),
+      // ),
       GoRoute(
         path: AppRouter.storeRouters.klogin,
         builder: (context, state) => const LoginScreen(),
@@ -116,6 +120,10 @@ abstract class AppRouter {
       GoRoute(
         path: AppRouter.storeRouters.kAccountant,
         builder: (context, state) => const ConfirmPayment(),
+      ),
+      GoRoute(
+        path: AppRouter.storeRouters.kSAAccountant,
+        builder: (context, state) => const KSAConfirmPayment(),
       ),
 
       // GoRoute(
@@ -173,21 +181,19 @@ abstract class AppRouter {
     ],
   );
 }
-  // static Route<dynamic> routeApp(RouteSettings routeSettings) {
-  //   switch (routeSettings.name) {
-  //     // case '/':
-  //     //   return MaterialPageRoute(builder: (ctx) => const LoginScreen());
-  //     // case '/storeHome':
-  //     //   return MaterialPageRoute(builder: (ctx) => const StoreHomePage());
+// static Route<dynamic> routeApp(RouteSettings routeSettings) {
+//   switch (routeSettings.name) {
+//     // case '/':
+//     //   return MaterialPageRoute(builder: (ctx) => const LoginScreen());
+//     // case '/storeHome':
+//     //   return MaterialPageRoute(builder: (ctx) => const StoreHomePage());
 
-  //     // case '/store/order/processing':
-  //     //   return MaterialPageRoute(
-  //     //       builder: (ctx) => const StoreOrderProcessing(),
-  //     //       settings: RouteSettings(arguments: routeSettings.arguments));
+//     // case '/store/order/processing':
+//     //   return MaterialPageRoute(
+//     //       builder: (ctx) => const StoreOrderProcessing(),
+//     //       settings: RouteSettings(arguments: routeSettings.arguments));
 
-  //     default:
-  //       return MaterialPageRoute(builder: (ctx) => const LoginScreen());
-  //   }
-  // }
-
-
+//     default:
+//       return MaterialPageRoute(builder: (ctx) => const LoginScreen());
+//   }
+// }

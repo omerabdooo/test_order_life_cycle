@@ -17,8 +17,7 @@ class UpdateBoundStateCubit extends Cubit<UpdateBoundStateState> {
     result.fold(
         (failure) => emit(UpdateBoundStateCubitFailure(
             errorMessage: failure.message, boundId)),
-        (cartItem) => emit(
-            UpdateBoundStateCubitSuccess(boundEntitny: cartItem)));
-    ;
+        (cartItem) =>
+            emit(UpdateBoundStateCubitSuccess(boundEntitny: cartItem)));
   }
 }

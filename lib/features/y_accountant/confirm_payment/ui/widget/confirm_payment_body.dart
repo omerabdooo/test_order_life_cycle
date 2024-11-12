@@ -19,34 +19,32 @@ class ConfirmPaymentBody extends StatefulWidget {
 class _ConfirmPaymentBodyState extends State<ConfirmPaymentBody> {
   @override
   void initState() {
-    
     super.initState();
     context.read<GetBoundCubit>().getBound();
   }
+
   @override
   Widget build(BuildContext context) {
-    return 
-       SingleChildScrollView(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            const KCustomAppBarWidget(
-              nameAppbar: "تاكيد السداد",
-              count: 0,
-              isHome: false,
+    return SingleChildScrollView(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          const KCustomAppBarWidget(
+            nameAppbar: "تاكيد السداد",
+            count: 0,
+            isHome: false,
+          ),
+          Padding(
+            padding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 10.w),
+            child: const Column(
+              children: [
+                SearchConfirmPayment(),
+                BodyConfirmPaymentWidget(),
+              ],
             ),
-            Padding(
-              padding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 10.w),
-              child: const Column(
-                children: [
-                  SearchConfirmPayment(),
-                  BodyConfirmPaymentWidget(),
-                ],
-              ),
-            ),
-          ],
-        ),
-      
+          ),
+        ],
+      ),
     );
   }
 }

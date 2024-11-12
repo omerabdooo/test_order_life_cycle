@@ -8,13 +8,13 @@ class CustomLabelPart extends StatelessWidget {
   final String partCount;
   // final Function()? partOnTap;
   // final String navigatorName;
-  const CustomLabelPart(
-      {super.key,
-      required this.partName,
-      required this.partCount,
-      //  required this.partOnTap,
-      // required this.navigatorName
-      });
+  const CustomLabelPart({
+    super.key,
+    required this.partName,
+    required this.partCount,
+    //  required this.partOnTap,
+    // required this.navigatorName
+  });
 
   @override
   Widget build(BuildContext context) {

@@ -18,4 +18,3 @@ class ParcelDeliveryFailure extends ParcelDeliveryState {
 
   ParcelDeliveryFailure(this.errorMessage);
 }
-

@@ -28,14 +28,14 @@ class BoundsModel extends BoundEntitny {
     this.bondRejectedBy,
     this.orderId,
   }) : super(
-            boundId: bondId??0,
-            banKName: bankName??'',
-            clintName: customerName??'',
+            boundId: bondId ?? 0,
+            banKName: bankName ?? '',
+            clintName: customerName ?? '',
             image: bondImgUrl,
-            boundNumber: bondNumber??0,
-            date: bondDate??DateTime.now(),
-            boundValue: bondAmount?.toInt()??0,
-            orderNumber: orderId??0);
+            boundNumber: bondNumber ?? 0,
+            date: bondDate ?? DateTime.now(),
+            boundValue: bondAmount?.toInt() ?? 0,
+            orderNumber: orderId ?? 0);
 
   factory BoundsModel.fromJson(Map<String, dynamic> json) => BoundsModel(
         bondId: json['bondID'] as int?,

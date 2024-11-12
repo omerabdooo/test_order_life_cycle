@@ -14,11 +14,12 @@ class ButtonAddImageBond extends StatelessWidget {
             context: context,
             builder: (context) {
               return AlertDialog(
-                content: Image(
-                  image: NetworkImage(imageBond),
-                  errorBuilder: (context, error, stackTrace) {
+                  content: Image(
+                image: NetworkImage(imageBond),
+                errorBuilder: (context, error, stackTrace) {
                   return Image.asset('assets/2.png');
-                  },));
+                },
+              ));
             });
       },
     );

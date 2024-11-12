@@ -49,7 +49,7 @@ class AllOrderRemotDataSourceImpl extends AllOrderRemotDataSource {
       endPoint:
           'Orders/Store/GetAllOrdersByStoreIdWitheFilterstring/1/10/1?IsUrgen=false',
       headers: {
-          'Authorization': 'Bearer $token',
+        'Authorization': 'Bearer $token',
       },
     );
     List<AllOrderEntity> orders = getAllOrderList(data);

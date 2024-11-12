@@ -15,6 +15,14 @@ import 'package:test_order_life_cycle/features/auth_feature/ui/manger/sgin_in_cu
 import 'package:test_order_life_cycle/features/delivery/Parcel_Delivery/data/repos/parcel_delivery_repo_impl.dart';
 import 'package:test_order_life_cycle/features/delivery/Parcel_Delivery/domain/usecases/parcel_delivery_use_case.dart';
 import 'package:test_order_life_cycle/features/delivery/Parcel_Delivery/ui/manger/parcel_delivery_cubit/parcel_delivery_cubit.dart';
+import 'package:test_order_life_cycle/features/k_accounant/confirm_payment/data/repos/payment_bills_repo_impl.dart';
+import 'package:test_order_life_cycle/features/k_accounant/confirm_payment/domain/repo/payment_bills_repo.dart';
+import 'package:test_order_life_cycle/features/k_accounant/confirm_payment/domain/usecases/approve_invoice_use_case.dart';
+import 'package:test_order_life_cycle/features/k_accounant/confirm_payment/domain/usecases/choose_type_of_invoice_use_case.dart';
+import 'package:test_order_life_cycle/features/k_accounant/confirm_payment/domain/usecases/get_payment_bills_to_confirm_use_case.dart';
+import 'package:test_order_life_cycle/features/k_accounant/confirm_payment/ui/cubit/approve_Invoice_cubit/approve_invoice_cubit.dart';
+import 'package:test_order_life_cycle/features/k_accounant/confirm_payment/ui/cubit/choose_type_of_invoice_cubit/choose_type_of_invoice_cubit.dart';
+import 'package:test_order_life_cycle/features/k_accounant/confirm_payment/ui/cubit/get_payment_bill_cubit/get_payment_bill_cubit.dart';
 import 'package:test_order_life_cycle/features/store/order_processing/data/repos/order_processing_repo_impl.dart';
 import 'package:test_order_life_cycle/features/store/order_processing/domain/usecases/order_processing_bill_use_case.dart';
 import 'package:test_order_life_cycle/features/store/order_processing/domain/usecases/order_processing_shipping_usecase.dart';
@@ -63,6 +71,19 @@ class SindbadManagementApp extends StatelessWidget {
         BlocProvider(
             create: (context) => SignInCubitCubit(SignInUseCase(
                   getit.get<AuthRepoImpl>(),
+                ))),
+        BlocProvider(
+            create: (context) =>
+                GetPaymentBillCubit(GetPaymentBillsToConfirmUseCase(
+                  getit.get<PaymentBillsRepoImpl>(),
+                ))),
+        BlocProvider(
+            create: (context) => ApproveInvoiceCubit(ApproveInvoiceUseCase(
+                  getit.get<PaymentBillsRepoImpl>(),
+                ))),
+        BlocProvider(
+            create: (context) => ChooseTypeOfInvoiceCubit(ChooseTypeOfInvoiceUseCase(
+                  getit.get<PaymentBillsRepoImpl>(),
                 ))),
       ],
       child: ScreenUtilInit(

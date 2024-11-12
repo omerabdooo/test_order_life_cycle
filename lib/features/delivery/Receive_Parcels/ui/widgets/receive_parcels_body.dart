@@ -21,73 +21,73 @@ class _MyWidgetState extends State<ReceiveParcelsBody> {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-        child: Column(children: [
-          const KCustomAppBarWidget(
-            nameAppbar: "استلام طرود",
-          ),
-          KNumberOrderWidget(
-            isShow: true,
-            orderId: orderId,
-          ),
-          SizedBox(
-            height: 10.h,
-          ),
-          SizedBox(
-            height: 50.h,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              BlocConsumer<ReceiveParcelsCubit, ReceiveParcelsState>(
-                listener: (context, state) {
-                  if (state is ReceiveParcelsFailure) {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(content: Text(state.errorMessage.toString())),
-                    );
-                  } else if (state is ReceiveParcelsSuccess) {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(content: Text(state.receiveParcels.toString())),
-                    );
-                  }
-                },
-                builder: (context, state) {
-                  return KCustomPrimaryButtonWidget(
-                    width: 170,
-                    height: 48,
-                    buttonName: "تأكيـــد",
-                    onPressed: () async {
-                      if (orderId.text == "") {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(
-                            content: Text('من فضلك قم بقراءة الباركود اولا...'),
-                          ),
-                        );
-                        return;
-                      } else {
-                        // Call the function after all checks have passed
-                        await context
-                            .read<ReceiveParcelsCubit>()
-                            .receiveParcels(int.parse(orderId.text), status);
-                        print(orderId.text);
-                      }
-                    },
+      child: Column(children: [
+        const KCustomAppBarWidget(
+          nameAppbar: "استلام طرود",
+        ),
+        KNumberOrderWidget(
+          isShow: true,
+          orderId: orderId,
+        ),
+        SizedBox(
+          height: 10.h,
+        ),
+        SizedBox(
+          height: 50.h,
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            BlocConsumer<ReceiveParcelsCubit, ReceiveParcelsState>(
+              listener: (context, state) {
+                if (state is ReceiveParcelsFailure) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(content: Text(state.errorMessage.toString())),
                   );
-                },
-              ),
-              SizedBox(width: 20.h), // Space between buttons
-              KCustomPrimaryButtonWidget(
-                  width: 85,
+                } else if (state is ReceiveParcelsSuccess) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(content: Text(state.receiveParcels.toString())),
+                  );
+                }
+              },
+              builder: (context, state) {
+                return KCustomPrimaryButtonWidget(
+                  width: 170,
                   height: 48,
-                  buttonName: "إغلاق",
-                  onPressed: () {
-                    // OrderNumber.clear();
-                    // GoRouter.of(context).pushReplacement(
-                    //     AppRouter.deliveryRouters.kDeliverHomePage);
-                  }),
-              SizedBox(width: 15.h), // Space between buttons
-            ],
-          ),
-        ]),
-      );
+                  buttonName: "تأكيـــد",
+                  onPressed: () async {
+                    if (orderId.text == "") {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text('من فضلك قم بقراءة الباركود اولا...'),
+                        ),
+                      );
+                      return;
+                    } else {
+                      // Call the function after all checks have passed
+                      await context
+                          .read<ReceiveParcelsCubit>()
+                          .receiveParcels(int.parse(orderId.text), status);
+                      print(orderId.text);
+                    }
+                  },
+                );
+              },
+            ),
+            SizedBox(width: 20.h), // Space between buttons
+            KCustomPrimaryButtonWidget(
+                width: 85,
+                height: 48,
+                buttonName: "إغلاق",
+                onPressed: () {
+                  // OrderNumber.clear();
+                  // GoRouter.of(context).pushReplacement(
+                  //     AppRouter.deliveryRouters.kDeliverHomePage);
+                }),
+            SizedBox(width: 15.h), // Space between buttons
+          ],
+        ),
+      ]),
+    );
   }
 }
