@@ -12,8 +12,14 @@ class StoreOrderProcessingListView extends StatefulWidget {
   const StoreOrderProcessingListView({
     super.key,
     required this.idOrder,
+    required this.orderNum,
+    required this.orderDate,
+    required this.productNum,
   });
   final int idOrder;
+  final String orderNum;
+  final String orderDate;
+  final String productNum;
   @override
   State<StoreOrderProcessingListView> createState() =>
       _StoreOrderProcessingListViewState();
@@ -26,7 +32,8 @@ class _StoreOrderProcessingListViewState
   @override
   void initState() {
     super.initState();
-    context.read<OrderProcessingCubit>().fetchOrderProcessing(widget.idOrder);
+    context.read<OrderProcessingCubit>().fetchOrderProcessing(
+        widget.idOrder, widget.orderNum, widget.orderDate, widget.productNum);
   }
 
   @override

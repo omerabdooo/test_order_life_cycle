@@ -11,7 +11,15 @@ import 'package:test_order_life_cycle/features/store/order_processing/ui/widget/
 
 class StoreOrderProcessing extends StatelessWidget {
   final int orderId;
-  const StoreOrderProcessing({super.key, required this.orderId});
+  final String orderNum;
+  final String orderDate;
+  final String productNum;
+  const StoreOrderProcessing(
+      {super.key,
+      required this.orderId,
+      required this.orderNum,
+      required this.orderDate,
+      required this.productNum});
 
   @override
   Widget build(BuildContext context) {
@@ -35,9 +43,17 @@ class StoreOrderProcessing extends StatelessWidget {
               SingleChildScrollView(
                 child: Column(
                   children: [
-                    const StoreOrderProcessingContainer(),
+                    StoreOrderProcessingContainer(
+                      idOrder: orderId,
+                      orderNum: orderNum,
+                      orderDate: orderDate,
+                      productNum: productNum,
+                    ),
                     StoreOrderProcessingListView(
                       idOrder: orderId,
+                      orderNum: orderNum,
+                      orderDate: orderDate,
+                      productNum: productNum,
                     ),
                   ],
                 ),

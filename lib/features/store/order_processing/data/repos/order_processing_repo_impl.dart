@@ -34,9 +34,12 @@ class OrderProcessingRepoImpl extends OrderProcessingRepo {
 
   @override
   Future<Either<Failure, List<OrderProcessingEntity>>> fetchOrderProcessing(
-      {required int orderId}) {
-    return fetchData(
-        () => orderProcessingRemoteDataSource.fetchOrderProcessing(orderId));
+      {required int orderId,
+      required String orderNum,
+      required String orderDate,
+      required String productNum}) {
+    return fetchData(() => orderProcessingRemoteDataSource.fetchOrderProcessing(
+        orderId, orderNum, orderDate, productNum));
   }
 
   Future<Either<Failure, T>> fetchDataOrder<T>(

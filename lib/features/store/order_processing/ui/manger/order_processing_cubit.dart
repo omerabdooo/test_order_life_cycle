@@ -10,12 +10,13 @@ class OrderProcessingCubit extends Cubit<OrderProcessingState> {
       : super(OrderProcessingInitial());
   final OrderProcessingUsecase orderProcessingUsecase;
 
-  Future<void> fetchOrderProcessing(int orderId) async {
+  Future<void> fetchOrderProcessing(
+      int orderId, String orderNum, String orderDate, String productNum) async {
     emit(
       OrderProcessingLoading(),
     );
-    var result =
-        await orderProcessingUsecase.execute(OrderProcessingParam(orderId));
+    var result = await orderProcessingUsecase.execute(
+        OrderProcessingParam(orderId, orderNum, orderDate, productNum));
 
     result.fold((failuer) {
       emit(

@@ -15,12 +15,19 @@ class OrderProcessingUsecase extends UseCaseWithParam<
   Future<Either<Failure, List<OrderProcessingEntity>>> execute(
       OrderProcessingParam params) async {
     return await orderProcessingRepo.fetchOrderProcessing(
-        orderId: params.orderId);
+        orderId: params.orderId,
+        orderNum: params.orderNum,
+        orderDate: params.orderDate,
+        productNum: params.productNum);
   }
 }
 
 class OrderProcessingParam {
   final int orderId;
+  final String orderNum;
+  final String orderDate;
+  final String productNum;
 
-  OrderProcessingParam(this.orderId);
+  OrderProcessingParam(
+      this.orderId, this.orderNum, this.orderDate, this.productNum);
 }

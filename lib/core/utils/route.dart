@@ -108,8 +108,14 @@ abstract class AppRouter {
         path: AppRouter.storeRouters.kStoreOrderProcessing,
         builder: (context, state) {
           final orderId = state.extra as int; // Retrieve arguments if needed
+          final orderNum = state.extra; // Retrieve arguments if needed
+          final orderDate = state.extra; // Retrieve arguments if needed
+          final productNum = state.extra; // Retrieve arguments if needed
           return StoreOrderProcessing(
             orderId: orderId,
+            orderNum: orderNum.toString(),
+            orderDate: orderDate.toString(),
+            productNum: productNum.toString(),
           );
         },
       ),

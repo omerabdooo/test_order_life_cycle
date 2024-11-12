@@ -6,6 +6,11 @@ import 'package:test_order_life_cycle/features/store/home/ui/widget/info_text_li
 
 import '../../../../../core/utils/route.dart';
 
+int? idOrders;
+String? orderNum;
+String? orderDate;
+String? productNum;
+
 class OrderDetailsButton extends StatelessWidget {
   const OrderDetailsButton({
     super.key,
@@ -15,7 +20,6 @@ class OrderDetailsButton extends StatelessWidget {
     required this.idOrder,
   });
   final int idOrder;
-
   final String bondNum;
   final String date;
   final String itemNum;
@@ -24,8 +28,14 @@ class OrderDetailsButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        context.go(AppRouter.storeRouters.kStoreOrderProcessing,
-            extra: idOrder);
+        idOrders = idOrder;
+        orderNum = bondNum;
+        orderDate = date;
+        productNum = itemNum;
+        context.push(
+          AppRouter.storeRouters.kStoreOrderProcessing,
+          extra: idOrder,
+        );
         // GoRouter.of(context).push(AppRouter.storeRouters.kStoreOrderProcessing);
         // Navigator.pushNamed(context, "/store/order/processing",
         //     arguments: idOrder);

@@ -13,8 +13,7 @@ import '../models/order_processing_model/order_processing_model.dart';
 
 abstract class OrderProcessingRemoteDataSource {
   Future<List<OrderProcessingEntity>> fetchOrderProcessing(
-    int orderId,
-  );
+      int orderId, String orderNum, String orderDate, String productNum);
   Future<OrderProcessingBillEntity> fetchOrderProcessingBill(
       List<int> ids,
       num invoiceAmount,
@@ -66,7 +65,8 @@ class OrderProcessingRemotDataSourceImpl
   }
 
   @override
-  Future<List<OrderProcessingEntity>> fetchOrderProcessing(int orderId) async {
+  Future<List<OrderProcessingEntity>> fetchOrderProcessing(
+      int orderId, String orderNum, String orderDate, String productNum) async {
     String? token = await getToken();
     var data = await apiService.get(
       endPoint:
