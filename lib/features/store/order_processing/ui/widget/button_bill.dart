@@ -66,7 +66,13 @@ class ButtonBill extends StatelessWidget {
 
                             // dateConroller.text
                           );
-                      //Navigator.of(context).pop();
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text(
+                              'تم انشاء فاتورة بنجاحا تااااااااااااااااااااااام'),
+                        ),
+                      );
+                      Navigator.of(context).pop();
                       print(
                           'amarrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr ');
                     } catch (e) {

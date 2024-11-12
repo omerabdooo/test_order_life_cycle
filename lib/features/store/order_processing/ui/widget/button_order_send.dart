@@ -13,55 +13,68 @@ import 'package:test_order_life_cycle/features/store/order_processing/ui/widget/
 class ButtonOrderSend extends StatelessWidget {
   const ButtonOrderSend({
     super.key,
-    this.testConroller,
-    this.dateConroller,
-    this.numberConroller,
-    this.mountConroller,
+    // this.testConroller,
+    this.dateConrollers,
+    this.numberConrollers,
+    this.mountConrollers,
   });
-  final TextEditingController? testConroller;
-  final TextEditingController? dateConroller;
-  final TextEditingController? numberConroller;
-  final TextEditingController? mountConroller;
+  // final TextEditingController? testConroller;
+  final TextEditingController? dateConrollers;
+  final TextEditingController? numberConrollers;
+  final TextEditingController? mountConrollers;
   @override
   Widget build(BuildContext context) {
-    return KCustomPrimaryButtonWidget(
-        buttonName: "تم ارسال الطلب",
-        onPressed: () {
-          showDialog(
-              context: context,
-              builder: (context) {
-                return CustomDataDialogWidgetShipping(
-                  headTitle: 'بيانات الشحن',
-                  firstTitle: 'التاريخ',
-                  secondTitle: 'رقم فاتورة الشحن',
-                  thierdTitle: 'شركة النقل',
-                  onPressedSure: () async {
-                    String mountText = mountConrollers.text;
-                    try {
-                      await context.read<ShippingCubit>().fechOrderShipping(
-                            ids ?? [],
-                            numberConrollers.text,
-                            images!,
-                            mountText,
+    return Expanded(
+      child: KCustomPrimaryButtonWidget(
+          buttonName: "ارسال الطلب",
+          onPressed: () {
+            showDialog(
+                context: context,
+                builder: (context) {
+                  return CustomDataDialogWidgetShipping(
+                    headTitle: 'بيانات الشحن',
+                    firstTitle: 'التاريخ',
+                    secondTitle: 'رقم فاتورة الشحن',
+                    thierdTitle: 'شركة النقل',
+                    onPressedSure: () async {
+                      String mountText = mountConrollers!.text;
+                      try {
+                        await context.read<ShippingCubit>().fechOrderShipping(
+                              ids ?? [],
+                              numberConrollers!.text,
+                              images!,
+                              mountText,
 
-                            // mountConroller?.text ?? ""
-                          );
-                      String? cc = numberConrollers.text;
-                      Navigator.of(context).pop();
-                      print(
-                          'amarrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr ');
-                      print('تبا لك $cc');
-                    } catch (e) {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                          content: Text('هنالك خطا ما  $e'),
-                        ),
-                      );
-                      print('ikjgtiorjijjguiwheiruthwuiertywuorie $images');
-                    }
-                  },
-                );
-              });
-        });
+                              // mountConroller?.text ?? ""
+                            );
+                        // String? cc = numberConrollers.text;
+                        Navigator.of(context).pop();
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text(
+                                'تم شحن الطلب بنجاحا تااااااااااااااااااااااام'),
+                          ),
+                        );
+                        Navigator.of(context).pop();
+                        numberConrollers!.text = "";
+                        mountText = "";
+                        mountConrollers!.text = "";
+                        dateConrollers!.text = "";
+                        print(
+                            'amarrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr ');
+                        // print('تبا لك $cc');
+                      } catch (e) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text('هنالك خطا ما  $e'),
+                          ),
+                        );
+                        print('ikjgtiorjijjguiwheiruthwuiertywuorie $images');
+                      }
+                    },
+                  );
+                });
+          }),
+    );
   }
 }
